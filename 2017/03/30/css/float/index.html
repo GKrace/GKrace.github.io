@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="gracekang.site">
   <title>css浮动之详解 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="浮动 浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。 浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。 clear属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。  说一下为什么要清除浮动以及常见的清除浮动的方法 4%当一个内层元素是浮动">
+  <meta name="description" content="浮动 浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。 浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。 clear 属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。">
 <meta name="keywords" content="css">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css浮动之详解">
 <meta property="og:url" content="gracekang.site/2017/03/30/css/float/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="浮动 浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。 浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。 clear属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。  说一下为什么要清除浮动以及常见的清除浮动的方法 4%当一个内层元素是浮动">
+<meta property="og:description" content="浮动 浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。 浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。 clear 属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2377897-a0f4eff0c7cd5c66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-08-27T12:55:38.000Z">
+<meta property="og:updated_time" content="2019-04-22T08:21:29.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css浮动之详解">
-<meta name="twitter:description" content="浮动 浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。 浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。 clear属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。  说一下为什么要清除浮动以及常见的清除浮动的方法 4%当一个内层元素是浮动">
+<meta name="twitter:description" content="浮动 浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。 浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。 clear 属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2377897-a0f4eff0c7cd5c66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
@@ -32,7 +32,7 @@
   <style type="text/css">
   
     #container.show {
-      background: linear-gradient(to left, #43c6ac, #f8ffae);
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
   </style>
   
@@ -46,7 +46,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: linear-gradient(to left, #CFF2AD, #f8ffae)"></div>
+<div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -99,7 +99,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: linear-gradient(to left, #CFF2AD, #f8ffae)"></div>
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -174,20 +174,23 @@
         <h2 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h2><ul>
 <li>浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。</li>
 <li>浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。</li>
-<li>clear属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。<br><img src="http://upload-images.jianshu.io/upload_images/2377897-a0f4eff0c7cd5c66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+<li>clear 属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。<br><img src="http://upload-images.jianshu.io/upload_images/2377897-a0f4eff0c7cd5c66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
 </ul>
-<h2 id="说一下为什么要清除浮动以及常见的清除浮动的方法-4"><a href="#说一下为什么要清除浮动以及常见的清除浮动的方法-4" class="headerlink" title="说一下为什么要清除浮动以及常见的清除浮动的方法 4%"></a>说一下为什么要清除浮动以及常见的清除浮动的方法 4%</h2><p>当一个内层元素是浮动的时候，如果没有关闭浮动时，其父元素也就不会再包含这个浮动的内层元素，因为此时浮动元素已经脱离了文档流。也就是为什么外层不能被撑开了！<br>（2）：边框不能撑开 （3）：margin ,padding设置值不能正确显示（1）：背景不能显示</p>
+<a id="more"></a>
+<h2 id="说一下为什么要清除浮动以及常见的清除浮动的方法-4"><a href="#说一下为什么要清除浮动以及常见的清除浮动的方法-4" class="headerlink" title="说一下为什么要清除浮动以及常见的清除浮动的方法 4%"></a>说一下为什么要清除浮动以及常见的清除浮动的方法 4%</h2><p>当一个内层元素是浮动的时候，如果没有关闭浮动时，其父元素也就不会再包含这个浮动的内层元素，因为此时浮动元素已经脱离了文档流。也就是为什么外层不能被撑开了！<br>（2）：边框不能撑开 （3）：margin ,padding 设置值不能正确显示（1）：背景不能显示</p>
 <h3 id="方法一：在被清除浮动元素内部末尾添加新元素-、应用-clear：both"><a href="#方法一：在被清除浮动元素内部末尾添加新元素-、应用-clear：both" class="headerlink" title="方法一：在被清除浮动元素内部末尾添加新元素 、应用 clear：both"></a>方法一：在被清除浮动元素内部末尾添加新元素 、应用 clear：both</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"outer"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"div1"</span>&gt;<span class="number">1</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"div2"</span>&gt;<span class="number">2</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"div3"</span>&gt;<span class="number">3</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"clear"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">.clear&#123;clear:both; height: <span class="number">0</span>; line-height: <span class="number">0</span>; font-size: <span class="number">0</span>&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="方法二：触发BFC"><a href="#方法二：触发BFC" class="headerlink" title="方法二：触发BFC"></a>方法二：触发BFC</h3><p>父级div定义 overflow: hidden（hidden可以兼容IE，就是对seo不太友好,auto不可以兼容IE）<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">父亲 </span><br><span class="line"><span class="selector-class">.over-flow</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden; <span class="comment">// 是在处理兼容性问题</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>###方法三： clearfix:before,after<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全浏览器通用的clearfix方案【推荐】</span></span><br><span class="line"><span class="comment">// 同时加入:before以解决现代浏览器上边距折叠的问题</span></span><br><span class="line"><span class="selector-class">.clearfix</span>:before,</span><br><span class="line"><span class="selector-class">.clearfix</span>:after &#123;</span><br><span class="line">    <span class="attribute">display</span>: table;<span class="comment">//block</span></span><br><span class="line">    <span class="attribute">content</span>: <span class="string">" "</span>;<span class="comment">// '.'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span>:after &#123;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    *zoom: <span class="number">1</span>;<span class="comment">//引入了zoom以支持IE6/7</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="方法二：触发-BFC"><a href="#方法二：触发-BFC" class="headerlink" title="方法二：触发 BFC"></a>方法二：触发 BFC</h3><p>父级 div 定义 overflow: hidden（hidden 可以兼容 IE，就是对 seo 不太友好,auto 不可以兼容 IE）</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">父亲</span><br><span class="line"><span class="selector-class">.over-flow</span>&#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden; <span class="comment">// 是在处理兼容性问题</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###方法三： clearfix:before,after</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全浏览器通用的clearfix方案【推荐】</span></span><br><span class="line"><span class="comment">// 同时加入:before以解决现代浏览器上边距折叠的问题</span></span><br><span class="line"><span class="selector-class">.clearfix</span>:before,</span><br><span class="line"><span class="selector-class">.clearfix</span>:after &#123;</span><br><span class="line">    <span class="attribute">display</span>: table;<span class="comment">//block</span></span><br><span class="line">    <span class="attribute">content</span>: <span class="string">" "</span>;<span class="comment">// '.'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span>:after &#123;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    *zoom: <span class="number">1</span>;<span class="comment">//引入了zoom以支持IE6/7</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="https://my.oschina.net/leipeng/blog/221125" target="_blank" rel="noopener">https://my.oschina.net/leipeng/blog/221125</a><br><a href="http://www.jianshu.com/p/5138706046b1" target="_blank" rel="noopener">http://www.jianshu.com/p/5138706046b1</a><br><a href="http://www.jianshu.com/p/09bd5873bed4" target="_blank" rel="noopener">http://www.jianshu.com/p/09bd5873bed4</a></p>
 <hr>
-<h2 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h2><p>BFC可以做:BFC清除浮动，BFC解决垂直边距折叠<br>BFC全称是块状格式化上下文，它是按照块级盒子布局的。我们了解他的特征、触发方式、常见使用场景这些就够了。</p>
-<p>BFC的主要特征</p>
-<p>✦ BFC容器是一个隔离的容器，和其他元素互不干扰；所以我们可以用触发两个元素的BFC来解决垂直边距折叠问题。<br>✦ BFC可以包含浮动；通常用来解决浮动父元素高度坍塌的问题。</p>
-<p>其中，BFC清除浮动就是用的“包含浮动”这条特性。<br>那么，怎样才能触发BFC呢？</p>
-<p>BFC的触发方式</p>
-<p>我们可以给父元素添加以下属性来触发BFC(一下任意一条就可以)：<br>✦ float 为 left | right(不为none)<br>✦ overflow 为 hidden | auto | scorll(不为visible   )<br>✦ display 为 table-cell | table-caption | inline-block | flex | inline-flex<br>✦ position 为 absolute | fixed</p>
+<h2 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h2><p>BFC 可以做:BFC 清除浮动，BFC 解决垂直边距折叠<br>BFC 全称是块状格式化上下文，它是按照块级盒子布局的。我们了解他的特征、触发方式、常见使用场景这些就够了。</p>
+<p>BFC 的主要特征</p>
+<p>✦ BFC 容器是一个隔离的容器，和其他元素互不干扰；所以我们可以用触发两个元素的 BFC 来解决垂直边距折叠问题。<br>✦ BFC 可以包含浮动；通常用来解决浮动父元素高度坍塌的问题。</p>
+<p>其中，BFC 清除浮动就是用的“包含浮动”这条特性。<br>那么，怎样才能触发 BFC 呢？</p>
+<p>BFC 的触发方式</p>
+<p>我们可以给父元素添加以下属性来触发 BFC(一下任意一条就可以)：<br>✦ float 为 left | right(不为 none)<br>✦ overflow 为 hidden | auto | scorll(不为 visible )<br>✦ display 为 table-cell | table-caption | inline-block | flex | inline-flex<br>✦ position 为 absolute | fixed</p>
 <hr>
 
       
@@ -310,7 +313,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浮动"><span class="toc-number">1.</span> <span class="toc-text">浮动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说一下为什么要清除浮动以及常见的清除浮动的方法-4"><span class="toc-number">2.</span> <span class="toc-text">说一下为什么要清除浮动以及常见的清除浮动的方法 4%</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法一：在被清除浮动元素内部末尾添加新元素-、应用-clear：both"><span class="toc-number">2.1.</span> <span class="toc-text">方法一：在被清除浮动元素内部末尾添加新元素 、应用 clear：both</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二：触发BFC"><span class="toc-number">2.2.</span> <span class="toc-text">方法二：触发BFC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BFC"><span class="toc-number">3.</span> <span class="toc-text">BFC</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#浮动"><span class="toc-number">1.</span> <span class="toc-text">浮动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说一下为什么要清除浮动以及常见的清除浮动的方法-4"><span class="toc-number">2.</span> <span class="toc-text">说一下为什么要清除浮动以及常见的清除浮动的方法 4%</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法一：在被清除浮动元素内部末尾添加新元素-、应用-clear：both"><span class="toc-number">2.1.</span> <span class="toc-text">方法一：在被清除浮动元素内部末尾添加新元素 、应用 clear：both</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法二：触发-BFC"><span class="toc-number">2.2.</span> <span class="toc-text">方法二：触发 BFC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BFC"><span class="toc-number">3.</span> <span class="toc-text">BFC</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -325,6 +328,15 @@
   
   
 
+  
+  <div id="SOHUCS" sid="css/float"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
   

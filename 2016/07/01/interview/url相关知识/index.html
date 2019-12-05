@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="gracekang.site">
   <title>url 相关知识点总结 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存     getComptuedStyle使用方法:window./document.defaultView.(ele,pseudo-ele);两个参数 元素和伪元素，不查询伪元素可以省略    document.defaultView === window 在IE8中false Firefox 3.6 ,必">
+  <meta name="description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存">
 <meta name="keywords" content="interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="url 相关知识点总结">
 <meta property="og:url" content="gracekang.site/2016/07/01/interview/url相关知识/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存     getComptuedStyle使用方法:window./document.defaultView.(ele,pseudo-ele);两个参数 元素和伪元素，不查询伪元素可以省略    document.defaultView === window 在IE8中false Firefox 3.6 ,必">
+<meta property="og:description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-05T12:38:44.000Z">
+<meta property="og:updated_time" content="2019-04-22T08:22:15.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="url 相关知识点总结">
-<meta name="twitter:description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存     getComptuedStyle使用方法:window./document.defaultView.(ele,pseudo-ele);两个参数 元素和伪元素，不查询伪元素可以省略    document.defaultView === window 在IE8中false Firefox 3.6 ,必">
+<meta name="twitter:description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -30,7 +30,7 @@
   <style type="text/css">
   
     #container.show {
-      background: linear-gradient(to left, #43c6ac, #f8ffae);
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
   </style>
   
@@ -44,7 +44,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: linear-gradient(to left, #CFF2AD, #f8ffae)"></div>
+<div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -97,7 +97,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: linear-gradient(to left, #CFF2AD, #f8ffae)"></div>
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -169,62 +169,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="rel-“dns-prefetch”"><a href="#rel-“dns-prefetch”" class="headerlink" title="rel = “dns-prefetch”"></a>rel = “dns-prefetch”</h3><p>用户跟某个连接之前，浏览器先尝试解析域名并将其缓存    </p>
-<h3 id="getComptuedStyle使用方法"><a href="#getComptuedStyle使用方法" class="headerlink" title="getComptuedStyle使用方法:"></a>getComptuedStyle使用方法:</h3><p><code>window./document.defaultView.(ele,pseudo-ele);</code><br>两个参数 元素和伪元素，不查询伪元素可以省略  </p>
+        <h3 id="rel-“dns-prefetch”"><a href="#rel-“dns-prefetch”" class="headerlink" title="rel = “dns-prefetch”"></a>rel = “dns-prefetch”</h3><p>用户跟某个连接之前，浏览器先尝试解析域名并将其缓存</p>
+<a id="more"></a>
+<h3 id="getComptuedStyle-使用方法"><a href="#getComptuedStyle-使用方法" class="headerlink" title="getComptuedStyle 使用方法:"></a>getComptuedStyle 使用方法:</h3><p><code>window./document.defaultView.(ele,pseudo-ele);</code><br>两个参数 元素和伪元素，不查询伪元素可以省略</p>
 <ul>
-<li><code>document.defaultView === window</code> 在IE8中false Firefox 3.6 ,必须使用defaultView（iframe）  </li>
-<li><code>element.style</code>读取的元素内联样式，即元素style属性上的样式，可读写，getComputedStyle读取的是最终样式，只读，包括内联、嵌入、和外部样式  </li>
-<li>getPropertyValue获取css样式声明对象上的属性值，例如style.getProperyValue（“height”）  </li>
-<li>attribute和property区别：创建<ol>
-<li>dom对象初始化的时候都会创建默认的property</li>
-<li>html标签里定义的attribute才会保存在property的attributes属性中</li>
-<li>attribute会初始化property中的同名属性，但自定义的attribute不会出现在property中</li>
-<li>attribute的值都是字符串：“value=1”<ul>
-<li>数据绑定</li>
-</ul>
-</li>
-<li>attributes的数据汇通不到property上，然而peroperty更改不会改变attribute</li>
-<li>id和disabled的数据是双向的<br>例如<code>&lt;input id=&quot;in_1&quot; value=&quot;1&quot; abc=&quot;whatever&quot;&gt;</code><h3 id="输入一个url过程"><a href="#输入一个url过程" class="headerlink" title="输入一个url过程"></a>输入一个url过程</h3><ol>
-<li>解析url：url包括：1.protocol协议头http 2.host主机域名或ip地址 3.port端口号 4.path目录路径 5.query查询参数 6.fragment即#后面的hash值，一般用来定位到某个位置</li>
-<li>开启单独的网络线程发送一个完整的http请求（包含dns查询，tcp/ip请求构建，五层因特网协议栈）<br>如果输入的域名，dns解析成ip，如果有浏览器缓存直接使用，否则使用本机缓存，在没有的话就是host，域名查询有可能经过CDN调度器（如果CDN有储存的话）dns解析很耗时，如果解析域名过多首屏加载会慢，可以使用dns-prefetch优化</li>
-<li>tcp/ip请求（这是http本质）通过三次握手(SYN/ACK)和四次挥手(FIN/ACK)与服务器建立连接，tcp将http长报文划分为短报文<br>应用层：dns解析ip地址发送http请求 –&gt; 传输层：建立TCP链接 –&gt; 网络层：IP寻址 –&gt; 数据链路层：封装成帧 –&gt;物理层：物理传输</li>
-<li>服务器接受请求涉及到负载均衡 用户发起请求都指向调度服务器，调度服务器根据实际调度算法分配不同的请求给对应集群中年的服务器执行，然后调度器等待时机服务器的http相应，反馈给用户,后端一般有统一的验证，如安全拦截，跨域验证，如果拒绝请求直接返回相应的报文，通过验证后进入后台代码，程序接受请求执行，执行完毕后返回一个http响应包，发送给前端实现交互</li>
+<li><code>document.defaultView === window</code> 在 IE8 中 false Firefox 3.6 ,必须使用 defaultView（iframe）</li>
+<li><code>element.style</code>读取的元素内联样式，即元素 style 属性上的样式，可读写，getComputedStyle 读取的是最终样式，只读，包括内联、嵌入、和外部样式</li>
+<li>getPropertyValue 获取 css 样式声明对象上的属性值，例如 style.getProperyValue（“height”）</li>
+<li>attribute 和 property 区别：创建<ol>
+<li>dom 对象初始化的时候都会创建默认的 property</li>
+<li>html 标签里定义的 attribute 才会保存在 property 的 attributes 属性中</li>
+<li>attribute 会初始化 property 中的同名属性，但自定义的 attribute 不会出现在 property 中</li>
+<li>attribute 的值都是字符串：“value=1”</li>
 </ol>
 </li>
-</ol>
-<ul>
-<li>http报文：<ul>
-<li>1xx：请求接收，继续处理 </li>
-<li>2xx：请求处理成功（get产生1个tcp数据包，post2个，浏览器发送headers和data一起发送出去，服务器响应200，post请求时浏览器先发送headers，服务器响应100 continue，浏览器再发送data，服务器响应200）</li>
-<li>3xx：重定向（301永久重定向，302临时重定向，303see other，304not-modified 请求网页未修改，可使用本地缓存）</li>
-<li>4xx：客户端错误（401未授权认证，403禁止访问，404资源未找到）</li>
-<li>5xx：服务器错误（500服务器执行请求发生错误，503服务器不可用）</li>
-</ul>
-</li>
-<li>gzip压缩：需要浏览器支持，一般由apache、tomcat等web服务器开启</li>
-<li>http1.0：默认使用短链接，<br>http1.1：默认使用长连接，一个tpc/ip连接上可以发送多个数据包，没有数据包则发送检测包联系 Connection：keep-alive<br>http2.0：一个tcp/ip请求可以请求多个资源，若请求若干个资源则分割更小的帧请求（无需用到http1.1中静态资源域名拆分）<ol>
-<li>多路复用，</li>
-<li>首部压缩，</li>
-<li>二进制分帧层改善运输性能，</li>
-<li>服务器推动送，</li>
-<li>请求优先级<br>https：就是安全版本的http，适用支付操作的网站，建立ssl链接确保通信都是加密的（RSA加密，hash加密，证书）  <h3 id="缓存："><a href="#缓存：" class="headerlink" title="缓存："></a>缓存：</h3>强缓存与弱缓存（协商缓存）：<br>http1.0：Pragma/Expires（使用服务器端时间，一旦不同步导致缓存无法过期）  If-Modified-Since/Last-Modified（服务器端文件周期性改变，时间只能精确到1s）<br>http1.1：Cache-Control/Max-age（使用客户端时间）                    If-None-Match/E-tag（只要文件改变就发生改变，无精确时间限制）<h3 id="解析页面流程："><a href="#解析页面流程：" class="headerlink" title="解析页面流程："></a>解析页面流程：</h3><ol>
-<li>解析html，构建dom树  </li>
-<li>解析css，生成css规则树</li>
-<li>合并dom树和css规则树，生成render树</li>
-<li>布局render树（layout/reflow），负责各个元素的尺寸、位置计算</li>
-<li>绘制render树（paint）绘制页面像素信息</li>
-<li>浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上<br>回流：页面初始渲染，dom结构改变，render树变化（比如减少padding），页面resize，获取某些属性也会引发回流（offest，scroll，cilent，width，getComputedStyle，改变字体</li>
-<li>资源外链下载：当遇到外链资源会单独开启一个下载线程去下载资源（http1.1中每一个资源下载都会开启一个http请求，对应一个tcp/ip链接）</li>
+<li>数据绑定<ol>
+<li>attributes 的数据汇通不到 property 上，然而 peroperty 更改不会改变 attribute</li>
+<li>id 和 disabled 的数据是双向的<br>例如<code>&lt;input id=&quot;in_1&quot; value=&quot;1&quot; abc=&quot;whatever&quot;&gt;</code></li>
 </ol>
 </li>
+</ul>
+<h3 id="输入一个-url-过程"><a href="#输入一个-url-过程" class="headerlink" title="输入一个 url 过程"></a>输入一个 url 过程</h3><ol>
+<li>解析 url：url 包括：1.protocol 协议头 http 2.host 主机域名或 ip 地址 3.port 端口号 4.path 目录路径 5.query 查询参数 6.fragment 即#后面的 hash 值，一般用来定位到某个位置</li>
+<li>开启单独的网络线程发送一个完整的 http 请求（包含 dns 查询，tcp/ip 请求构建，五层因特网协议栈）<br>如果输入的域名，dns 解析成 ip，如果有浏览器缓存直接使用，否则使用本机缓存，在没有的话就是 host，域名查询有可能经过 CDN 调度器（如果 CDN 有储存的话）dns 解析很耗时，如果解析域名过多首屏加载会慢，可以使用 dns-prefetch 优化</li>
+<li>tcp/ip 请求（这是 http 本质）通过三次握手(SYN/ACK)和四次挥手(FIN/ACK)与服务器建立连接，tcp 将 http 长报文划分为短报文<br>应用层：dns 解析 ip 地址发送 http 请求 –&gt; 传输层：建立 TCP 链接 –&gt; 网络层：IP 寻址 –&gt; 数据链路层：封装成帧 –&gt;物理层：物理传输</li>
+<li>服务器接受请求涉及到负载均衡 用户发起请求都指向调度服务器，调度服务器根据实际调度算法分配不同的请求给对应集群中年的服务器执行，然后调度器等待时机服务器的 http 相应，反馈给用户,后端一般有统一的验证，如安全拦截，跨域验证，如果拒绝请求直接返回相应的报文，通过验证后进入后台代码，程序接受请求执行，执行完毕后返回一个 http 响应包，发送给前端实现交互<ul>
+<li>http 报文：<ul>
+<li>1xx：请求接收，继续处理</li>
+<li>2xx：请求处理成功（get 产生 1 个 tcp 数据包，post2 个，浏览器发送 headers 和 data 一起发送出去，服务器响应 200，post 请求时浏览器先发送 headers，服务器响应 100 continue，浏览器再发送 data，服务器响应 200）</li>
+<li>3xx：重定向（301 永久重定向，302 临时重定向，303see other，304not-modified 请求网页未修改，可使用本地缓存）</li>
+<li>4xx：客户端错误（401 未授权认证，403 禁止访问，404 资源未找到）</li>
+<li>5xx：服务器错误（500 服务器执行请求发生错误，503 服务器不可用）</li>
+</ul>
+</li>
+<li>gzip 压缩：需要浏览器支持，一般由 apache、tomcat 等 web 服务器开启</li>
+<li>http1.0：默认使用短链接，<br>http1.1：默认使用长连接，一个 tpc/ip 连接上可以发送多个数据包，没有数据包则发送检测包联系 Connection：keep-alive<br>http2.0：一个 tcp/ip 请求可以请求多个资源，若请求若干个资源则分割更小的帧请求（无需用到 http1.1 中静态资源域名拆分） 1. 多路复用， 2. 首部压缩， 3. 二进制分帧层改善运输性能， 4. 服务器推动送， 5. 请求优先级<br>https：就是安全版本的 http，适用支付操作的网站，建立 ssl 链接确保通信都是加密的（RSA 加密，hash 加密，证书）</li>
+</ul>
+</li>
 </ol>
-</li>
-<li>遇到css样式资源：css下载异步，不会紫塞浏览器构建dom树，但会阻塞渲染，如果有media query是不会阻塞渲染的</li>
-<li>遇到js脚本资源：阻塞浏览器解析（现代浏览器会优化，脚本阻塞解析时，会继续下载其他资源，有并发上限）如果设置defer或者async属性的话，脚本就变成异步了，可以等到解析完毕在执行<br>async是异步执行，异步下载完毕后就会执行，一定在onload前，不确定DOMContentLoaded前后，defer是延迟执行，效果上看将脚本放在body后面，按照规范应该再DOMContentLoaded之前</li>
-<li>遇到img资源：直接异步下载，不会阻塞解析</li>
+<h3 id="缓存："><a href="#缓存：" class="headerlink" title="缓存："></a>缓存：</h3><p>强缓存与弱缓存（协商缓存）：<br>http1.0：Pragma/Expires（使用服务器端时间，一旦不同步导致缓存无法过期） If-Modified-Since/Last-Modified（服务器端文件周期性改变，时间只能精确到 1s）<br>http1.1：Cache-Control/Max-age（使用客户端时间） If-None-Match/E-tag（只要文件改变就发生改变，无精确时间限制）</p>
+<h3 id="解析页面流程："><a href="#解析页面流程：" class="headerlink" title="解析页面流程："></a>解析页面流程：</h3><ol>
+<li>解析 html，构建 dom 树</li>
+<li>解析 css，生成 css 规则树</li>
+<li>合并 dom 树和 css 规则树，生成 render 树</li>
+<li>布局 render 树（layout/reflow），负责各个元素的尺寸、位置计算</li>
+<li>绘制 render 树（paint）绘制页面像素信息</li>
+<li>浏览器将各层信息发送给 GPU，GPU 将各层合成，显示在屏幕上<br>回流：页面初始渲染，dom 结构改变，render 树变化（比如减少 padding），页面 resize，获取某些属性也会引发回流（offest，scroll，cilent，width，getComputedStyle，改变字体</li>
+<li>资源外链下载：当遇到外链资源会单独开启一个下载线程去下载资源（http1.1 中每一个资源下载都会开启一个 http 请求，对应一个 tcp/ip 链接）<ul>
+<li>遇到 css 样式资源：css 下载异步，不会紫塞浏览器构建 dom 树，但会阻塞渲染，如果有 media query 是不会阻塞渲染的</li>
+<li>遇到 js 脚本资源：阻塞浏览器解析（现代浏览器会优化，脚本阻塞解析时，会继续下载其他资源，有并发上限）如果设置 defer 或者 async 属性的话，脚本就变成异步了，可以等到解析完毕在执行<br>async 是异步执行，异步下载完毕后就会执行，一定在 onload 前，不确定 DOMContentLoaded 前后，defer 是延迟执行，效果上看将脚本放在 body 后面，按照规范应该再 DOMContentLoaded 之前</li>
+<li>遇到 img 资源：直接异步下载，不会阻塞解析</li>
 </ul>
 </li>
-</ul>
+</ol>
 
       
 
@@ -318,8 +315,8 @@
     </a>
   
   
-    <a href="/2016/06/28/interview/book/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">book</div>
+    <a href="/2016/06/27/interview/ms/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ms</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -348,6 +345,15 @@
   
   
 
+  
+  <div id="SOHUCS" sid="interview/url相关知识"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
   

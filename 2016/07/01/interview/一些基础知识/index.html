@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="gracekang.site">
   <title>一些基础知识点 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js基本数据类型：number string undefined null boolean object堆和栈的区别：js中，undefined，null，boolean，number，string数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中      堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值   栈：先进后出；动态分配空">
+  <meta name="description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中  堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值 栈：先进后出；动态分配空间由程">
 <meta name="keywords" content="interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些基础知识点">
 <meta property="og:url" content="gracekang.site/2016/07/01/interview/一些基础知识/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="js基本数据类型：number string undefined null boolean object堆和栈的区别：js中，undefined，null，boolean，number，string数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中      堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值   栈：先进后出；动态分配空">
+<meta property="og:description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中  堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值 栈：先进后出；动态分配空间由程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-05T12:31:38.000Z">
+<meta property="og:updated_time" content="2019-04-22T08:22:20.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些基础知识点">
-<meta name="twitter:description" content="js基本数据类型：number string undefined null boolean object堆和栈的区别：js中，undefined，null，boolean，number，string数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中      堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值   栈：先进后出；动态分配空">
+<meta name="twitter:description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中  堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值 栈：先进后出；动态分配空间由程">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -30,7 +30,7 @@
   <style type="text/css">
   
     #container.show {
-      background: linear-gradient(to left, #43c6ac, #f8ffae);
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
     }
   </style>
   
@@ -44,7 +44,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: linear-gradient(to left, #CFF2AD, #f8ffae)"></div>
+<div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -97,7 +97,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: linear-gradient(to left, #CFF2AD, #f8ffae)"></div>
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -169,83 +169,96 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="js基本数据类型：number-string-undefined-null-boolean-object"><a href="#js基本数据类型：number-string-undefined-null-boolean-object" class="headerlink" title="js基本数据类型：number string undefined null boolean object"></a>js基本数据类型：number string undefined null boolean object</h3><h3 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h3><p>js中，undefined，null，boolean，number，string数据类型可直接访问，存放在栈中<br>引用类型的值不固定大小，存放在堆中，内存地址保存在栈中    </p>
+        <h3 id="js-基本数据类型：number-string-undefined-null-boolean-object"><a href="#js-基本数据类型：number-string-undefined-null-boolean-object" class="headerlink" title="js 基本数据类型：number string undefined null boolean object"></a>js 基本数据类型：number string undefined null boolean object</h3><h3 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h3><p>js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中<br>引用类型的值不固定大小，存放在堆中，内存地址保存在栈中</p>
 <ul>
-<li>堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值  </li>
-<li>栈：先进后出；动态分配空间由程序员分配释放，如果不释放程序结束会由OS回收  </li>
-</ul>
-<h3 id="obj-a会转换为obj-“a”-执行，会计算a的值"><a href="#obj-a会转换为obj-“a”-执行，会计算a的值" class="headerlink" title="obj.a会转换为obj[“a”]执行，会计算a的值"></a>obj.a会转换为obj[“a”]执行，会计算a的值</h3><h3 id="原型链："><a href="#原型链：" class="headerlink" title="原型链："></a>原型链：</h3><p>作用就是实现对象的继承，比如你functon A（）{} 里面有很多方法属性，var B = new A（） 这样B就继承A的定义的属性和方法，<br>当B想调用方法时候会在自己里面找，自己里面没有就会到A.prototype,直至找到object.prototype<br>原型链是一种机制，js中每一个对象都有一个内置的proto属性，指向创建他的函数对象的原型对象（prototype），原型对象上也有proto属性，因此不断指向形成了原型链<br>继承：构造函数直接继承：通过祖父构造出父亲，父亲构造出儿子，这样的方法继承太多没用的属性方法  </p>
-<ul>
-<li>共享原性：a.prototype = b.prototype 无法改变儿子的原型，要改两个都改了</li>
-<li>圣杯模式：中间引入F来沟通P和C 五句话<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function F ()&#123;&#125;;</span><br><span class="line">F.prototype = P.prototype;</span><br><span class="line"><span class="keyword">C</span>.prototype = new F();</span><br><span class="line"><span class="keyword">C</span>.prototype.constructor = <span class="keyword">C</span> ;</span><br><span class="line"><span class="keyword">C</span>.prototype,uber = P;</span><br></pre></td></tr></table></figure>
+<li>堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值</li>
+<li><p>栈：先进后出；动态分配空间由程序员分配释放，如果不释放程序结束会由 OS 回收</p>
+<a id="more"></a>
 </li>
 </ul>
-<h3 id="冒泡捕获："><a href="#冒泡捕获：" class="headerlink" title="冒泡捕获："></a>冒泡捕获：</h3><p>dom事件流的三个阶段，事件捕获阶段，目标事件阶段，事件冒泡阶段  </p>
+<h3 id="obj-a-会转换为-obj-“a”-执行，会计算-a-的值"><a href="#obj-a-会转换为-obj-“a”-执行，会计算-a-的值" class="headerlink" title="obj.a 会转换为 obj[“a”]执行，会计算 a 的值"></a>obj.a 会转换为 obj[“a”]执行，会计算 a 的值</h3><h3 id="原型链："><a href="#原型链：" class="headerlink" title="原型链："></a>原型链：</h3><p>作用就是实现对象的继承，比如你 functon A（）{} 里面有很多方法属性，var B = new A（） 这样 B 就继承 A 的定义的属性和方法，<br>当 B 想调用方法时候会在自己里面找，自己里面没有就会到 A.prototype,直至找到 object.prototype<br>原型链是一种机制，js 中每一个对象都有一个内置的 proto 属性，指向创建他的函数对象的原型对象（prototype），原型对象上也有 proto 属性，因此不断指向形成了原型链<br>继承：构造函数直接继承：通过祖父构造出父亲，父亲构造出儿子，这样的方法继承太多没用的属性方法</p>
 <ul>
-<li>事件捕获：事件从文档根节点流向目标节点途径层层的dom节点并在各个节点触发捕获事件，主要任务就是建立传播路径</li>
+<li>共享原性：a.prototype = b.prototype 无法改变儿子的原型，要改两个都改了</li>
+<li>圣杯模式：中间引入 F 来沟通 P 和 C 五句话</li>
+</ul>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function F ()&#123;&#125;;</span><br><span class="line">F.prototype = P.prototype;</span><br><span class="line"><span class="keyword">C</span>.prototype = new F();</span><br><span class="line"><span class="keyword">C</span>.prototype.constructor = <span class="keyword">C</span> ;</span><br><span class="line"><span class="keyword">C</span>.prototype,uber = P;</span><br></pre></td></tr></table></figure>
+<h3 id="冒泡捕获："><a href="#冒泡捕获：" class="headerlink" title="冒泡捕获："></a>冒泡捕获：</h3><p>dom 事件流的三个阶段，事件捕获阶段，目标事件阶段，事件冒泡阶段</p>
+<ul>
+<li>事件捕获：事件从文档根节点流向目标节点途径层层的 dom 节点并在各个节点触发捕获事件，主要任务就是建立传播路径</li>
 <li>目标阶段：事件在目标节点上触发</li>
-<li>冒泡阶段：事件在目标元素上触发后，并不在这个元素上终止，会随着dom树一层层向上冒泡，最后回溯到根节点 ，focus，blur，change，submit，reset，select等方法没有冒泡</li>
+<li>冒泡阶段：事件在目标元素上触发后，并不在这个元素上终止，会随着 dom 树一层层向上冒泡，最后回溯到根节点 ，focus，blur，change，submit，reset，select 等方法没有冒泡</li>
 <li>事件委托：将事件监听器添加到父级元素，而不是每一个子集元素单独设置监听器，当触发自己元素时，事件会冒泡到父级元素</li>
-<li>阻止冒泡：  <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e.stopPropegation() <span class="comment">//w3c标准方法 </span></span><br><span class="line"><span class="keyword">event</span>.cancelBubble = <span class="literal">true</span> <span class="comment">// IE方法</span></span><br></pre></td></tr></table></figure>
+<li>阻止冒泡：<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e.stopPropegation() <span class="comment">//w3c标准方法</span></span><br><span class="line"><span class="keyword">event</span>.cancelBubble = <span class="literal">true</span> <span class="comment">// IE方法</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="水平居中-对于子元素是行级元素（无法改变宽高）："><a href="#水平居中-对于子元素是行级元素（无法改变宽高）：" class="headerlink" title="水平居中: 对于子元素是行级元素（无法改变宽高）："></a>水平居中: 对于子元素是行级元素（无法改变宽高）：</h3><h4 id="水平居中："><a href="#水平居中：" class="headerlink" title="水平居中："></a>水平居中：</h4><ul>
 <li>在父级设置<code>text-align:center;</code></li>
-<li>在父级设置<code>display:flex;justify-content</code><h4 id="垂直居中："><a href="#垂直居中：" class="headerlink" title="垂直居中："></a>垂直居中：</h4></li>
-<li>单行文本：<code>line-height= height;</code>  </li>
+<li>在父级设置<code>display:flex;justify-content</code></li>
+</ul>
+<h4 id="垂直居中："><a href="#垂直居中：" class="headerlink" title="垂直居中："></a>垂直居中：</h4><ul>
+<li>单行文本：<code>line-height= height;</code></li>
 <li>多行文本（会折行）<ul>
 <li>在父元素设置<code>display:flex; align-items: center;</code></li>
-<li>在父元素设置<code>display:table;</code><br> 在子元素设置：<code>display:table-cell;       vertical-align:center</code>  </li>
-<li>对于子元素是块级元素： <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="attribute">display</span>：<span class="attribute">flex</span>;</span><br><span class="line"><span class="attribute">justify-content</span>:center;</span><br><span class="line"><span class="attribute">align-items</span>:center;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="attribute">position</span>:absolute;</span><br><span class="line"><span class="attribute">top</span>:<span class="number">0</span>;<span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">right</span>:<span class="number">0</span>;<span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">margin</span>:auto;</span><br><span class="line"><span class="comment">//3 </span></span><br><span class="line"><span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line"><span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line"><span class="attribute">transform</span>:translateX(-<span class="number">50%</span>)translateY(-<span class="number">50%</span>)</span><br><span class="line">//<span class="number">4</span></span><br><span class="line">把transform改成margin</span><br><span class="line">//<span class="number">5</span></span><br><span class="line">通过table属性</span><br></pre></td></tr></table></figure>
+<li>在父元素设置<code>display:table;</code><br> 在子元素设置：<code>display:table-cell; vertical-align:center</code></li>
+<li>对于子元素是块级元素：<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="attribute">display</span>：<span class="attribute">flex</span>;</span><br><span class="line"><span class="attribute">justify-content</span>:center;</span><br><span class="line"><span class="attribute">align-items</span>:center;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="attribute">position</span>:absolute;</span><br><span class="line"><span class="attribute">top</span>:<span class="number">0</span>;<span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">right</span>:<span class="number">0</span>;<span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">margin</span>:auto;</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line"><span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line"><span class="attribute">transform</span>:translateX(-<span class="number">50%</span>)translateY(-<span class="number">50%</span>)</span><br><span class="line">//<span class="number">4</span></span><br><span class="line">把transform改成margin</span><br><span class="line">//<span class="number">5</span></span><br><span class="line">通过table属性</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="jsonp原理"><a href="#jsonp原理" class="headerlink" title="jsonp原理:"></a>jsonp原理:</h3><p>在js中，我们直接用<code>XMLHttpRequest</code>请求不同域上(域名 协议名 端口名)的数据时，是不可以的。但是，在页面上引入不同域上的js脚本文件却是可以的,通过script标签引入一个js文件请求不同域的脚本，<br>此时访问页面时，动态添加了一个script标签，src指向PHP脚本，<br>所以JSONP将访问跨域请求变成了执行远程JS代码，服务端不再返回JSON格式的数据，而是返回了一段将JSON数据作为传入参数的函数执行代码。</p>
-<h3 id="rem原理"><a href="#rem原理" class="headerlink" title="rem原理:"></a>rem原理:</h3><p>rem是指相对于根元素的字体大小的单位。简单的说它就是一个相对单位。</p>
-<h4 id="原理是"><a href="#原理是" class="headerlink" title="原理是:"></a>原理是:</h4><p>先按定高宽设计出来页面，然后转换为rem单位，配合js查询屏幕大小来改变html的font-size， 最终做出所谓的完美自适应。  </p>
-<h3 id="html渲染过程-解析页面流程："><a href="#html渲染过程-解析页面流程：" class="headerlink" title="html渲染过程:解析页面流程："></a>html渲染过程:解析页面流程：</h3><ol>
-<li>解析html，构建dom树  </li>
-<li>解析css，生成css规则树</li>
-<li>合并dom树和css规则树，生成render树</li>
-<li>布局render树（layout/reflow），负责各个元素的尺寸、位置计算</li>
-<li>绘制render树（paint）绘制页面像素信息</li>
-<li>浏览器将各层信息发送给GPU，GPU将各层合成，显示在屏幕上<h4 id="回流："><a href="#回流：" class="headerlink" title="回流："></a>回流：</h4>页面初始渲染，dom结构改变，render树变化（比如减少padding），页面resize，获取某些属性也会引发回流（offest，scroll，cilent，width，getComputedStyle，改变字体  <h4 id="资源外链下载："><a href="#资源外链下载：" class="headerlink" title="资源外链下载："></a>资源外链下载：</h4>当遇到外链资源会单独开启一个下载线程去下载资源（http1.1中每一个资源下载都会开启一个http请求，对应一个tcp/ip链接）    </li>
-<li>遇到css样式资源：css下载异步，不会紫塞浏览器构建dom树，但会阻塞渲染，如果有media query是不会阻塞渲染的  </li>
-<li>遇到js脚本资源：阻塞浏览器解析（现代浏览器会优化，脚本阻塞解析时，会继续下载其他资源，有并发上限）如果设置defer或者async属性的话，脚本就变成异步了，可以等到解析完毕在执行，async是异步执行，异步下载完毕后就会执行，一定在onload前，不确定DOMContentLoaded前后，defer是延迟执行，效果上看将脚本放在body后面，按照规范应该再DOMContentLoaded之前  </li>
-<li>遇到img资源：直接异步下载，不会阻塞解析  </li>
+<h3 id="jsonp-原理"><a href="#jsonp-原理" class="headerlink" title="jsonp 原理:"></a>jsonp 原理:</h3><p>在 js 中，我们直接用<code>XMLHttpRequest</code>请求不同域上(域名 协议名 端口名)的数据时，是不可以的。但是，在页面上引入不同域上的 js 脚本文件却是可以的,通过 script 标签引入一个 js 文件请求不同域的脚本，<br>此时访问页面时，动态添加了一个 script 标签，src 指向 PHP 脚本，<br>所以 JSONP 将访问跨域请求变成了执行远程 JS 代码，服务端不再返回 JSON 格式的数据，而是返回了一段将 JSON 数据作为传入参数的函数执行代码。</p>
+<h3 id="rem-原理"><a href="#rem-原理" class="headerlink" title="rem 原理:"></a>rem 原理:</h3><p>rem 是指相对于根元素的字体大小的单位。简单的说它就是一个相对单位。</p>
+<h4 id="原理是"><a href="#原理是" class="headerlink" title="原理是:"></a>原理是:</h4><p>先按定高宽设计出来页面，然后转换为 rem 单位，配合 js 查询屏幕大小来改变 html 的 font-size， 最终做出所谓的完美自适应。</p>
+<h3 id="html-渲染过程-解析页面流程："><a href="#html-渲染过程-解析页面流程：" class="headerlink" title="html 渲染过程:解析页面流程："></a>html 渲染过程:解析页面流程：</h3><ol>
+<li>解析 html，构建 dom 树</li>
+<li>解析 css，生成 css 规则树</li>
+<li>合并 dom 树和 css 规则树，生成 render 树</li>
+<li>布局 render 树（layout/reflow），负责各个元素的尺寸、位置计算</li>
+<li>绘制 render 树（paint）绘制页面像素信息</li>
+<li>浏览器将各层信息发送给 GPU，GPU 将各层合成，显示在屏幕上</li>
 </ol>
-<h3 id="apply-call："><a href="#apply-call：" class="headerlink" title="apply call："></a>apply call：</h3><h4 id="箭头函数："><a href="#箭头函数：" class="headerlink" title="箭头函数："></a>箭头函数：</h4><p>与普通函数区别就是箭头函数没有this绑定，他会捕获其所在上下文的this值 ，没有arguments参数，这里的this默认指向window  谁调用指向谁。<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">call(<span class="name">obj</span>, <span class="number">1</span>, <span class="number">2</span>)<span class="comment">;</span></span><br><span class="line">apply(<span class="name">obj</span>, [<span class="number">1</span> , <span class="number">2</span>])<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
-<p>区别：call参数一个一个传，apply是数组形式传<br>new操作符也会改变this指向：new关键词会创建一个空对象，自动调用apply方法，将this指向这个空对象，这样函数内部的this会被这个空对象替代  </p>
-<h3 id="constructor和instanceof"><a href="#constructor和instanceof" class="headerlink" title="constructor和instanceof:"></a>constructor和instanceof:</h3><ul>
-<li>constructor是每一个实例对象都有的属性 指向创建他的对象,比如a是由A创建的,打印<code>a.constructor = A</code>  </li>
-<li>instanceof是就是检测这个实例是不是由这个类创建的 也就是是不是她new出来的 是的话返回ture 不是的话返回false 但是改变<code>a._proto_</code>会影响结果  <h3 id="js运行三部曲"><a href="#js运行三部曲" class="headerlink" title="js运行三部曲:"></a>js运行三部曲:</h3>页面产生就创建了全局对象 window对象 脚本加载完毕开始  </li>
+<h4 id="回流："><a href="#回流：" class="headerlink" title="回流："></a>回流：</h4><p>页面初始渲染，dom 结构改变，render 树变化（比如减少 padding），页面 resize，获取某些属性也会引发回流（offest，scroll，cilent，width，getComputedStyle，改变字体</p>
+<h4 id="资源外链下载："><a href="#资源外链下载：" class="headerlink" title="资源外链下载："></a>资源外链下载：</h4><p>当遇到外链资源会单独开启一个下载线程去下载资源（http1.1 中每一个资源下载都会开启一个 http 请求，对应一个 tcp/ip 链接）</p>
+<ol>
+<li>遇到 css 样式资源：css 下载异步，不会紫塞浏览器构建 dom 树，但会阻塞渲染，如果有 media query 是不会阻塞渲染的</li>
+<li>遇到 js 脚本资源：阻塞浏览器解析（现代浏览器会优化，脚本阻塞解析时，会继续下载其他资源，有并发上限）如果设置 defer 或者 async 属性的话，脚本就变成异步了，可以等到解析完毕在执行，async 是异步执行，异步下载完毕后就会执行，一定在 onload 前，不确定 DOMContentLoaded 前后，defer 是延迟执行，效果上看将脚本放在 body 后面，按照规范应该再 DOMContentLoaded 之前</li>
+<li>遇到 img 资源：直接异步下载，不会阻塞解析</li>
+</ol>
+<h3 id="apply-call："><a href="#apply-call：" class="headerlink" title="apply call："></a>apply call：</h3><h4 id="箭头函数："><a href="#箭头函数：" class="headerlink" title="箭头函数："></a>箭头函数：</h4><p>与普通函数区别就是箭头函数没有 this 绑定，他会捕获其所在上下文的 this 值 ，没有 arguments 参数，这里的 this 默认指向 window 谁调用指向谁。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">call(<span class="name">obj</span>, <span class="number">1</span>, <span class="number">2</span>)<span class="comment">;</span></span><br><span class="line">apply(<span class="name">obj</span>, [<span class="number">1</span> , <span class="number">2</span>])<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>区别：call 参数一个一个传，apply 是数组形式传<br>new 操作符也会改变 this 指向：new 关键词会创建一个空对象，自动调用 apply 方法，将 this 指向这个空对象，这样函数内部的 this 会被这个空对象替代</p>
+<h3 id="constructor-和-instanceof"><a href="#constructor-和-instanceof" class="headerlink" title="constructor 和 instanceof:"></a>constructor 和 instanceof:</h3><ul>
+<li>constructor 是每一个实例对象都有的属性 指向创建他的对象,比如 a 是由 A 创建的,打印<code>a.constructor = A</code></li>
+<li>instanceof 是就是检测这个实例是不是由这个类创建的 也就是是不是她 new 出来的 是的话返回 ture 不是的话返回 false 但是改变<code>a._proto_</code>会影响结果</li>
 </ul>
+<h3 id="js-运行三部曲"><a href="#js-运行三部曲" class="headerlink" title="js 运行三部曲:"></a>js 运行三部曲:</h3><p>页面产生就创建了全局对象 window 对象 脚本加载完毕开始</p>
 <ol>
 <li>语法分析:检验语法是否合法</li>
-<li>预编译:(脚本代码块script执行前)查找变量声明赋值undefined 查找函数声明赋值函数体   </li>
-<li>解释执行: 执行函数之前还要发生预编译 创建AO对象,查找形参变量声明赋值undefined,实参赋值形参,查找函数声明赋值函数体。  <h3 id="promise-回调"><a href="#promise-回调" class="headerlink" title="promise:回调:"></a>promise:回调:</h3></li>
-<li>表达异步流程是非线性的，顺序的，容易产生都不懂的回调地狱。</li>
-<li>回调会受控制反转影响，把控制权转交给第三方工具控制代码，导致一些列信任问题比如回调次数 过早或过完成功调用resolve() 失败调用reject()  <h3 id="重绘重排"><a href="#重绘重排" class="headerlink" title="重绘重排:"></a>重绘重排:</h3></li>
+<li>预编译:(脚本代码块 script 执行前)查找变量声明赋值 undefined 查找函数声明赋值函数体</li>
+<li>解释执行: 执行函数之前还要发生预编译 创建 AO 对象,查找形参变量声明赋值 undefined,实参赋值形参,查找函数声明赋值函数体。</li>
 </ol>
-<ul>
-<li>重拍 :当操作dom改变元素几何属性的时候,会同样引起其他元素的位置,浏览器就回重新构造渲染树,增删可见元素,元素位置尺寸内容改变,窗口尺寸,页面初始化,(合模型属性,定位属性,浮动,改变文字结构大小)  </li>
-<li><p>重绘: 外观被改变比如字体颜色 <code>background box-shadow</code></p>
+<h3 id="promise-回调"><a href="#promise-回调" class="headerlink" title="promise:回调:"></a>promise:回调:</h3><ol>
+<li>表达异步流程是非线性的，顺序的，容易产生都不懂的回调地狱。</li>
+<li>回调会受控制反转影响，把控制权转交给第三方工具控制代码，导致一些列信任问题比如回调次数 过早或过完成功调用 resolve() 失败调用 reject()</li>
+</ol>
+<h3 id="重绘重排"><a href="#重绘重排" class="headerlink" title="重绘重排:"></a>重绘重排:</h3><ul>
+<li>重拍 :当操作 dom 改变元素几何属性的时候,会同样引起其他元素的位置,浏览器就回重新构造渲染树,增删可见元素,元素位置尺寸内容改变,窗口尺寸,页面初始化,(合模型属性,定位属性,浮动,改变文字结构大小)</li>
+<li>重绘: 外观被改变比如字体颜色 <code>background box-shadow</code></li>
+</ul>
 <h3 id="编码：解决中文乱码问题"><a href="#编码：解决中文乱码问题" class="headerlink" title="编码：解决中文乱码问题"></a>编码：解决中文乱码问题</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">encodeURIComponent（）</span><br><span class="line"><span class="function"><span class="title">encodeURI</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>补码：  </p>
-</li>
+<ul>
+<li>补码：</li>
 </ul>
 <ol>
-<li>“A”的charCode为65  </li>
-<li>65位于0-127的区间，所以“A”占一个字节</li>
-<li>UTF8中一个字节的补位为0xxxxxxx，x表示的是空位，是用来补位的。</li>
-<li>将65转为二进制得到1000001</li>
-<li>将1000001按照从前到后的顺序，依次补到0xxxxxxx的空位中，得到01000001  <h3 id="迭代器："><a href="#迭代器：" class="headerlink" title="迭代器："></a>迭代器：</h3>迭代器对象必须实现一个 next 方法， next 方法返回的数据结构是 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attribute">done</span>:boolean, value:ES6value&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>“A”的 charCode 为 65</li>
+<li>65 位于 0-127 的区间，所以“A”占一个字节</li>
+<li>UTF8 中一个字节的补位为 0xxxxxxx，x 表示的是空位，是用来补位的。</li>
+<li>将 65 转为二进制得到 1000001</li>
+<li>将 1000001 按照从前到后的顺序，依次补到 0xxxxxxx 的空位中，得到 01000001</li>
 </ol>
+<h3 id="迭代器："><a href="#迭代器：" class="headerlink" title="迭代器："></a>迭代器：</h3><p>迭代器对象必须实现一个 next 方法， next 方法返回的数据结构是</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attribute">done</span>:boolean, value:ES6value&#125;</span><br></pre></td></tr></table></figure>
 <p>当迭代到最后一个元素后，再调用一次 next 后，返回的 done 就应该是 true<br>ES6 中新加了一些针对可迭代对象的语法，譬如 for-of</p>
-<h3 id="将01000001转为字符串，得到”A”"><a href="#将01000001转为字符串，得到”A”" class="headerlink" title="将01000001转为字符串，得到”A”"></a>将01000001转为字符串，得到”A”</h3><p>最终，”A”为UTF8编码之后“A”  </p>
+<h3 id="将-01000001-转为字符串，得到”A”"><a href="#将-01000001-转为字符串，得到”A”" class="headerlink" title="将 01000001 转为字符串，得到”A”"></a>将 01000001 转为字符串，得到”A”</h3><p>最终，”A”为 UTF8 编码之后“A”</p>
 
       
 
@@ -369,6 +382,15 @@
   
   
 
+  
+  <div id="SOHUCS" sid="interview/一些基础知识"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
   
