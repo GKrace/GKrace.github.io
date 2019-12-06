@@ -156,7 +156,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/06/imgSync/">img简析</a>
+      <a class="article-title" href="/2019/12/06/imgSync/">图片简析</a>
     </h1>
   
 
@@ -169,27 +169,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>目前常用的图片格式有 JPEG，PNG，GIF<br>几个概念：</p>
-<blockquote>
-<p><strong>1. **</strong>有损数据压缩（英文：lossy compression）<strong>是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。
-</strong>2. *<strong>*无损数据压缩（Lossless Compression）</strong>指数据经过压缩后，信息不受损失，还能完全恢复到压缩前的原样。无损压缩通常用于严格要求“经过压缩、解压缩的数据必须与原始数据一致”的场合。典型的例子包括文字文件、程序可执行文件、程序源代码。有些图片文件格式，例如 PNG 和 GIF，使用的是无损压缩。<br><strong> 3. 矢量图：</strong>通过组成图形的一些基本元素，如点、线、面，边框，填充色等信息通过计算的方式来显示图形的。就好比我们在几何学里面描述一个圆可以通过它的圆心位置和半径来描述，当然还可以通过边框的粗细、颜色以及填充的颜色等数据去描述它的样式。而电脑在显示的时候则通过这些数据去绘制出我们定义的图像。矢量图的优点在于文件相对较小，并且放大缩小不会失真。例如：svg<br><strong>4. 位图：</strong>又叫像素图或栅格图，它是通过记录图像中每一个点的颜色、深度、透明度等信息来存储和显示图像。一张位图就好比一幅大的拼图，只不过每个拼块都是一个纯色的像素点，当我们把这些不同颜色的像素点按照一定规律排列在一起的时候，就形成了我们所看到的图像。位图是由一个个像素点组成的，每个像素点在计算机中存储方式为二进制数，即位深度。每个像素点所使用的二进制位数越多，像素的色彩就越丰富，例如一个二进制位只有两种颜色（1 白色，0 黑色）<br><img src="/img/bVbzKyj" alt="1572525388234.jpg"> &gt; <strong>5. 索引色和真彩色：</strong>肉眼能分辨的颜色有限，24 位编码一像素能反映肉眼真实的色彩，叫真彩色。GIF 的图片只保存了常用的 256 种颜色，并且按照索引 0~255 排序，叫索引色<br>RGB 图像由三个颜色通道组成。8 位/通道的 RGB 图像中的每个通道有 256 个可能的值，这意味着该图像有 1600 万个以上可能的颜色值。有时将带有 8 位/通道 (bpc) 的 RGB 图像称作 24 位图像（8 位 x 3 通道 = 24 位数据/像素）。通常将使用 24 位 RGB 组合数据位表示的的位图称为真彩色位图。<br><strong>6.Alpha 通道（α Channel 或 Alpha Channel）</strong>是指一张图片的透明和半透明度。例如：一个使用每个像素 16 比特存储的位图，对于图形中的每一个像素而言，可能以 5 个比特表示红色，5 个比特表示绿色，5 个比特表示蓝色，最后一个比特是阿尔法。在这种情况下，它要么表示透明要么不是，因为阿尔法比特只有 0 或 1 两种不同表示的可能性。又如一个使用 32 个比特存储的位图，以每 8 个比特分别表示红绿蓝及阿尔法通道。在这种情况下，就不光可以表示透明还是不透明，阿尔法通道还可以表示 256 级的半透明度，因为阿尔法通道有 8 个比特可以有 256 种不同的数据表示可能性。</p>
-</blockquote>
-<h2 id="BMP"><a href="#BMP" class="headerlink" title="BMP"></a>BMP</h2><p>无损压缩，既支持索引色也支持真彩色，位图。<br><a href="https://zh.wikipedia.org/wiki/BMP" target="_blank" rel="noopener">BMP</a>取自位图 Bitmap 的缩写，也称为 DIB（与设备无关的位图），是一种独立于显示器的位图数字图像文件格式。常见于微软视窗和 OS/2 操作系统 BitMap 的缩写，是无损的、既支持索引色也支持直接色的、点阵图。<br>BMP 文件通常是不压缩的，在同样的图片质量下，BMP 格式的图片文件大小是 GIF 格式的很多倍。因此它们通常不适合在因特网或者其他低速或者有容量限制的介质上进行传输。现在除了 windows 系统里还能见到，其他地方几乎见不到了。</p>
-<h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><p>无损压缩，支持 256 索引色，位图，支持动画</p>
-<h2 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h2><p>有损压缩方式，位图，24 位真彩色，不支持 Alpha 通道，不能显示透明像素。适用于色彩丰富的图片，不适用于 icon，文字，线条绘图。JPEG 去掉了一部分图片的原始信息，即进行了有损压缩。JPEG 非常适合用来存储照片，用来表达更生动的图像效果，比如颜色渐变。<br>jpg 支持 CMYK 色彩模式，可以作为印刷输出的文件格式。png 和 gif 只支持 RGB 色彩模式，不能输出印刷。</p>
-<h2 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h2><p>位图，无损压缩，支持透明度的调节。iE6 不支持 PNG 的透明属性。<br>解决方式：<a href="https://catalin.red/png8-alpha-transparency-using-adobe-fireworks/" target="_blank" rel="noopener">IE 如何支持 png 透明属性</a><br><strong>PNG-8 和 PNG-24 的区别：</strong></p>
-<ul>
-<li>最多可以索引和存储的颜色值不同，根据其所带的位数，png-8 可以表示 2 的 8 次方也就是 256 色，被称为索引色，PNG-24 可以表示 2 的 24 次方，1600 多万种颜色，被称为真彩色。</li>
-<li>PNG-8 支持布尔透明，PNG-24 支持 8 位（256 阶）alpha 透明</li>
-<li>另一个区别是 PNG-24 本机支持 alpha 透明，这对于透明背景很有用。这种差异<em>并不是_100％正确，因为 Adobe 产品的“</em>保存为 Web”_命令允许<a href="http://www.red-team-design.com/png8-alpha-transparency-using-adobe-fireworks" title="使用Adobe Fireworks的PNG8 alpha透明度-red-team-design.com" target="_blank" rel="noopener">PNG-8 具有 alpha 透明度</a>。</li>
-</ul>
-<h3 id="PNG-8"><a href="#PNG-8" class="headerlink" title="PNG-8"></a>PNG-8</h3><p>基于索引色的位图。”8″代表 2 的 8 次方也就是 256 色，PNG8 还支持 1 位的布尔透明通道（完全透明 0，完全不透明 1）。（待定：有资料说 PNG-8 也支持 Alpha 通道的透明，用 fireworks 可以导出）<br>PNG-8 与 GIF 的区别：在相同的图片效果下，PNG-8 相比 GIF 具有更小的文件体积。PNG-8 还支持透明度的调节，GIF 不支持。</p>
-<h3 id="PNG-24"><a href="#PNG-24" class="headerlink" title="PNG-24"></a>PNG-24</h3><p>基于真彩色的位图，支持 8 位（256 阶）alpha 透明。（0-255）</p>
-<h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><p>矢量图，放大时，不会失真，适用于 Logo、Icon 等。可以使用 XML 来描述图片，方便修改文件。SVG 优点是放大不会失真，文件可读，方便修改编辑，方便与现有技术结合，例如可以用 javascript 脚本老控制 SVG 对象，支持多种特殊效果，可利用其作出精美的图。缺点是：文件体积比其他格式大</p>
-<h2 id="WebP"><a href="#WebP" class="headerlink" title="WebP"></a>WebP</h2><p>支持有损和无损压缩、真彩色、点阵图，支持透明通道。支持动画<br>WebP 最初在 2010 年发布，目标是减少文件大小，但达到和 JPEG 格式相同的图片质量，希望能够减少图片在网络上的传输时间。一张同样质量的图片 WebP 可以比 JPG 小 24%-35%<br>支持情况：<br>当前网页浏览器当中：在 Google Chrome，Firefox，Edge，Opera 浏览器<br>native： ios 不支持，但是官方提供了工具，安卓 4++以上支持。</p>
-<h2 id="有关于图片压缩"><a href="#有关于图片压缩" class="headerlink" title="有关于图片压缩"></a>有关于图片压缩</h2><p>这是参考的一些链接：</p>
-<p><a href="https://juejin.im/post/5c8e4feb6fb9a070aa5ce200" target="_blank" rel="noopener">PNG 图片压缩原理解析</a><br><a href="https://medium.com/@duhroach/how-png-works-f1174e3cc7b7" target="_blank" rel="noopener">How PNG Works（梯子）</a><br><a href="https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670#.pe5ff2cug" target="_blank" rel="noopener">How WebP works (lossly mode)（梯子）</a><br><a href="https://www.zhihu.com/question/20028452" target="_blank" rel="noopener">png、jpg 的选择</a><br><a href="https://zh.wikipedia.org/wiki/JPEG" target="_blank" rel="noopener">wiki 百科</a><br><a href="https://o2team.github.io/notes/2016/11/07/apng/" target="_blank" rel="noopener">Apng 的那些事</a><br><a href="https://www.jianshu.com/p/c2e3a56d12ec" target="_blank" rel="noopener">如何节省 1TB 图片带宽？解密极致图像压缩</a></p>
-
+        <p>目前常用的图片格式有 JPEG，PNG，GIF 等。下面来总结了解一下都有几种 img 类型，以及区别。</p>
+        
+          <a class="article-more-a" href="/2019/12/06/imgSync/#more">more >></a>
+        
       
 
       
@@ -197,6 +180,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">拓展知识</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1024,7 +1018,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1036,15 +1034,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
             
             <div class="clearfix"></div>

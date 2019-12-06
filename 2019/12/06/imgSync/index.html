@@ -6,21 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.site">
-  <title>img简析 | Grace</title>
+  <title>图片简析 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目前常用的图片格式有 JPEG，PNG，GIF几个概念：  1. **有损数据压缩（英文：lossy compression）是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。 2. **无损数据压缩（Lossl">
+  <meta name="description" content="目前常用的图片格式有 JPEG，PNG，GIF 等。下面来总结了解一下都有几种 img 类型，以及区别。">
+<meta name="keywords" content="拓展知识">
 <meta property="og:type" content="article">
-<meta property="og:title" content="img简析">
+<meta property="og:title" content="图片简析">
 <meta property="og:url" content="gracekang.site/2019/12/06/imgSync/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="目前常用的图片格式有 JPEG，PNG，GIF几个概念：  1. **有损数据压缩（英文：lossy compression）是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。 2. **无损数据压缩（Lossl">
+<meta property="og:description" content="目前常用的图片格式有 JPEG，PNG，GIF 等。下面来总结了解一下都有几种 img 类型，以及区别。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/img/bVbzKyj">
-<meta property="og:updated_time" content="2019-12-06T07:41:42.630Z">
+<meta property="og:image" content="/images/img_0.png">
+<meta property="og:updated_time" content="2019-12-06T07:50:37.113Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="img简析">
-<meta name="twitter:description" content="目前常用的图片格式有 JPEG，PNG，GIF几个概念：  1. **有损数据压缩（英文：lossy compression）是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。 2. **无损数据压缩（Lossl">
-<meta name="twitter:image" content="/img/bVbzKyj">
+<meta name="twitter:title" content="图片简析">
+<meta name="twitter:description" content="目前常用的图片格式有 JPEG，PNG，GIF 等。下面来总结了解一下都有几种 img 类型，以及区别。">
+<meta name="twitter:image" content="/images/img_0.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -157,7 +158,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      img简析
+      图片简析
     </h1>
   
 
@@ -170,10 +171,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>目前常用的图片格式有 JPEG，PNG，GIF<br>几个概念：</p>
+        <p>目前常用的图片格式有 JPEG，PNG，GIF 等。下面来总结了解一下都有几种 img 类型，以及区别。</p>
+<a id="more"></a>
+<p>先来了解几个概念：</p>
 <blockquote>
-<p><strong>1. **</strong>有损数据压缩（英文：lossy compression）<strong>是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。
-</strong>2. *<strong>*无损数据压缩（Lossless Compression）</strong>指数据经过压缩后，信息不受损失，还能完全恢复到压缩前的原样。无损压缩通常用于严格要求“经过压缩、解压缩的数据必须与原始数据一致”的场合。典型的例子包括文字文件、程序可执行文件、程序源代码。有些图片文件格式，例如 PNG 和 GIF，使用的是无损压缩。<br><strong> 3. 矢量图：</strong>通过组成图形的一些基本元素，如点、线、面，边框，填充色等信息通过计算的方式来显示图形的。就好比我们在几何学里面描述一个圆可以通过它的圆心位置和半径来描述，当然还可以通过边框的粗细、颜色以及填充的颜色等数据去描述它的样式。而电脑在显示的时候则通过这些数据去绘制出我们定义的图像。矢量图的优点在于文件相对较小，并且放大缩小不会失真。例如：svg<br><strong>4. 位图：</strong>又叫像素图或栅格图，它是通过记录图像中每一个点的颜色、深度、透明度等信息来存储和显示图像。一张位图就好比一幅大的拼图，只不过每个拼块都是一个纯色的像素点，当我们把这些不同颜色的像素点按照一定规律排列在一起的时候，就形成了我们所看到的图像。位图是由一个个像素点组成的，每个像素点在计算机中存储方式为二进制数，即位深度。每个像素点所使用的二进制位数越多，像素的色彩就越丰富，例如一个二进制位只有两种颜色（1 白色，0 黑色）<br><img src="/img/bVbzKyj" alt="1572525388234.jpg"> &gt; <strong>5. 索引色和真彩色：</strong>肉眼能分辨的颜色有限，24 位编码一像素能反映肉眼真实的色彩，叫真彩色。GIF 的图片只保存了常用的 256 种颜色，并且按照索引 0~255 排序，叫索引色<br>RGB 图像由三个颜色通道组成。8 位/通道的 RGB 图像中的每个通道有 256 个可能的值，这意味着该图像有 1600 万个以上可能的颜色值。有时将带有 8 位/通道 (bpc) 的 RGB 图像称作 24 位图像（8 位 x 3 通道 = 24 位数据/像素）。通常将使用 24 位 RGB 组合数据位表示的的位图称为真彩色位图。<br><strong>6.Alpha 通道（α Channel 或 Alpha Channel）</strong>是指一张图片的透明和半透明度。例如：一个使用每个像素 16 比特存储的位图，对于图形中的每一个像素而言，可能以 5 个比特表示红色，5 个比特表示绿色，5 个比特表示蓝色，最后一个比特是阿尔法。在这种情况下，它要么表示透明要么不是，因为阿尔法比特只有 0 或 1 两种不同表示的可能性。又如一个使用 32 个比特存储的位图，以每 8 个比特分别表示红绿蓝及阿尔法通道。在这种情况下，就不光可以表示透明还是不透明，阿尔法通道还可以表示 256 级的半透明度，因为阿尔法通道有 8 个比特可以有 256 种不同的数据表示可能性。</p>
+<p><strong>1.有损数据压缩（英文：lossy compression）</strong>是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。<br><strong>2.无损数据压缩（Lossless Compression）</strong>指数据经过压缩后，信息不受损失，还能完全恢复到压缩前的原样。无损压缩通常用于严格要求“经过压缩、解压缩的数据必须与原始数据一致”的场合。典型的例子包括文字文件、程序可执行文件、程序源代码。有些图片文件格式，例如 PNG 和 GIF，使用的是无损压缩。<br><strong> 3. 矢量图：</strong>通过组成图形的一些基本元素，如点、线、面，边框，填充色等信息通过计算的方式来显示图形的。就好比我们在几何学里面描述一个圆可以通过它的圆心位置和半径来描述，当然还可以通过边框的粗细、颜色以及填充的颜色等数据去描述它的样式。而电脑在显示的时候则通过这些数据去绘制出我们定义的图像。矢量图的优点在于文件相对较小，并且放大缩小不会失真。例如：svg<br><strong>4. 位图：</strong>又叫像素图或栅格图，它是通过记录图像中每一个点的颜色、深度、透明度等信息来存储和显示图像。一张位图就好比一幅大的拼图，只不过每个拼块都是一个纯色的像素点，当我们把这些不同颜色的像素点按照一定规律排列在一起的时候，就形成了我们所看到的图像。位图是由一个个像素点组成的，每个像素点在计算机中存储方式为二进制数，即位深度。每个像素点所使用的二进制位数越多，像素的色彩就越丰富，例如一个二进制位只有两种颜色（1 白色，0 黑色）<br><img src="/images/img_0.png" width="30%" height="30%"><br><strong>5. 索引色和真彩色：</strong> 肉眼能分辨的颜色有限，24 位编码一像素能反映肉眼真实的色彩，叫真彩色。GIF 的图片只保存了常用的 256 种颜色，并且按照索引 0~255 排序，叫索引色<br>RGB 图像由三个颜色通道组成。8 位/通道的 RGB 图像中的每个通道有 256 个可能的值，这意味着该图像有 1600 万个以上可能的颜色值。有时将带有 8 位/通道 (bpc) 的 RGB 图像称作 24 位图像（8 位 x 3 通道 = 24 位数据/像素）。通常将使用 24 位 RGB 组合数据位表示的的位图称为真彩色位图。<br><strong>6.Alpha 通道（α Channel 或 Alpha Channel )</strong>是指一张图片的透明和半透明度。例如：一个使用每个像素 16 比特存储的位图，对于图形中的每一个像素而言，可能以 5 个比特表示红色，5 个比特表示绿色，5 个比特表示蓝色，最后一个比特是阿尔法。在这种情况下，它要么表示透明要么不是，因为阿尔法比特只有 0 或 1 两种不同表示的可能性。又如一个使用 32 个比特存储的位图，以每 8 个比特分别表示红绿蓝及阿尔法通道。在这种情况下，就不光可以表示透明还是不透明，阿尔法通道还可以表示 256 级的半透明度，因为阿尔法通道有 8 个比特可以有 256 种不同的数据表示可能性。</p>
 </blockquote>
 <h2 id="BMP"><a href="#BMP" class="headerlink" title="BMP"></a>BMP</h2><p>无损压缩，既支持索引色也支持真彩色，位图。<br><a href="https://zh.wikipedia.org/wiki/BMP" target="_blank" rel="noopener">BMP</a>取自位图 Bitmap 的缩写，也称为 DIB（与设备无关的位图），是一种独立于显示器的位图数字图像文件格式。常见于微软视窗和 OS/2 操作系统 BitMap 的缩写，是无损的、既支持索引色也支持直接色的、点阵图。<br>BMP 文件通常是不压缩的，在同样的图片质量下，BMP 格式的图片文件大小是 GIF 格式的很多倍。因此它们通常不适合在因特网或者其他低速或者有容量限制的介质上进行传输。现在除了 windows 系统里还能见到，其他地方几乎见不到了。</p>
 <h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><p>无损压缩，支持 256 索引色，位图，支持动画</p>
@@ -198,6 +200,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">拓展知识</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -397,7 +410,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -409,15 +426,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
             
             <div class="clearfix"></div>
