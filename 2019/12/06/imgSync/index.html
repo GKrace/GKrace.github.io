@@ -6,20 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.site">
-  <title>一些基础知识点 | Grace</title>
+  <title>img简析 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中">
-<meta name="keywords" content="interview">
+  <meta name="description" content="目前常用的图片格式有 JPEG，PNG，GIF几个概念：  1. **有损数据压缩（英文：lossy compression）是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。 2. **无损数据压缩（Lossl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一些基础知识点">
-<meta property="og:url" content="gracekang.site/2016/07/01/interview/一些基础知识/index.html">
+<meta property="og:title" content="img简析">
+<meta property="og:url" content="gracekang.site/2019/12/06/imgSync/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中">
+<meta property="og:description" content="目前常用的图片格式有 JPEG，PNG，GIF几个概念：  1. **有损数据压缩（英文：lossy compression）是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。 2. **无损数据压缩（Lossl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T06:47:42.823Z">
+<meta property="og:image" content="/img/bVbzKyj">
+<meta property="og:updated_time" content="2019-12-06T07:41:42.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一些基础知识点">
-<meta name="twitter:description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中">
+<meta name="twitter:title" content="img简析">
+<meta name="twitter:description" content="目前常用的图片格式有 JPEG，PNG，GIF几个概念：  1. **有损数据压缩（英文：lossy compression）是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。 2. **无损数据压缩（Lossl">
+<meta name="twitter:image" content="/img/bVbzKyj">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -149,114 +150,46 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-interview/一些基础知识" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="javascript-imgSync" class="article article-type-javascript " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      一些基础知识点
+      img简析
     </h1>
   
 
         
-        <a href="/2016/07/01/interview/一些基础知识/" class="archive-article-date">
-  	<time datetime="2016-06-30T22:28:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-30</time>
+        <a href="/2019/12/06/imgSync/" class="archive-article-date">
+  	<time datetime="2019-12-06T15:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="js-基本数据类型：number-string-undefined-null-boolean-object"><a href="#js-基本数据类型：number-string-undefined-null-boolean-object" class="headerlink" title="js 基本数据类型：number string undefined null boolean object"></a>js 基本数据类型：number string undefined null boolean object</h3><h3 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h3><p>js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中<br>引用类型的值不固定大小，存放在堆中，内存地址保存在栈中<br><a id="more"></a></p>
+        <p>目前常用的图片格式有 JPEG，PNG，GIF<br>几个概念：</p>
+<blockquote>
+<p><strong>1. **</strong>有损数据压缩（英文：lossy compression）<strong>是一种数据压缩方法，经过此方法压缩、解压的数据会与原始数据不同但是非常接近。在压缩文件大小的过程中，损失掉一部分图片的信息，例如，人眼无法分辨的像素，人无法识别的音频片段。即降低了图片的质量，并且重新解压缩时无法 100%还原图片的信息。
+</strong>2. *<strong>*无损数据压缩（Lossless Compression）</strong>指数据经过压缩后，信息不受损失，还能完全恢复到压缩前的原样。无损压缩通常用于严格要求“经过压缩、解压缩的数据必须与原始数据一致”的场合。典型的例子包括文字文件、程序可执行文件、程序源代码。有些图片文件格式，例如 PNG 和 GIF，使用的是无损压缩。<br><strong> 3. 矢量图：</strong>通过组成图形的一些基本元素，如点、线、面，边框，填充色等信息通过计算的方式来显示图形的。就好比我们在几何学里面描述一个圆可以通过它的圆心位置和半径来描述，当然还可以通过边框的粗细、颜色以及填充的颜色等数据去描述它的样式。而电脑在显示的时候则通过这些数据去绘制出我们定义的图像。矢量图的优点在于文件相对较小，并且放大缩小不会失真。例如：svg<br><strong>4. 位图：</strong>又叫像素图或栅格图，它是通过记录图像中每一个点的颜色、深度、透明度等信息来存储和显示图像。一张位图就好比一幅大的拼图，只不过每个拼块都是一个纯色的像素点，当我们把这些不同颜色的像素点按照一定规律排列在一起的时候，就形成了我们所看到的图像。位图是由一个个像素点组成的，每个像素点在计算机中存储方式为二进制数，即位深度。每个像素点所使用的二进制位数越多，像素的色彩就越丰富，例如一个二进制位只有两种颜色（1 白色，0 黑色）<br><img src="/img/bVbzKyj" alt="1572525388234.jpg"> &gt; <strong>5. 索引色和真彩色：</strong>肉眼能分辨的颜色有限，24 位编码一像素能反映肉眼真实的色彩，叫真彩色。GIF 的图片只保存了常用的 256 种颜色，并且按照索引 0~255 排序，叫索引色<br>RGB 图像由三个颜色通道组成。8 位/通道的 RGB 图像中的每个通道有 256 个可能的值，这意味着该图像有 1600 万个以上可能的颜色值。有时将带有 8 位/通道 (bpc) 的 RGB 图像称作 24 位图像（8 位 x 3 通道 = 24 位数据/像素）。通常将使用 24 位 RGB 组合数据位表示的的位图称为真彩色位图。<br><strong>6.Alpha 通道（α Channel 或 Alpha Channel）</strong>是指一张图片的透明和半透明度。例如：一个使用每个像素 16 比特存储的位图，对于图形中的每一个像素而言，可能以 5 个比特表示红色，5 个比特表示绿色，5 个比特表示蓝色，最后一个比特是阿尔法。在这种情况下，它要么表示透明要么不是，因为阿尔法比特只有 0 或 1 两种不同表示的可能性。又如一个使用 32 个比特存储的位图，以每 8 个比特分别表示红绿蓝及阿尔法通道。在这种情况下，就不光可以表示透明还是不透明，阿尔法通道还可以表示 256 级的半透明度，因为阿尔法通道有 8 个比特可以有 256 种不同的数据表示可能性。</p>
+</blockquote>
+<h2 id="BMP"><a href="#BMP" class="headerlink" title="BMP"></a>BMP</h2><p>无损压缩，既支持索引色也支持真彩色，位图。<br><a href="https://zh.wikipedia.org/wiki/BMP" target="_blank" rel="noopener">BMP</a>取自位图 Bitmap 的缩写，也称为 DIB（与设备无关的位图），是一种独立于显示器的位图数字图像文件格式。常见于微软视窗和 OS/2 操作系统 BitMap 的缩写，是无损的、既支持索引色也支持直接色的、点阵图。<br>BMP 文件通常是不压缩的，在同样的图片质量下，BMP 格式的图片文件大小是 GIF 格式的很多倍。因此它们通常不适合在因特网或者其他低速或者有容量限制的介质上进行传输。现在除了 windows 系统里还能见到，其他地方几乎见不到了。</p>
+<h2 id="GIF"><a href="#GIF" class="headerlink" title="GIF"></a>GIF</h2><p>无损压缩，支持 256 索引色，位图，支持动画</p>
+<h2 id="JPEG"><a href="#JPEG" class="headerlink" title="JPEG"></a>JPEG</h2><p>有损压缩方式，位图，24 位真彩色，不支持 Alpha 通道，不能显示透明像素。适用于色彩丰富的图片，不适用于 icon，文字，线条绘图。JPEG 去掉了一部分图片的原始信息，即进行了有损压缩。JPEG 非常适合用来存储照片，用来表达更生动的图像效果，比如颜色渐变。<br>jpg 支持 CMYK 色彩模式，可以作为印刷输出的文件格式。png 和 gif 只支持 RGB 色彩模式，不能输出印刷。</p>
+<h2 id="PNG"><a href="#PNG" class="headerlink" title="PNG"></a>PNG</h2><p>位图，无损压缩，支持透明度的调节。iE6 不支持 PNG 的透明属性。<br>解决方式：<a href="https://catalin.red/png8-alpha-transparency-using-adobe-fireworks/" target="_blank" rel="noopener">IE 如何支持 png 透明属性</a><br><strong>PNG-8 和 PNG-24 的区别：</strong></p>
 <ul>
-<li>堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值</li>
-<li>栈：先进后出；动态分配空间由程序员分配释放，如果不释放程序结束会由 OS 回收</li>
+<li>最多可以索引和存储的颜色值不同，根据其所带的位数，png-8 可以表示 2 的 8 次方也就是 256 色，被称为索引色，PNG-24 可以表示 2 的 24 次方，1600 多万种颜色，被称为真彩色。</li>
+<li>PNG-8 支持布尔透明，PNG-24 支持 8 位（256 阶）alpha 透明</li>
+<li>另一个区别是 PNG-24 本机支持 alpha 透明，这对于透明背景很有用。这种差异<em>并不是_100％正确，因为 Adobe 产品的“</em>保存为 Web”_命令允许<a href="http://www.red-team-design.com/png8-alpha-transparency-using-adobe-fireworks" title="使用Adobe Fireworks的PNG8 alpha透明度-red-team-design.com" target="_blank" rel="noopener">PNG-8 具有 alpha 透明度</a>。</li>
 </ul>
-<h3 id="obj-a-会转换为-obj-“a”-执行，会计算-a-的值"><a href="#obj-a-会转换为-obj-“a”-执行，会计算-a-的值" class="headerlink" title="obj.a 会转换为 obj[“a”]执行，会计算 a 的值"></a>obj.a 会转换为 obj[“a”]执行，会计算 a 的值</h3><h3 id="原型链："><a href="#原型链：" class="headerlink" title="原型链："></a>原型链：</h3><p>作用就是实现对象的继承，比如你 functon A（）{} 里面有很多方法属性，var B = new A（） 这样 B 就继承 A 的定义的属性和方法，<br>当 B 想调用方法时候会在自己里面找，自己里面没有就会到 A.prototype,直至找到 object.prototype<br>原型链是一种机制，js 中每一个对象都有一个内置的 proto 属性，指向创建他的函数对象的原型对象（prototype），原型对象上也有 proto 属性，因此不断指向形成了原型链<br>继承：构造函数直接继承：通过祖父构造出父亲，父亲构造出儿子，这样的方法继承太多没用的属性方法</p>
-<ul>
-<li>共享原性：a.prototype = b.prototype 无法改变儿子的原型，要改两个都改了</li>
-<li>圣杯模式：中间引入 F 来沟通 P 和 C 五句话</li>
-</ul>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function F ()&#123;&#125;;</span><br><span class="line">F.prototype = P.prototype;</span><br><span class="line"><span class="keyword">C</span>.prototype = new F();</span><br><span class="line"><span class="keyword">C</span>.prototype.constructor = <span class="keyword">C</span> ;</span><br><span class="line"><span class="keyword">C</span>.prototype,uber = P;</span><br></pre></td></tr></table></figure>
-<h3 id="冒泡捕获："><a href="#冒泡捕获：" class="headerlink" title="冒泡捕获："></a>冒泡捕获：</h3><p>dom 事件流的三个阶段，事件捕获阶段，目标事件阶段，事件冒泡阶段</p>
-<ul>
-<li>事件捕获：事件从文档根节点流向目标节点途径层层的 dom 节点并在各个节点触发捕获事件，主要任务就是建立传播路径</li>
-<li>目标阶段：事件在目标节点上触发</li>
-<li>冒泡阶段：事件在目标元素上触发后，并不在这个元素上终止，会随着 dom 树一层层向上冒泡，最后回溯到根节点 ，focus，blur，change，submit，reset，select 等方法没有冒泡</li>
-<li>事件委托：将事件监听器添加到父级元素，而不是每一个子集元素单独设置监听器，当触发自己元素时，事件会冒泡到父级元素</li>
-<li>阻止冒泡：<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">e.stopPropegation() <span class="comment">//w3c标准方法</span></span><br><span class="line"><span class="keyword">event</span>.cancelBubble = <span class="literal">true</span> <span class="comment">// IE方法</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="水平居中-对于子元素是行级元素（无法改变宽高）："><a href="#水平居中-对于子元素是行级元素（无法改变宽高）：" class="headerlink" title="水平居中: 对于子元素是行级元素（无法改变宽高）："></a>水平居中: 对于子元素是行级元素（无法改变宽高）：</h3><h4 id="水平居中："><a href="#水平居中：" class="headerlink" title="水平居中："></a>水平居中：</h4><ul>
-<li>在父级设置<code>text-align:center;</code></li>
-<li>在父级设置<code>display:flex;justify-content</code></li>
-</ul>
-<h4 id="垂直居中："><a href="#垂直居中：" class="headerlink" title="垂直居中："></a>垂直居中：</h4><ul>
-<li>单行文本：<code>line-height= height;</code></li>
-<li>多行文本（会折行）<ul>
-<li>在父元素设置<code>display:flex; align-items: center;</code></li>
-<li>在父元素设置<code>display:table;</code><br> 在子元素设置：<code>display:table-cell; vertical-align:center</code></li>
-<li>对于子元素是块级元素：<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="attribute">display</span>：<span class="attribute">flex</span>;</span><br><span class="line"><span class="attribute">justify-content</span>:center;</span><br><span class="line"><span class="attribute">align-items</span>:center;</span><br><span class="line"><span class="comment">//2</span></span><br><span class="line"><span class="attribute">position</span>:absolute;</span><br><span class="line"><span class="attribute">top</span>:<span class="number">0</span>;<span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">right</span>:<span class="number">0</span>;<span class="attribute">bottom</span>:<span class="number">0</span>;</span><br><span class="line"><span class="attribute">margin</span>:auto;</span><br><span class="line"><span class="comment">//3</span></span><br><span class="line"><span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line"><span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line"><span class="attribute">transform</span>:translateX(-<span class="number">50%</span>)translateY(-<span class="number">50%</span>)</span><br><span class="line">//<span class="number">4</span></span><br><span class="line">把transform改成margin</span><br><span class="line">//<span class="number">5</span></span><br><span class="line">通过table属性</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="jsonp-原理"><a href="#jsonp-原理" class="headerlink" title="jsonp 原理:"></a>jsonp 原理:</h3><p>在 js 中，我们直接用<code>XMLHttpRequest</code>请求不同域上(域名 协议名 端口名)的数据时，是不可以的。但是，在页面上引入不同域上的 js 脚本文件却是可以的,通过 script 标签引入一个 js 文件请求不同域的脚本，<br>此时访问页面时，动态添加了一个 script 标签，src 指向 PHP 脚本，<br>所以 JSONP 将访问跨域请求变成了执行远程 JS 代码，服务端不再返回 JSON 格式的数据，而是返回了一段将 JSON 数据作为传入参数的函数执行代码。</p>
-<h3 id="rem-原理"><a href="#rem-原理" class="headerlink" title="rem 原理:"></a>rem 原理:</h3><p>rem 是指相对于根元素的字体大小的单位。简单的说它就是一个相对单位。</p>
-<h4 id="原理是"><a href="#原理是" class="headerlink" title="原理是:"></a>原理是:</h4><p>先按定高宽设计出来页面，然后转换为 rem 单位，配合 js 查询屏幕大小来改变 html 的 font-size， 最终做出所谓的完美自适应。</p>
-<h3 id="html-渲染过程-解析页面流程："><a href="#html-渲染过程-解析页面流程：" class="headerlink" title="html 渲染过程:解析页面流程："></a>html 渲染过程:解析页面流程：</h3><ol>
-<li>解析 html，构建 dom 树</li>
-<li>解析 css，生成 css 规则树</li>
-<li>合并 dom 树和 css 规则树，生成 render 树</li>
-<li>布局 render 树（layout/reflow），负责各个元素的尺寸、位置计算</li>
-<li>绘制 render 树（paint）绘制页面像素信息</li>
-<li>浏览器将各层信息发送给 GPU，GPU 将各层合成，显示在屏幕上</li>
-</ol>
-<h4 id="回流："><a href="#回流：" class="headerlink" title="回流："></a>回流：</h4><p>页面初始渲染，dom 结构改变，render 树变化（比如减少 padding），页面 resize，获取某些属性也会引发回流（offest，scroll，cilent，width，getComputedStyle，改变字体</p>
-<h4 id="资源外链下载："><a href="#资源外链下载：" class="headerlink" title="资源外链下载："></a>资源外链下载：</h4><p>当遇到外链资源会单独开启一个下载线程去下载资源（http1.1 中每一个资源下载都会开启一个 http 请求，对应一个 tcp/ip 链接）</p>
-<ol>
-<li>遇到 css 样式资源：css 下载异步，不会紫塞浏览器构建 dom 树，但会阻塞渲染，如果有 media query 是不会阻塞渲染的</li>
-<li>遇到 js 脚本资源：阻塞浏览器解析（现代浏览器会优化，脚本阻塞解析时，会继续下载其他资源，有并发上限）如果设置 defer 或者 async 属性的话，脚本就变成异步了，可以等到解析完毕在执行，async 是异步执行，异步下载完毕后就会执行，一定在 onload 前，不确定 DOMContentLoaded 前后，defer 是延迟执行，效果上看将脚本放在 body 后面，按照规范应该再 DOMContentLoaded 之前</li>
-<li>遇到 img 资源：直接异步下载，不会阻塞解析</li>
-</ol>
-<h3 id="apply-call："><a href="#apply-call：" class="headerlink" title="apply call："></a>apply call：</h3><h4 id="箭头函数："><a href="#箭头函数：" class="headerlink" title="箭头函数："></a>箭头函数：</h4><p>与普通函数区别就是箭头函数没有 this 绑定，他会捕获其所在上下文的 this 值 ，没有 arguments 参数，这里的 this 默认指向 window 谁调用指向谁。</p>
-<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">call(<span class="name">obj</span>, <span class="number">1</span>, <span class="number">2</span>)<span class="comment">;</span></span><br><span class="line">apply(<span class="name">obj</span>, [<span class="number">1</span> , <span class="number">2</span>])<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>区别：call 参数一个一个传，apply 是数组形式传<br>new 操作符也会改变 this 指向：new 关键词会创建一个空对象，自动调用 apply 方法，将 this 指向这个空对象，这样函数内部的 this 会被这个空对象替代</p>
-<h3 id="constructor-和-instanceof"><a href="#constructor-和-instanceof" class="headerlink" title="constructor 和 instanceof:"></a>constructor 和 instanceof:</h3><ul>
-<li>constructor 是每一个实例对象都有的属性 指向创建他的对象,比如 a 是由 A 创建的,打印<code>a.constructor = A</code></li>
-<li>instanceof 是就是检测这个实例是不是由这个类创建的 也就是是不是她 new 出来的 是的话返回 ture 不是的话返回 false 但是改变<code>a._proto_</code>会影响结果</li>
-</ul>
-<h3 id="js-运行三部曲"><a href="#js-运行三部曲" class="headerlink" title="js 运行三部曲:"></a>js 运行三部曲:</h3><p>页面产生就创建了全局对象 window 对象 脚本加载完毕开始</p>
-<ol>
-<li>语法分析:检验语法是否合法</li>
-<li>预编译:(脚本代码块 script 执行前)查找变量声明赋值 undefined 查找函数声明赋值函数体</li>
-<li>解释执行: 执行函数之前还要发生预编译 创建 AO 对象,查找形参变量声明赋值 undefined,实参赋值形参,查找函数声明赋值函数体。</li>
-</ol>
-<h3 id="promise-回调"><a href="#promise-回调" class="headerlink" title="promise:回调:"></a>promise:回调:</h3><ol>
-<li>表达异步流程是非线性的，顺序的，容易产生都不懂的回调地狱。</li>
-<li>回调会受控制反转影响，把控制权转交给第三方工具控制代码，导致一些列信任问题比如回调次数 过早或过完成功调用 resolve() 失败调用 reject()</li>
-</ol>
-<h3 id="重绘重排"><a href="#重绘重排" class="headerlink" title="重绘重排:"></a>重绘重排:</h3><ul>
-<li>重拍 :当操作 dom 改变元素几何属性的时候,会同样引起其他元素的位置,浏览器就回重新构造渲染树,增删可见元素,元素位置尺寸内容改变,窗口尺寸,页面初始化,(合模型属性,定位属性,浮动,改变文字结构大小)</li>
-<li>重绘: 外观被改变比如字体颜色 <code>background box-shadow</code></li>
-</ul>
-<h3 id="编码：解决中文乱码问题"><a href="#编码：解决中文乱码问题" class="headerlink" title="编码：解决中文乱码问题"></a>编码：解决中文乱码问题</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">encodeURIComponent（）</span><br><span class="line"><span class="function"><span class="title">encodeURI</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>补码：</li>
-</ul>
-<ol>
-<li>“A”的 charCode 为 65</li>
-<li>65 位于 0-127 的区间，所以“A”占一个字节</li>
-<li>UTF8 中一个字节的补位为 0xxxxxxx，x 表示的是空位，是用来补位的。</li>
-<li>将 65 转为二进制得到 1000001</li>
-<li>将 1000001 按照从前到后的顺序，依次补到 0xxxxxxx 的空位中，得到 01000001</li>
-</ol>
-<h3 id="迭代器："><a href="#迭代器：" class="headerlink" title="迭代器："></a>迭代器：</h3><p>迭代器对象必须实现一个 next 方法， next 方法返回的数据结构是</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attribute">done</span>:boolean, value:ES6value&#125;</span><br></pre></td></tr></table></figure>
-<p>当迭代到最后一个元素后，再调用一次 next 后，返回的 done 就应该是 true<br>ES6 中新加了一些针对可迭代对象的语法，譬如 for-of</p>
-<h3 id="将-01000001-转为字符串，得到”A”"><a href="#将-01000001-转为字符串，得到”A”" class="headerlink" title="将 01000001 转为字符串，得到”A”"></a>将 01000001 转为字符串，得到”A”</h3><p>最终，”A”为 UTF8 编码之后“A”</p>
+<h3 id="PNG-8"><a href="#PNG-8" class="headerlink" title="PNG-8"></a>PNG-8</h3><p>基于索引色的位图。”8″代表 2 的 8 次方也就是 256 色，PNG8 还支持 1 位的布尔透明通道（完全透明 0，完全不透明 1）。（待定：有资料说 PNG-8 也支持 Alpha 通道的透明，用 fireworks 可以导出）<br>PNG-8 与 GIF 的区别：在相同的图片效果下，PNG-8 相比 GIF 具有更小的文件体积。PNG-8 还支持透明度的调节，GIF 不支持。</p>
+<h3 id="PNG-24"><a href="#PNG-24" class="headerlink" title="PNG-24"></a>PNG-24</h3><p>基于真彩色的位图，支持 8 位（256 阶）alpha 透明。（0-255）</p>
+<h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><p>矢量图，放大时，不会失真，适用于 Logo、Icon 等。可以使用 XML 来描述图片，方便修改文件。SVG 优点是放大不会失真，文件可读，方便修改编辑，方便与现有技术结合，例如可以用 javascript 脚本老控制 SVG 对象，支持多种特殊效果，可利用其作出精美的图。缺点是：文件体积比其他格式大</p>
+<h2 id="WebP"><a href="#WebP" class="headerlink" title="WebP"></a>WebP</h2><p>支持有损和无损压缩、真彩色、点阵图，支持透明通道。支持动画<br>WebP 最初在 2010 年发布，目标是减少文件大小，但达到和 JPEG 格式相同的图片质量，希望能够减少图片在网络上的传输时间。一张同样质量的图片 WebP 可以比 JPG 小 24%-35%<br>支持情况：<br>当前网页浏览器当中：在 Google Chrome，Firefox，Edge，Opera 浏览器<br>native： ios 不支持，但是官方提供了工具，安卓 4++以上支持。</p>
+<h2 id="有关于图片压缩"><a href="#有关于图片压缩" class="headerlink" title="有关于图片压缩"></a>有关于图片压缩</h2><p>这是参考的一些链接：</p>
+<p><a href="https://juejin.im/post/5c8e4feb6fb9a070aa5ce200" target="_blank" rel="noopener">PNG 图片压缩原理解析</a><br><a href="https://medium.com/@duhroach/how-png-works-f1174e3cc7b7" target="_blank" rel="noopener">How PNG Works（梯子）</a><br><a href="https://medium.com/@duhroach/how-webp-works-lossly-mode-33bd2b1d0670#.pe5ff2cug" target="_blank" rel="noopener">How WebP works (lossly mode)（梯子）</a><br><a href="https://www.zhihu.com/question/20028452" target="_blank" rel="noopener">png、jpg 的选择</a><br><a href="https://zh.wikipedia.org/wiki/JPEG" target="_blank" rel="noopener">wiki 百科</a><br><a href="https://o2team.github.io/notes/2016/11/07/apng/" target="_blank" rel="noopener">Apng 的那些事</a><br><a href="https://www.jianshu.com/p/c2e3a56d12ec" target="_blank" rel="noopener">如何节省 1TB 图片带宽？解密极致图像压缩</a></p>
 
       
 
@@ -265,17 +198,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -326,7 +248,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.site/2016/07/01/interview/一些基础知识/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.site/2019/12/06/imgSync/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -340,18 +262,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/08/04/blog/hexo_blog/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          hexo + GitHub 搭建博客
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/01/interview/url相关知识/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">url 相关知识点总结</div>
+    <a href="/2019/12/06/JavaScript/sort/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">几种排序算法总结</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -381,7 +294,7 @@
   
 
   
-  <div id="SOHUCS" sid="interview/一些基础知识"></div> 
+  <div id="SOHUCS" sid="imgSync"></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 
