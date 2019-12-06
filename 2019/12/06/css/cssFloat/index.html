@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="Grace">
 <meta property="og:description" content="简析 float当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="gracekang.site/2019/12/06/css/cssFloat/images/float_0.jpg">
-<meta property="og:image" content="gracekang.site/2019/12/06/css/cssFloat/images/float_1.jpg">
-<meta property="og:updated_time" content="2019-12-05T08:37:06.581Z">
+<meta property="og:image" content="/images/float_0.jpg">
+<meta property="og:image" content="/images/float_1.jpg">
+<meta property="og:updated_time" content="2019-12-06T06:55:32.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cssFloat">
 <meta name="twitter:description" content="简析 float当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。">
-<meta name="twitter:image" content="gracekang.site/2019/12/06/css/cssFloat/images/float_0.jpg">
+<meta name="twitter:image" content="/images/float_0.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -51,7 +51,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/grace.jpg" class="js-avatar">
+			<img src="/images/grace.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Grace</a></h1>
@@ -107,7 +107,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/grace.jpg" class="js-avatar">
+				<img src="/images/grace.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Grace</h1>
@@ -175,7 +175,7 @@
         <h2 id="简析-float"><a href="#简析-float" class="headerlink" title="简析 float"></a>简析 float</h2><p>当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。</p>
 <a id="more"></a>
 <h3 id="float-设计的初衷"><a href="#float-设计的初衷" class="headerlink" title="float 设计的初衷"></a>float 设计的初衷</h3><p>一开始 float 被设计出来的初衷是为了实现文字环绕效果，就像是这样</p>
-<p><img style="width:300px" src="./images/float_0.jpg"></p>
+<p><img width="300px" src="/images/float_0.jpg"></p>
 <h3 id="float-的特性：包裹与破坏"><a href="#float-的特性：包裹与破坏" class="headerlink" title="float 的特性：包裹与破坏"></a>float 的特性：包裹与破坏</h3><p>包裹性的表现又称 BFC：Block formatting context 块级格式化上下文</p>
 <p>具有包裹性的其他属性：</p>
 <ul>
@@ -208,7 +208,7 @@
 </li>
 </ul>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">''</span>,</span><br><span class="line">    <span class="attribute">display</span>:block/table,</span><br><span class="line">    <span class="attribute">overflow</span>:hidden,</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.fix</span>&#123;</span><br><span class="line">    *<span class="attribute">zoom</span>:<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="float-的应用"><a href="#float-的应用" class="headerlink" title="float 的应用"></a>float 的应用</h3><p>float 会使元素 block 化，其破坏性造成紧密排列特性（去空格化）<br><img style="width:300px" src="./images/float_1.jpg"></p>
+<h3 id="float-的应用"><a href="#float-的应用" class="headerlink" title="float 的应用"></a>float 的应用</h3><p>float 会使元素 block 化，其破坏性造成紧密排列特性（去空格化）<br><img width="300px" src="/images/float_1.jpg"></p>
 <h3 id="float-的兼容性"><a href="#float-的兼容性" class="headerlink" title="float 的兼容性"></a>float 的兼容性</h3><p>这篇文章对于 IE 的 CSS bug 描述比较详细：<strong><a href="https://www.cnblogs.com/orez88/articles/2563650.html" target="_blank" rel="noopener">IE6,IE7,IE8css bug 大集合</a></strong></p>
 <ul>
 <li><strong>IE6 下 bug:</strong> 浮动会有双倍边距，浮动元素后斜体文字下沉</li>
@@ -303,6 +303,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/12/06/JavaScript/sort/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          几种排序算法总结
+        
+      </div>
+    </a>
   
   
     <a href="/2018/09/10/blog/optimization/" id="article-nav-older" class="article-nav-link-wrap">
@@ -439,11 +448,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -451,11 +468,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
             
             <div class="clearfix"></div>

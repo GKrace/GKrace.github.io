@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="gracekang.site">
   <title>一些基础知识点 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中  堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值 栈：先进后出；动态分配空间由程">
+  <meta name="description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中">
 <meta name="keywords" content="interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些基础知识点">
 <meta property="og:url" content="gracekang.site/2016/07/01/interview/一些基础知识/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中  堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值 栈：先进后出；动态分配空间由程">
+<meta property="og:description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-22T08:22:20.249Z">
+<meta property="og:updated_time" content="2019-12-06T06:47:42.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些基础知识点">
-<meta name="twitter:description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中  堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值 栈：先进后出；动态分配空间由程">
+<meta name="twitter:description" content="js 基本数据类型：number string undefined null boolean object堆和栈的区别：js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中引用类型的值不固定大小，存放在堆中，内存地址保存在栈中">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -48,7 +48,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/grace.jpg" class="js-avatar">
+			<img src="/images/grace.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Grace</a></h1>
@@ -104,7 +104,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/grace.jpg" class="js-avatar">
+				<img src="/images/grace.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Grace</h1>
@@ -169,12 +169,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="js-基本数据类型：number-string-undefined-null-boolean-object"><a href="#js-基本数据类型：number-string-undefined-null-boolean-object" class="headerlink" title="js 基本数据类型：number string undefined null boolean object"></a>js 基本数据类型：number string undefined null boolean object</h3><h3 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h3><p>js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中<br>引用类型的值不固定大小，存放在堆中，内存地址保存在栈中</p>
+        <h3 id="js-基本数据类型：number-string-undefined-null-boolean-object"><a href="#js-基本数据类型：number-string-undefined-null-boolean-object" class="headerlink" title="js 基本数据类型：number string undefined null boolean object"></a>js 基本数据类型：number string undefined null boolean object</h3><h3 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h3><p>js 中，undefined，null，boolean，number，string 数据类型可直接访问，存放在栈中<br>引用类型的值不固定大小，存放在堆中，内存地址保存在栈中<br><a id="more"></a></p>
 <ul>
 <li>堆：队列优先，先进先出；由操作系统自动分配释放，存放函数的参数值，局部变量值</li>
-<li><p>栈：先进后出；动态分配空间由程序员分配释放，如果不释放程序结束会由 OS 回收</p>
-<a id="more"></a>
-</li>
+<li>栈：先进后出；动态分配空间由程序员分配释放，如果不释放程序结束会由 OS 回收</li>
 </ul>
 <h3 id="obj-a-会转换为-obj-“a”-执行，会计算-a-的值"><a href="#obj-a-会转换为-obj-“a”-执行，会计算-a-的值" class="headerlink" title="obj.a 会转换为 obj[“a”]执行，会计算 a 的值"></a>obj.a 会转换为 obj[“a”]执行，会计算 a 的值</h3><h3 id="原型链："><a href="#原型链：" class="headerlink" title="原型链："></a>原型链：</h3><p>作用就是实现对象的继承，比如你 functon A（）{} 里面有很多方法属性，var B = new A（） 这样 B 就继承 A 的定义的属性和方法，<br>当 B 想调用方法时候会在自己里面找，自己里面没有就会到 A.prototype,直至找到 object.prototype<br>原型链是一种机制，js 中每一个对象都有一个内置的 proto 属性，指向创建他的函数对象的原型对象（prototype），原型对象上也有 proto 属性，因此不断指向形成了原型链<br>继承：构造函数直接继承：通过祖父构造出父亲，父亲构造出儿子，这样的方法继承太多没用的属性方法</p>
 <ul>
@@ -486,11 +484,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,11 +504,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
             
             <div class="clearfix"></div>

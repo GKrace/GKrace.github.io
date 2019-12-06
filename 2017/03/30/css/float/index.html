@@ -16,12 +16,10 @@
 <meta property="og:site_name" content="Grace">
 <meta property="og:description" content="浮动 浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。 浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。 clear 属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2377897-a0f4eff0c7cd5c66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-04-22T08:21:29.121Z">
+<meta property="og:updated_time" content="2019-12-06T06:48:37.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css浮动之详解">
 <meta name="twitter:description" content="浮动 浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。 浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。 clear 属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2377897-a0f4eff0c7cd5c66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -50,7 +48,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/grace.jpg" class="js-avatar">
+			<img src="/images/grace.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Grace</a></h1>
@@ -106,7 +104,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/grace.jpg" class="js-avatar">
+				<img src="/images/grace.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Grace</h1>
@@ -174,9 +172,10 @@
         <h2 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h2><ul>
 <li>浮动元素会脱离文档流并向左/向右浮动（不在正常位置，并且他后面的不浮动元素会占他的位置），浮动直到碰到父元素或者另一个浮动元素。</li>
 <li>浮动不会影响同级别普通元素的布局，同时也存在盖住普通元素的风险。</li>
-<li>clear 属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。<br><img src="http://upload-images.jianshu.io/upload_images/2377897-a0f4eff0c7cd5c66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></li>
+<li>clear 属性不允许被清除浮动的元素的左边/右边挨着浮动元素，底层原理是在被清除浮动的元素上边或者下边添加足够的清除空间。<a id="more"></a>
+<pre><code>![Paste_Image.png](http://upload-images.jianshu.io/upload_images/2377897-a0f4eff0c7cd5c66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+</code></pre></li>
 </ul>
-<a id="more"></a>
 <h2 id="说一下为什么要清除浮动以及常见的清除浮动的方法-4"><a href="#说一下为什么要清除浮动以及常见的清除浮动的方法-4" class="headerlink" title="说一下为什么要清除浮动以及常见的清除浮动的方法 4%"></a>说一下为什么要清除浮动以及常见的清除浮动的方法 4%</h2><p>当一个内层元素是浮动的时候，如果没有关闭浮动时，其父元素也就不会再包含这个浮动的内层元素，因为此时浮动元素已经脱离了文档流。也就是为什么外层不能被撑开了！<br>（2）：边框不能撑开 （3）：margin ,padding 设置值不能正确显示（1）：背景不能显示</p>
 <h3 id="方法一：在被清除浮动元素内部末尾添加新元素-、应用-clear：both"><a href="#方法一：在被清除浮动元素内部末尾添加新元素-、应用-clear：both" class="headerlink" title="方法一：在被清除浮动元素内部末尾添加新元素 、应用 clear：both"></a>方法一：在被清除浮动元素内部末尾添加新元素 、应用 clear：both</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"outer"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"div1"</span>&gt;<span class="number">1</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"div2"</span>&gt;<span class="number">2</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"div3"</span>&gt;<span class="number">3</span>&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"clear"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">.clear&#123;clear:both; height: <span class="number">0</span>; line-height: <span class="number">0</span>; font-size: <span class="number">0</span>&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="方法二：触发-BFC"><a href="#方法二：触发-BFC" class="headerlink" title="方法二：触发 BFC"></a>方法二：触发 BFC</h3><p>父级 div 定义 overflow: hidden（hidden 可以兼容 IE，就是对 seo 不太友好,auto 不可以兼容 IE）</p>
@@ -187,10 +186,19 @@
 <hr>
 <h2 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h2><p>BFC 可以做:BFC 清除浮动，BFC 解决垂直边距折叠<br>BFC 全称是块状格式化上下文，它是按照块级盒子布局的。我们了解他的特征、触发方式、常见使用场景这些就够了。</p>
 <p>BFC 的主要特征</p>
-<p>✦ BFC 容器是一个隔离的容器，和其他元素互不干扰；所以我们可以用触发两个元素的 BFC 来解决垂直边距折叠问题。<br>✦ BFC 可以包含浮动；通常用来解决浮动父元素高度坍塌的问题。</p>
+<ul>
+<li>BFC 容器是一个隔离的容器，和其他元素互不干扰；所以我们可以用触发两个元素的 BFC 来解决垂直边距折叠问题。</li>
+<li>BFC 可以包含浮动；通常用来解决浮动父元素高度坍塌的问题。</li>
+</ul>
 <p>其中，BFC 清除浮动就是用的“包含浮动”这条特性。<br>那么，怎样才能触发 BFC 呢？</p>
 <p>BFC 的触发方式</p>
-<p>我们可以给父元素添加以下属性来触发 BFC(一下任意一条就可以)：<br>✦ float 为 left | right(不为 none)<br>✦ overflow 为 hidden | auto | scorll(不为 visible )<br>✦ display 为 table-cell | table-caption | inline-block | flex | inline-flex<br>✦ position 为 absolute | fixed</p>
+<p>我们可以给父元素添加以下属性来触发 BFC(一下任意一条就可以)：</p>
+<ul>
+<li>float 为 left | right(不为 none)</li>
+<li>overflow 为 hidden | auto | scorll(不为 visible )</li>
+<li>display 为 table-cell | table-caption | inline-block | flex | inline-flex</li>
+<li>position 为 absolute | fixed</li>
+</ul>
 <hr>
 
       
@@ -432,11 +440,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -444,11 +460,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color1">微信小程序</a>
               </li>
             
             <div class="clearfix"></div>
