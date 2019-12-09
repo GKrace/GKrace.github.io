@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.site">
-  <title>url 相关知识点总结 | Grace</title>
+  <title>人生好难啊 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存">
-<meta name="keywords" content="interview">
+  <meta name="description" content="人生好难啊 我最近遇到一些事，是让我感到窒息的。">
+<meta name="keywords" content="diary">
 <meta property="og:type" content="article">
-<meta property="og:title" content="url 相关知识点总结">
-<meta property="og:url" content="gracekang.site/2016/07/01/interview/url相关知识/index.html">
+<meta property="og:title" content="人生好难啊">
+<meta property="og:url" content="gracekang.site/2019/12/09/diary/diary_2/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存">
+<meta property="og:description" content="人生好难啊 我最近遇到一些事，是让我感到窒息的。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-06T11:33:54.431Z">
+<meta property="og:updated_time" content="2019-12-09T06:17:33.010Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="url 相关知识点总结">
-<meta name="twitter:description" content="rel = “dns-prefetch”用户跟某个连接之前，浏览器先尝试解析域名并将其缓存">
+<meta name="twitter:title" content="人生好难啊">
+<meta name="twitter:description" content="人生好难啊 我最近遇到一些事，是让我感到窒息的。">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -149,79 +149,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-interview/url相关知识" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="diary-diary/diary_2" class="article article-type-diary " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      url 相关知识点总结
+      人生好难啊
     </h1>
   
 
         
-        <a href="/2016/07/01/interview/url相关知识/" class="archive-article-date">
-  	<time datetime="2016-06-30T21:28:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-30</time>
+        <a href="/2019/12/09/diary/diary_2/" class="archive-article-date">
+  	<time datetime="2019-12-09T14:14:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="rel-“dns-prefetch”"><a href="#rel-“dns-prefetch”" class="headerlink" title="rel = “dns-prefetch”"></a>rel = “dns-prefetch”</h3><p>用户跟某个连接之前，浏览器先尝试解析域名并将其缓存</p>
-<a id="more"></a>
-<h3 id="getComptuedStyle-使用方法"><a href="#getComptuedStyle-使用方法" class="headerlink" title="getComptuedStyle 使用方法:"></a>getComptuedStyle 使用方法:</h3><p><code>window./document.defaultView.(ele,pseudo-ele);</code><br>两个参数 元素和伪元素，不查询伪元素可以省略</p>
-<ul>
-<li><code>document.defaultView === window</code> 在 IE8 中 false Firefox 3.6 ,必须使用 defaultView（iframe）</li>
-<li><code>element.style</code>读取的元素内联样式，即元素 style 属性上的样式，可读写，getComputedStyle 读取的是最终样式，只读，包括内联、嵌入、和外部样式</li>
-<li>getPropertyValue 获取 css 样式声明对象上的属性值，例如 style.getProperyValue（“height”）</li>
-<li>attribute 和 property 区别：创建<ol>
-<li>dom 对象初始化的时候都会创建默认的 property</li>
-<li>html 标签里定义的 attribute 才会保存在 property 的 attributes 属性中</li>
-<li>attribute 会初始化 property 中的同名属性，但自定义的 attribute 不会出现在 property 中</li>
-<li>attribute 的值都是字符串：“value=1”</li>
-</ol>
-</li>
-<li>数据绑定<ol>
-<li>attributes 的数据汇通不到 property 上，然而 peroperty 更改不会改变 attribute</li>
-<li>id 和 disabled 的数据是双向的<br>例如<code>&lt;input id=&quot;in_1&quot; value=&quot;1&quot; abc=&quot;whatever&quot;&gt;</code></li>
-</ol>
-</li>
-</ul>
-<h3 id="输入一个-url-过程"><a href="#输入一个-url-过程" class="headerlink" title="输入一个 url 过程"></a>输入一个 url 过程</h3><ol>
-<li>解析 url：url 包括：1.protocol 协议头 http 2.host 主机域名或 ip 地址 3.port 端口号 4.path 目录路径 5.query 查询参数 6.fragment 即#后面的 hash 值，一般用来定位到某个位置</li>
-<li>开启单独的网络线程发送一个完整的 http 请求（包含 dns 查询，tcp/ip 请求构建，五层因特网协议栈）<br>如果输入的域名，dns 解析成 ip，如果有浏览器缓存直接使用，否则使用本机缓存，在没有的话就是 host，域名查询有可能经过 CDN 调度器（如果 CDN 有储存的话）dns 解析很耗时，如果解析域名过多首屏加载会慢，可以使用 dns-prefetch 优化</li>
-<li>tcp/ip 请求（这是 http 本质）通过三次握手(SYN/ACK)和四次挥手(FIN/ACK)与服务器建立连接，tcp 将 http 长报文划分为短报文<br>应用层：dns 解析 ip 地址发送 http 请求 –&gt; 传输层：建立 TCP 链接 –&gt; 网络层：IP 寻址 –&gt; 数据链路层：封装成帧 –&gt;物理层：物理传输</li>
-<li>服务器接受请求涉及到负载均衡 用户发起请求都指向调度服务器，调度服务器根据实际调度算法分配不同的请求给对应集群中年的服务器执行，然后调度器等待时机服务器的 http 相应，反馈给用户,后端一般有统一的验证，如安全拦截，跨域验证，如果拒绝请求直接返回相应的报文，通过验证后进入后台代码，程序接受请求执行，执行完毕后返回一个 http 响应包，发送给前端实现交互<ul>
-<li>http 报文：<ul>
-<li>1xx：请求接收，继续处理</li>
-<li>2xx：请求处理成功（get 产生 1 个 tcp 数据包，post2 个，浏览器发送 headers 和 data 一起发送出去，服务器响应 200，post 请求时浏览器先发送 headers，服务器响应 100 continue，浏览器再发送 data，服务器响应 200）</li>
-<li>3xx：重定向（301 永久重定向，302 临时重定向，303see other，304not-modified 请求网页未修改，可使用本地缓存）</li>
-<li>4xx：客户端错误（401 未授权认证，403 禁止访问，404 资源未找到）</li>
-<li>5xx：服务器错误（500 服务器执行请求发生错误，503 服务器不可用）</li>
-</ul>
-</li>
-<li>gzip 压缩：需要浏览器支持，一般由 apache、tomcat 等 web 服务器开启</li>
-<li>http1.0：默认使用短链接，<br>http1.1：默认使用长连接，一个 tpc/ip 连接上可以发送多个数据包，没有数据包则发送检测包联系 Connection：keep-alive<br>http2.0：一个 tcp/ip 请求可以请求多个资源，若请求若干个资源则分割更小的帧请求（无需用到 http1.1 中静态资源域名拆分） 1. 多路复用， 2. 首部压缩， 3. 二进制分帧层改善运输性能， 4. 服务器推动送， 5. 请求优先级<br>https：就是安全版本的 http，适用支付操作的网站，建立 ssl 链接确保通信都是加密的（RSA 加密，hash 加密，证书）</li>
-</ul>
-</li>
-</ol>
-<h3 id="缓存："><a href="#缓存：" class="headerlink" title="缓存："></a>缓存：</h3><p>强缓存与弱缓存（协商缓存）：<br>http1.0：Pragma/Expires（使用服务器端时间，一旦不同步导致缓存无法过期） If-Modified-Since/Last-Modified（服务器端文件周期性改变，时间只能精确到 1s）<br>http1.1：Cache-Control/Max-age（使用客户端时间） If-None-Match/E-tag（只要文件改变就发生改变，无精确时间限制）</p>
-<h3 id="解析页面流程："><a href="#解析页面流程：" class="headerlink" title="解析页面流程："></a>解析页面流程：</h3><ol>
-<li>解析 html，构建 dom 树</li>
-<li>解析 css，生成 css 规则树</li>
-<li>合并 dom 树和 css 规则树，生成 render 树</li>
-<li>布局 render 树（layout/reflow），负责各个元素的尺寸、位置计算</li>
-<li>绘制 render 树（paint）绘制页面像素信息</li>
-<li>浏览器将各层信息发送给 GPU，GPU 将各层合成，显示在屏幕上<br>回流：页面初始渲染，dom 结构改变，render 树变化（比如减少 padding），页面 resize，获取某些属性也会引发回流（offest，scroll，cilent，width，getComputedStyle，改变字体</li>
-<li>资源外链下载：当遇到外链资源会单独开启一个下载线程去下载资源（http1.1 中每一个资源下载都会开启一个 http 请求，对应一个 tcp/ip 链接）<ul>
-<li>遇到 css 样式资源：css 下载异步，不会紫塞浏览器构建 dom 树，但会阻塞渲染，如果有 media query 是不会阻塞渲染的</li>
-<li>遇到 js 脚本资源：阻塞浏览器解析（现代浏览器会优化，脚本阻塞解析时，会继续下载其他资源，有并发上限）如果设置 defer 或者 async 属性的话，脚本就变成异步了，可以等到解析完毕在执行<br>async 是异步执行，异步下载完毕后就会执行，一定在 onload 前，不确定 DOMContentLoaded 前后，defer 是延迟执行，效果上看将脚本放在 body 后面，按照规范应该再 DOMContentLoaded 之前</li>
-<li>遇到 img 资源：直接异步下载，不会阻塞解析</li>
-</ul>
-</li>
-</ol>
+        <p>人生好难啊</p>
+<p>我最近遇到一些事，是让我感到窒息的。</p>
 
       
 
@@ -235,7 +184,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">diary</a>
         		</li>
       		
 		</ul>
@@ -291,7 +240,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.site/2016/07/01/interview/url相关知识/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.site/2019/12/09/diary/diary_2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -305,18 +254,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/07/01/interview/一些基础知识/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          一些基础知识点
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/06/27/interview/ms/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ms</div>
+    <a href="/2019/12/06/imgSync/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">图片简析</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -336,19 +276,6 @@
         </div>
         
         
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#rel-“dns-prefetch”"><span class="toc-number">1.</span> <span class="toc-text">rel = “dns-prefetch”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getComptuedStyle-使用方法"><span class="toc-number">2.</span> <span class="toc-text">getComptuedStyle 使用方法:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入一个-url-过程"><span class="toc-number">3.</span> <span class="toc-text">输入一个 url 过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存："><span class="toc-number">4.</span> <span class="toc-text">缓存：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解析页面流程："><span class="toc-number">5.</span> <span class="toc-text">解析页面流程：</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
     </div>
 </aside>
 
@@ -359,7 +286,7 @@
   
 
   
-  <div id="SOHUCS" sid="interview/url相关知识"></div> 
+  <div id="SOHUCS" sid="diary/diary_2"></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 
