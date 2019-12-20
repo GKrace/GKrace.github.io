@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.site">
-  <title>Archives: 2019/12 | Grace</title>
+  <title>浏览器存储方式 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是我 也都不是我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace">
-<meta property="og:url" content="gracekang.site/archives/2019/12/index.html">
+  <meta name="description" content="浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage cookiecookie就是一种浏览器管理状态的一个文件，其属性有name、value等等。cookie 一般被保存在客户端中，按照客户端中存储的位置，可以分为内存 cookie 和硬盘 cookie。  内存 cookie ： 内存 cookie 由浏览器进行维护，保存在内存中，浏览器关">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器存储方式">
+<meta property="og:url" content="gracekang.site/2019/12/21/http/storage/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="是我 也都不是我">
+<meta property="og:description" content="浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage cookiecookie就是一种浏览器管理状态的一个文件，其属性有name、value等等。cookie 一般被保存在客户端中，按照客户端中存储的位置，可以分为内存 cookie 和硬盘 cookie。  内存 cookie ： 内存 cookie 由浏览器进行维护，保存在内存中，浏览器关">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/images/storage_cookie.png">
+<meta property="og:updated_time" content="2019-12-20T13:05:04.484Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace">
-<meta name="twitter:description" content="是我 也都不是我">
+<meta name="twitter:title" content="浏览器存储方式">
+<meta name="twitter:description" content="浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage cookiecookie就是一种浏览器管理状态的一个文件，其属性有name、value等等。cookie 一般被保存在客户端中，按照客户端中存储的位置，可以分为内存 cookie 和硬盘 cookie。  内存 cookie ： 内存 cookie 由浏览器进行维护，保存在内存中，浏览器关">
+<meta name="twitter:image" content="/images/storage_cookie.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -147,36 +151,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="http-http/storage" class="article article-type-http " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/21/http/storage/" class="archive-article-date">
-  	<time datetime="2019-12-20T17:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/21/http/storage/">浏览器存储方式</a>
+    <h1 class="article-title" itemprop="name">
+      浏览器存储方式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/12/21/http/storage/" class="archive-article-date">
+  	<time datetime="2019-12-20T17:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage</p>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p><img src="/images/storage_cookie.png" width="100%" height="100%"><br>cookie就是一种浏览器管理状态的一个文件，其属性有name、value等等。<br>cookie 一般被保存在客户端中，按照客户端中存储的位置，可以分为内存 cookie 和硬盘 cookie。</p>
+<ul>
+<li>内存 cookie ： 内存 cookie 由浏览器进行维护，保存在内存中，浏览器关闭消失。</li>
+<li>硬盘 cookie ： 硬盘 cookie 保存在硬盘里，有一个过期时间，除非用户手动清理，或者到了过期时间，否则不会被删除。</li>
+</ul>
+<h4 id="cookie-为什么出现？"><a href="#cookie-为什么出现？" class="headerlink" title="cookie 为什么出现？"></a>cookie 为什么出现？</h4><p>http 协议是<a href="https://www.zhihu.com/question/23202402" target="_blank" rel="noopener">无状态的</a>,意思是每次请求，服务器并不清楚到底是不是同一个浏览器在访问他，服务器也不清楚用户上一次到底干了什么，cookie 就是用来绕开 http 无状态性的额外手段之一。</p>
+<h4 id="cookie-的应用"><a href="#cookie-的应用" class="headerlink" title="cookie 的应用"></a>cookie 的应用</h4><p>举个例子，在购物网页中，用户选购了一项商品，服务器在向用户发送网页的同时，还发送了一段 cookie，记录了那个商品信息，用户访问另一页面的时候，浏览器会把之前的 cookie 发送给服务器，这样，服务器还知道用户之前选购了什么，结账时，服务器读取发送过来的 cookie 就行了。</p>
+<p>Cookie 另一个典型的应用是当登录一个网站时，网站往往会请求用户输入用户名和密码，并且用户可以勾选“下次自动登录”。如果勾选了，那么下次访问同一网站时，用户会发现没输入用户名和密码就已经登录了。这正是因为前一次登录时，服务器发送了包含登录凭据（用户名加密码的某种加密形式）的 Cookie 到用户的硬盘上。第二次登录时，如果该 Cookie 尚未到期，浏览器会发送该 Cookie，服务器验证凭据，于是不必输入用户名和密码就让用户登录了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -188,209 +199,113 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.site/2019/12/21/http/storage/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-diary">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/20/diary/diary_3/" class="archive-article-date">
-  	<time datetime="2019-12-20T14:57:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/20/diary/diary_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【2019-12-20】随记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/20/diary/diary_3/">【2019-12-20】随记</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">diary</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-diary">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/09/diary/diary_2/" class="archive-article-date">
-  	<time datetime="2019-12-09T14:14:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/09/diary/diary_2/">人生好难啊</a>
-    </h1>
+  <div id="SOHUCS" sid="http/storage"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">diary</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-javascript">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/06/imgSync/" class="archive-article-date">
-  	<time datetime="2019-12-06T15:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/06/imgSync/">图片简析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">拓展知识</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/06/JavaScript/sort/" class="archive-article-date">
-  	<time datetime="2019-12-06T14:41:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/06/JavaScript/sort/">几种排序算法总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/06/css/cssFloat/" class="archive-article-date">
-  	<time datetime="2019-12-05T16:34:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/06/css/cssFloat/">cssFloat</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -413,8 +328,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
