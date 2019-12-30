@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/images/storage_cookie.png">
 <meta property="og:image" content="/images/storage_secure.png">
-<meta property="og:updated_time" content="2019-12-30T08:05:25.067Z">
+<meta property="og:updated_time" content="2019-12-30T08:14:04.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器存储方式(一) Cookie">
 <meta name="twitter:description" content="浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage cookiecookie 就是一种浏览器管理状态的一个文件，其属性有 name、value 等等。cookie 一般被保存在客户端中，按照客户端中存储的位置，可以分为内存 cookie 和硬盘 cookie。">
@@ -184,7 +184,8 @@
 </ul>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: <span class="attribute">id</span>=a3fWa; <span class="attribute">Expires</span>=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly</span><br></pre></td></tr></table></figure>
 <h4 id="cookie-为什么出现？"><a href="#cookie-为什么出现？" class="headerlink" title="cookie 为什么出现？"></a>cookie 为什么出现？</h4><p>http 协议是<a href="https://www.zhihu.com/question/23202402" target="_blank" rel="noopener">无状态的</a>,意思是每次请求，服务器并不清楚到底是不是同一个浏览器在访问他，服务器也不清楚用户上一次到底干了什么，cookie 就是用来绕开 http 无状态性的额外手段之一。</p>
-<h4 id="cookie-的应用"><a href="#cookie-的应用" class="headerlink" title="cookie 的应用"></a>cookie 的应用</h4><p>举个例子，在购物网页中，用户选购了一项商品，服务器在向用户发送网页的同时，还发送了一段 cookie，记录了那个商品信息，用户访问另一页面的时候，浏览器会把之前的 cookie 发送给服务器，这样，服务器还知道用户之前选购了什么，结账时，服务器读取发送过来的 cookie 就行了。</p>
+<h4 id="cookie-是如何工作的"><a href="#cookie-是如何工作的" class="headerlink" title="cookie 是如何工作的"></a>cookie 是如何工作的</h4><pre><code>cookie包含一些数据：实际的value（键值对形式），到期日期（过期失效），发送到服务器的域和路径，当我们向服务器发送含有cookie的页面时，该cookie会被添加到http头部，服务器端读取信息，并确定我们有权查看页面。
+</code></pre><h4 id="cookie-的应用"><a href="#cookie-的应用" class="headerlink" title="cookie 的应用"></a>cookie 的应用</h4><p>举个例子，在购物网页中，用户选购了一项商品，服务器在向用户发送网页的同时，还发送了一段 cookie，记录了那个商品信息，用户访问另一页面的时候，浏览器会把之前的 cookie 发送给服务器，这样，服务器还知道用户之前选购了什么，结账时，服务器读取发送过来的 cookie 就行了。</p>
 <p>Cookie 另一个典型的应用是当登录一个网站时，网站往往会请求用户输入用户名和密码，并且用户可以勾选“下次自动登录”。如果勾选了，那么下次访问同一网站时，用户会发现没输入用户名和密码就已经登录了。这正是因为前一次登录时，服务器发送了包含登录凭据（用户名加密码的某种加密形式）的 Cookie 到用户的硬盘上。第二次登录时，如果该 Cookie 尚未到期，浏览器会发送该 Cookie，服务器验证凭据，于是不必输入用户名和密码就让用户登录了。</p>
 <h4 id="cookie-的缺陷"><a href="#cookie-的缺陷" class="headerlink" title="cookie 的缺陷"></a>cookie 的缺陷</h4><ul>
 <li>由于在 HTTP 请求中的 Cookie 是明文传递的，所以安全性成问题，除非用 HTTPS。</li>
@@ -454,19 +455,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">diary</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
