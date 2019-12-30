@@ -156,7 +156,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/21/http/storage/">浏览器存储方式</a>
+      <a class="article-title" href="/2019/12/21/http/storage/">浏览器存储方式(一) Cookie</a>
     </h1>
   
 
@@ -170,15 +170,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage</p>
-<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p><img src="/images/storage_cookie.png" width="100%" height="100%"><br>cookie就是一种浏览器管理状态的一个文件，其属性有name、value等等。<br>cookie 一般被保存在客户端中，按照客户端中存储的位置，可以分为内存 cookie 和硬盘 cookie。</p>
-<ul>
-<li>内存 cookie ： 内存 cookie 由浏览器进行维护，保存在内存中，浏览器关闭消失。</li>
-<li>硬盘 cookie ： 硬盘 cookie 保存在硬盘里，有一个过期时间，除非用户手动清理，或者到了过期时间，否则不会被删除。</li>
-</ul>
-<h4 id="cookie-为什么出现？"><a href="#cookie-为什么出现？" class="headerlink" title="cookie 为什么出现？"></a>cookie 为什么出现？</h4><p>http 协议是<a href="https://www.zhihu.com/question/23202402" target="_blank" rel="noopener">无状态的</a>,意思是每次请求，服务器并不清楚到底是不是同一个浏览器在访问他，服务器也不清楚用户上一次到底干了什么，cookie 就是用来绕开 http 无状态性的额外手段之一。</p>
-<h4 id="cookie-的应用"><a href="#cookie-的应用" class="headerlink" title="cookie 的应用"></a>cookie 的应用</h4><p>举个例子，在购物网页中，用户选购了一项商品，服务器在向用户发送网页的同时，还发送了一段 cookie，记录了那个商品信息，用户访问另一页面的时候，浏览器会把之前的 cookie 发送给服务器，这样，服务器还知道用户之前选购了什么，结账时，服务器读取发送过来的 cookie 就行了。</p>
-<p>Cookie 另一个典型的应用是当登录一个网站时，网站往往会请求用户输入用户名和密码，并且用户可以勾选“下次自动登录”。如果勾选了，那么下次访问同一网站时，用户会发现没输入用户名和密码就已经登录了。这正是因为前一次登录时，服务器发送了包含登录凭据（用户名加密码的某种加密形式）的 Cookie 到用户的硬盘上。第二次登录时，如果该 Cookie 尚未到期，浏览器会发送该 Cookie，服务器验证凭据，于是不必输入用户名和密码就让用户登录了。</p>
-
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>cookie 就是一种浏览器管理状态的一个文件，其属性有 name、value 等等。<br>cookie 一般被保存在客户端中，按照客户端中存储的位置，可以分为内存 cookie 和硬盘 cookie。</p>
+        
+          <a class="article-more-a" href="/2019/12/21/http/storage/#more">more >></a>
+        
       
 
       
@@ -1021,6 +1016,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
@@ -1029,15 +1028,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">diary</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
