@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.site">
-  <title>Tag: 拓展知识 | Grace</title>
+  <title>浏览器存储方式(一) Cookie | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是我 也都不是我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace">
-<meta property="og:url" content="gracekang.site/tags/拓展知识/index.html">
+  <meta name="description" content="浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage cookieCookie 是一小段文本信息，伴随着用户请求在 Web 服务器和浏览器之间传递。它存储于访问者的计算机中，每当同一台计算机通过浏览器请求某个页面时，就会发送这个 cookie。cookie 就是一种浏览器管理状态的一个文件，其属性有 name、value 等等。cookie">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器存储方式(一) Cookie">
+<meta property="og:url" content="gracekang.site/2019/12/21/http/storage_cookie/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="是我 也都不是我">
+<meta property="og:description" content="浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage cookieCookie 是一小段文本信息，伴随着用户请求在 Web 服务器和浏览器之间传递。它存储于访问者的计算机中，每当同一台计算机通过浏览器请求某个页面时，就会发送这个 cookie。cookie 就是一种浏览器管理状态的一个文件，其属性有 name、value 等等。cookie">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/images/storage_cookie2.png">
+<meta property="og:image" content="/images/storage_cookie.png">
+<meta property="og:image" content="/images/storage_secure.png">
+<meta property="og:updated_time" content="2019-12-31T09:31:05.972Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace">
-<meta name="twitter:description" content="是我 也都不是我">
+<meta name="twitter:title" content="浏览器存储方式(一) Cookie">
+<meta name="twitter:description" content="浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage cookieCookie 是一小段文本信息，伴随着用户请求在 Web 服务器和浏览器之间传递。它存储于访问者的计算机中，每当同一台计算机通过浏览器请求某个页面时，就会发送这个 cookie。cookie 就是一种浏览器管理状态的一个文件，其属性有 name、value 等等。cookie">
+<meta name="twitter:image" content="/images/storage_cookie2.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -147,60 +153,232 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="http-http/storage_cookie" class="article article-type-http " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-javascript">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/06/imgSync/" class="archive-article-date">
-  	<time datetime="2019-12-06T15:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/06/imgSync/">图片简析</a>
+    <h1 class="article-title" itemprop="name">
+      浏览器存储方式(一) Cookie
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/12/21/http/storage_cookie/" class="archive-article-date">
+  	<time datetime="2019-12-20T17:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>浏览器本地存储的方式总共有以下几种方式：cookie localStorage sessionStorage</p>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>Cookie 是一小段文本信息，伴随着用户请求在 Web 服务器和浏览器之间传递。它存储于访问者的计算机中，每当同一台计算机通过浏览器请求某个页面时，就会发送这个 cookie。cookie 就是一种浏览器管理状态的一个文件，其属性有 name、value 等等。cookie 一般被保存在客户端中，按照客户端中存储的位置，可以分为内存 cookie 和硬盘 cookie。</p>
+<a id="more"></a>
+<ul>
+<li>内存 cookie （会话期 cookie）： 内存 cookie 由浏览器进行维护，保存在内存中，浏览器关闭消失。会话期 cookies 将会在客户端关闭时被移除。 会话期 cookie 不设置 Expires 或 Max-Age 指令。注意浏览器通常支持会话恢复功能。</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: <span class="attribute">sessionid</span>=38afes7a8; HttpOnly; <span class="attribute">Path</span>=/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>硬盘 cookie （持久化 cookie）： 硬盘 cookie 保存在硬盘里，有一个过期时间，除非用户手动清理，或者到了过期时间，否则不会被删除。持久化 Cookie 不会在客户端关闭时失效，而是在特定的日期（Expires）或者经过一段特定的时间之后（Max-Age）才会失效。</li>
+</ul>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: <span class="attribute">id</span>=a3fWa; <span class="attribute">Expires</span>=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly</span><br></pre></td></tr></table></figure>
+<h4 id="1-cookie-为什么出现？"><a href="#1-cookie-为什么出现？" class="headerlink" title="1. cookie 为什么出现？"></a>1. cookie 为什么出现？</h4><p>http 协议是<a href="https://www.zhihu.com/question/23202402" target="_blank" rel="noopener">无状态的</a>,意思是每次请求，服务器并不清楚到底是不是同一个浏览器在访问他，服务器也不清楚用户上一次到底干了什么，cookie 就是用来绕开 http 无状态性的额外手段之一。</p>
+<h4 id="2-cookie-是如何工作的"><a href="#2-cookie-是如何工作的" class="headerlink" title="2. cookie 是如何工作的"></a>2. cookie 是如何工作的</h4><p>cookie 包含一些数据：实际的 value（键值对形式），到期日期（过期失效），发送到服务器的域和路径，当我们向服务器发送含有 cookie 的页面时，该 cookie 会被添加到 http 头部，服务器端读取信息，并确定我们有权查看页面。</p>
+<ul>
+<li><p>用户向服务器发送用户名和密码。</p>
+</li>
+<li><p>服务器验证通过后，在当前对话（session）里面保存相关数据，比如用户角色、登录时间等等。</p>
+</li>
+<li><p>服务器向用户返回一个 session_id，写入用户的 Cookie。</p>
+</li>
+<li><p>用户随后的每一次请求，都会通过 Cookie，将 session_id 传回服务器。</p>
+</li>
+<li><p>服务器收到 session_id，找到前期保存的数据，由此得知用户的身份。</p>
+</li>
+</ul>
+<h4 id="3-cookie-为什么会被限制成-4k，为什么-cookie-不适合大量数据的存储。？"><a href="#3-cookie-为什么会被限制成-4k，为什么-cookie-不适合大量数据的存储。？" class="headerlink" title="3. cookie 为什么会被限制成 4k，为什么 cookie 不适合大量数据的存储。？"></a>3. cookie 为什么会被限制成 4k，为什么 cookie 不适合大量数据的存储。？</h4><ul>
+<li>每次向服务端发请求，Cookies 都会被带到 HTTP 中，所以不能存储太多数据，否则造成负载太大。</li>
+<li>浏览器能存 cookie 数比较少。如 IE8，Firefox,opera 每个域可以保存的 50 个 cookie,Safari/WebKit 没有限制。一个 cookie 最多可以存放 4096B 左右的数据（见<a href="http://www.ietf.org/rfc/rfc2965.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc2965.txt</a> ）。</li>
+<li>每次请求时，cookie 都会存放在请求头中，传输到服务器端。但如果请求头大小超过了限制，服务器会处理不了。</li>
+</ul>
+<h4 id="4-为什么-cookie-在-http-请求传输，而-localStorage-不在-http-中传输？"><a href="#4-为什么-cookie-在-http-请求传输，而-localStorage-不在-http-中传输？" class="headerlink" title="4. 为什么 cookie 在 http 请求传输，而 localStorage 不在 http 中传输？"></a>4. 为什么 cookie 在 http 请求传输，而 localStorage 不在 http 中传输？</h4><p>因为 http 标准请求头中是带有 cookie 的<br><img src="/images/storage_cookie2.png" width="100%" height="100%"></p>
+<h4 id="5-cookie-的应用"><a href="#5-cookie-的应用" class="headerlink" title="5. cookie 的应用"></a>5. cookie 的应用</h4><p>举个例子，在购物网页中，用户选购了一项商品，服务器在向用户发送网页的同时，还发送了一段 cookie，记录了那个商品信息，用户访问另一页面的时候，浏览器会把之前的 cookie 发送给服务器，这样，服务器还知道用户之前选购了什么，结账时，服务器读取发送过来的 cookie 就行了。</p>
+<p>Cookie 另一个典型的应用是当登录一个网站时，网站往往会请求用户输入用户名和密码，并且用户可以勾选“下次自动登录”。如果勾选了，那么下次访问同一网站时，用户会发现没输入用户名和密码就已经登录了。这正是因为前一次登录时，服务器发送了包含登录凭据（用户名加密码的某种加密形式）的 Cookie 到用户的硬盘上。第二次登录时，如果该 Cookie 尚未到期，浏览器会发送该 Cookie，服务器验证凭据，于是不必输入用户名和密码就让用户登录了。</p>
+<h4 id="6-cookie-的缺陷"><a href="#6-cookie-的缺陷" class="headerlink" title="6. cookie 的缺陷"></a>6. cookie 的缺陷</h4><ul>
+<li>由于在 HTTP 请求中的 Cookie 是明文传递的，所以安全性成问题，除非用 HTTPS。</li>
+<li>Cookie 会被附加在每个 HTTP 请求中，所以无形中增加了流量。</li>
+<li>Cookie 的大小限制在 4KB 左右，对于复杂的存储需求来说是不够用的。</li>
+</ul>
+<h4 id="7-cookie-的属性"><a href="#7-cookie-的属性" class="headerlink" title="7. cookie 的属性"></a>7. cookie 的属性</h4><p><img src="/images/storage_cookie.png" width="100%" height="100%"><br>如此图显示，cookie主要有以下几个属性。在设置这些属性时，属性之间由一个分号和一个空格隔开。<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"key=name; expires=Sat Dec 21 2019 21:16:10 GMT; domain=XXXX.com; path=/; secure; HttpOnly"</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>name：</strong> cookie 名，一个域名下绑定的 cookie，name 不能相同，相同的 name 值会被覆盖掉。</li>
+<li><strong>value：</strong> cookie 值，由于 cookie 规定是名称/值是不允许包含分号，逗号，空格的，所以为了不给用户到来麻烦，考虑服务器的兼容性，任何存储 cookie 的数据都应该被编码。</li>
+<li><strong>Domain=<code>&lt;domain-value&gt;</code></strong>指定 cookie 可以送达的主机名。假如没有指定，那么默认值为当前文档访问地址中的主机部分（但是不包含子域名）。与之前的规范不同的是，域名之前的点号会被忽略。假如指定了域名，那么相当于各个子域名也包含在内了。</li>
+<li><strong>path：</strong>指定一个 URL 路径，这个路径必须出现在要请求的资源的路径中才可以发送 Cookie 首部。字符 %x2F (“/“) 可以解释为文件目录分隔符，此目录的下级目录也满足匹配的条件（例如，如果 path=/docs，那么 “/docs”, “/docs/Web/“ 或者 “/docs/Web/HTTP” 都满足匹配的条件）。</li>
+<li><strong>Expires=<code>&lt;date&gt;</code>：</strong>cookie 的最长有效时间，如果没有设置这个属性，则表示是一个会话期 cookie，一个会话结束于客户端被关闭，则会话期 cookie 会被删除，现在有些浏览器支持恢复会话恢复功能，即在浏览器关闭时保留所有的 tab 标签，重新打开浏览器的时候会被还原，同时 cookie 也会被恢复。</li>
+<li><strong>Max-Age=<code>&lt;non-zero-digit&gt;</code>：</strong>在 cookie 失效之前需要经过的秒数。秒数为 0 或 -1 将会使 cookie 直接过期。一些老的浏览器（ie6、ie7 和 ie8）不支持这个属性。对于其他浏览器来说，假如二者 （指 Expires 和 Max-Age） 均存在，那么 Max-Age 优先级更高。<blockquote>
+<p>两者区别：expires 是 http/1.0 协议中的选项，在新的 http/1.1 协议中 expires 已经由 max-age 选项代替，两者的作用都是限制 cookie 的有效时间。expires 的值是一个时间点（cookie 失效时刻= expires），而 max-age 的值是一个以秒为单位时间段（cookie 失效时刻= 创建时刻+ max-age）。<br>另外，max-age 的默认值是 -1(即有效期为 session )；若 max-age 有三种可能值：负数、0、正数。负数：有效期 session；0：删除 cookie；正数：有效期为创建时刻+ max-age</p>
+</blockquote>
+</li>
+<li><p><strong>secure：</strong> 一个带有安全属性的 cookie 只有在请求使用 SSL 和 HTTPS 协议的时候才会被发送到服务器。然而，保密或敏感信息永远不要在 HTTP cookie 中存储或传输，因为整个机制从本质上来说都是不安全的，比如前述协议并不意味着所有的信息都是经过加密的。<br><img src="/images/storage_secure.png" width="50%" height="60%"></p>
+</li>
+<li><p><strong>HttpOnly：</strong>如果这个属性设置为 true，此 cookie 不能使用 JavaScript 经由 Document.cookie 属性、XMLHttpRequest 和 Request APIs 进行访问，以防范跨站脚本攻击（XSS）。</p>
+</li>
+</ul>
+<h4 id="8-cookie-的作用域"><a href="#8-cookie-的作用域" class="headerlink" title="8. cookie 的作用域"></a>8. cookie 的作用域</h4><p>Domain 和 Path 标识定义了 Cookie 的作用域：即 Cookie 应该发送给哪些 URL。domain 是域名，path 是路径，两者加起来就构成了 URL，domain 和 path 一起来限制 cookie 能被哪些 URL 访问。</p>
+<ul>
+<li>Domain 标识指定了哪些主机可以接受 Cookie。如果不指定，默认为当前文档的主机（不包含子域名）。如果指定了 Domain，则一般包含子域名。例如，如果设置 Domain=mozilla.org，则 Cookie 也包含在子域名中（如 developer.mozilla.org）。</li>
+<li>Path 标识指定了主机下的哪些路径可以接受 Cookie（该 URL 路径必须存在于请求 URL 中）。以字符 %x2F (“/“) 作为路径分隔符，子路径也会被匹配。<br>例如，设置 Path=/docs，则以下地址都会匹配：<blockquote>
+<p>/docs<br>/docs/Web/<br>/docs/Web/HTTP</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="9-SameSite-Cookies"><a href="#9-SameSite-Cookies" class="headerlink" title="9. SameSite Cookies"></a>9. SameSite Cookies</h4><p>sameSite cookie 允许服务器要求你某个 cookie 在跨站请求时不会被发送，从而可以阻止跨站请求伪造攻击（CSRF）举例如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Set-Cookie</span>: key=value; SameSite=Strict</span><br><span class="line"></span><br><span class="line">// none：浏览器会在同站请求、跨站请求下继续发送cookies，不区分大小写</span><br><span class="line">// script：浏览器将只发送相同站点请求的cookie(即当前网页URL与请求目标URL完全一致)。如果请求来自与当前location的URL不同的URL，则不包括标记为Strict属性的cookie。</span><br><span class="line">// lax：在新版本浏览器中，为默认选项，Same-site cookies 将会为一些跨站子请求保留，如图片加载或者frames的调用，但只有当用户从外部站点导航到URL时才会发送。如link链接</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以前，如果 SameSite 属性没有设置，或者没有得到运行浏览器的支持，那么它的行为等同于 None，Cookies 会被包含在任何请求中——包括跨站请求。但是，在新版本的浏览器中，SameSite 的默认属性是 SameSite=Lax。换句话说，当 Cookie 没有设置 SameSite 属性时，将会视作 SameSite 属性被设置为 Lax——这意味着 Cookies 将会在当前用户使用时被自动发送。如果想要指定 Cookies 在同站、跨站请求都被发送，那么需要明确指定 SameSite 为 None</p>
+</blockquote>
+<h4 id="10-JavaScript-如何操作-cookie-？"><a href="#10-JavaScript-如何操作-cookie-？" class="headerlink" title="10. JavaScript 如何操作 cookie ？"></a>10. JavaScript 如何操作 cookie ？</h4><p><strong><code>1. document.cookie 创建新的 cookie</code></strong><br>通过 Document.cookie 属性可创建新的 Cookie，只可通过该属性访问非 HttpOnly 标记的 Cookie。此方法一次只能对一个 coookie 进行设置或更新。打印出的结果是一个字符串类型，因为 cookie 本身就是存储在浏览器中的字符串。但这个字符串是有格式的，由键值对<code>key=value</code> 构成，键值对之间由一个分号和一个空格隔开。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"yummy_cookie=choco"</span>;</span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"tasty_cookie=strawberry"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.cookie);</span><br></pre></td></tr></table></figure>
+<p><strong><code>2. 删除 cookie 修改 cookie</code></strong><br>name/domain/path 这 3 个字段都相同的时候,cookie 会被覆盖<br>修改 cookie 只需要重新赋值，属性 path/domain 等要和旧 cookie 保持一致，否则会重新创建新的 cookie<br>删除 cookie 也需要重新赋值，把 cookie 的 expires 设置成一个过去的时间点，同样注意其各种属性一定要旧 cookie 保持一样。</p>
+<h4 id="11-服务端如何设置-cookie"><a href="#11-服务端如何设置-cookie" class="headerlink" title="11. 服务端如何设置 cookie"></a>11. 服务端如何设置 cookie</h4><p>服务端就是通过 setCookie 来设置 cookie 的，设置多个 cookie 时，得多写几个 setCookie</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">拓展知识</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.site/2019/12/21/http/storage_cookie/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/12/31/http/storage_localStorage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          浏览器存储方式(二) LocalStorage 和 SessionStorage
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/12/20/diary/diary_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【2019-12-20】随记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="http/storage_cookie"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -223,9 +401,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

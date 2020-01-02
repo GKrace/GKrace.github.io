@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.site">
-  <title>Tag: 拓展知识 | Grace</title>
+  <title>浏览器存储方式(二) LocalStorage 和 SessionStorage | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是我 也都不是我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace">
-<meta property="og:url" content="gracekang.site/tags/拓展知识/index.html">
+  <meta name="description" content="Web Storage 包括了两种存储方式：sessionStorage 和 localStorage。Web Storage 的目的是克服由 cookie 带来的一些限 制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。Web Storage 的两个主要目标是:">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器存储方式(二) LocalStorage 和 SessionStorage">
+<meta property="og:url" content="gracekang.site/2019/12/31/http/storage_localStorage/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="是我 也都不是我">
+<meta property="og:description" content="Web Storage 包括了两种存储方式：sessionStorage 和 localStorage。Web Storage 的目的是克服由 cookie 带来的一些限 制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。Web Storage 的两个主要目标是:">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/images/storage_localStorage.jpg">
+<meta property="og:updated_time" content="2020-01-02T06:12:53.348Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace">
-<meta name="twitter:description" content="是我 也都不是我">
+<meta name="twitter:title" content="浏览器存储方式(二) LocalStorage 和 SessionStorage">
+<meta name="twitter:description" content="Web Storage 包括了两种存储方式：sessionStorage 和 localStorage。Web Storage 的目的是克服由 cookie 带来的一些限 制，当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器。Web Storage 的两个主要目标是:">
+<meta name="twitter:image" content="/images/storage_localStorage.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -147,60 +151,198 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="http-http/storage_localStorage" class="article article-type-http " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-javascript">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/06/imgSync/" class="archive-article-date">
-  	<time datetime="2019-12-06T15:40:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/06/imgSync/">图片简析</a>
+    <h1 class="article-title" itemprop="name">
+      浏览器存储方式(二) LocalStorage 和 SessionStorage
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/12/31/http/storage_localStorage/" class="archive-article-date">
+  	<time datetime="2019-12-30T17:16:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Web Storage 包括了两种存储方式：sessionStorage 和 localStorage。<br>Web Storage 的目的是克服由 cookie 带来的一些限 制，<strong>当数据需要被严格控制在客户端上时，无须持续地将数据发回服务器</strong>。Web Storage 的两个主要目标是:</p>
+<a id="more"></a>
+<ul>
+<li>提供一种在 cookie 之外存储会话数据的途径;</li>
+<li>提供一种存储大量可以跨会话存在的数据的机制。<br>最初的 Web Storage 规范包含了两种对象的定义:sessionStorage 和 globalStorage。这两个<br>对象在支持的浏览器中都是以 windows 对象属性的形式存在的，支持这两个属性的浏览器包括 IE8+、 Firefox 3.5+、<br>Chrome 4+和 Opera 10.5+。</li>
+</ul>
+<p>Firefox 2 和 3 基于早期规范的内容部分实现了 Web Storage，当时只实现了 globalStorage，没有实现 localStorage。</p>
+<h3 id="Web-Storage-为什么更适合存储大量数据？"><a href="#Web-Storage-为什么更适合存储大量数据？" class="headerlink" title="Web Storage 为什么更适合存储大量数据？"></a>Web Storage 为什么更适合存储大量数据？</h3><ul>
+<li>每个域 Chrome，Firefox 和 Opera 是 5M，IE 是 10M。 可以用这个来测 <a href="http://dev-test.nemikor.com/web-storage/support-test/" target="_blank" rel="noopener">http://dev-test.nemikor.com/web-storage/support-test/</a> 。</li>
+<li>请求时不会带 web stroge 的内容。</li>
+</ul>
+<p>曾经，Firefox 支持 globalStorage：能读写所有域的存储数据的 localStorage。但 globalStorage 没有成为标准。Firefox 13.0 后被废弃了。</p>
+<h3 id="storage-对象简介"><a href="#storage-对象简介" class="headerlink" title="storage 对象简介"></a>storage 对象简介</h3><p>Storage 类型提供最大的存储空间(因浏览器而异)来存储名值对儿，主要有以下方法：</p>
+<ul>
+<li>clear(): 删除所有值;Firefox 中没有实现 。</li>
+<li>getItem(name):根据指定的名字 name 获取对应的值。</li>
+<li>key(index):获得 index 位置处的值的名字。</li>
+<li>removeItem(name):删除由 name 指定的名值对儿。</li>
+<li>setItem(name, value):为指定的 name 设置一个对应的值。</li>
+</ul>
+<p>建议使用方法而不是属 性来访问数据，以免某个键会意外重写该对象上已经存在的成员。Storage 类型只能存储字符串。非字符串的数据在存储之前会被转换成字符串。</p>
+<h3 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h3><p>sessionStorage 对象存储特定于某个会话的数据，关闭浏览器消失。存储在 sessionStorage 中的数据可以跨越页面刷新而 存在，同时如果浏览器支持，浏览器崩溃并重启之后依然可用(Firefox 和 WebKit 都支持，IE 则不行)。<br>因为 seesionStorage 对象绑定于某个服务器会话，所以当文件在本地运行的时候是不可用的。存储在 sessionStorage 中的数据只能由最初给对象存储数据的页面访问到，所以对多页面应用有限制。 由于 sessionStorage 对象其实是 Storage 的一个实例，所以可以使用 setItem()或者直接设置新的属性来存储数据。下面是这两种方法的例子。</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用方法存储数据</span></span><br><span class="line">sessionStorage.setItem(<span class="string">"name"</span>, <span class="string">"Grace"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用属性存储数据</span></span><br><span class="line">sessionStorage.book = 'grace blog';</span><br></pre></td></tr></table></figure>
+<p><img src="/images/storage_localStorage.jpg" width="50%" height="50%"></p>
+<h3 id="globalStorage"><a href="#globalStorage" class="headerlink" title="globalStorage"></a>globalStorage</h3><font color="#dd0000">globalStorage 已经废弃，替代品为 localStorage</font>
+
+<p>Firefox2 中实现了 globalStorage 对象，这个对象的目的是跨会话存储数据，但是有特定的访问限制。要使用 globalStorage，首先要制定哪些域可以访问该数据，可以通过括号标记使用属性来实现</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//保存数据</span></span><br><span class="line">globalStorage[<span class="string">"wrox.com"</span>].<span class="built_in">name</span> = <span class="string">"Nicholas"</span>;</span><br><span class="line"><span class="comment">//获取数据</span></span><br><span class="line">var <span class="built_in">name</span> = globalStorage[<span class="string">"wrox.com"</span>].<span class="built_in">name</span>;</span><br></pre></td></tr></table></figure>
+<p>globalStorage 对象不是 Storage 的实例， 而具体的 <code>globalStorage[&quot;wrox.com&quot;]</code>才是，</p>
+<h3 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h3><p>localStorage 方法存储的数据没有时间限制。第二天、第二周甚至是第二年之后，数据依然可用。永久存储除非手动删除 方法简介明了 容易操作。不能跨浏览器读取数据。不能给 localstorage 制定任何访问规则，规则事先就设定好了，要访问同一个 localStorage 对象，页面必须来自同一个域名（子域名无效），使用同一种协议，在同一个端口上，相当于<code>globalStorge[location.host]</code><br>localstorage 是 storage 的实例，其使用方法同 sessionstorage</p>
+<h3 id="cookie-localStorage-sessionStorage-的区别"><a href="#cookie-localStorage-sessionStorage-的区别" class="headerlink" title="cookie localStorage sessionStorage 的区别"></a>cookie localStorage sessionStorage 的区别</h3><p>共同点：都是保存在浏览器端，且同源的。<br>区别：</p>
+<ul>
+<li>与服务器的数据交换方式不同。 cookie 数据始终在同源的 http 请求中携带（即使不需要），即 cookie 在浏览器和服务器间来回传递。而 sessionStorage 和 localStorage 不会自动把数据发给服务器，仅在本地保存。</li>
+<li>存储大小限制也不同，cookie 数据不能超过 4k，同时因为每次 http 请求都会携带 cookie，所以 cookie 只适合保存很小的数据，如会话标识。sessionStorage 和 localStorage 虽然也有存储大小的限制，但比 cookie 大得多，可以达到 5M 或更大。</li>
+<li>数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie 只在设置的 cookie 过期时间之前一直有效，即使窗口或浏览器关闭。</li>
+<li>Cookie 可以设置有效期，路径(path)，域（domain）</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">拓展知识</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.site/2019/12/31/http/storage_localStorage/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/12/31/http/https/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          https简析
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/12/21/http/storage_cookie/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">浏览器存储方式(一) Cookie</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="http/storage_localStorage"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -223,9 +365,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
