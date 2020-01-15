@@ -6,20 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.site">
-  <title>输入一个url页面都发生了什么 | Grace</title>
+  <title>url简析 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="什么是 URL 以及什么是 URI？URL 和 URI 的区别？">
+  <meta name="description" content="HTTP 请求的内容通称为”资源”。”资源“这一概念非常宽泛，它可以是一份文档，一张图片，或所有其他你能够想到的格式。每个资源都由一个 (URI) 来进行标识。">
 <meta name="keywords" content="http">
 <meta property="og:type" content="article">
-<meta property="og:title" content="输入一个url页面都发生了什么">
+<meta property="og:title" content="url简析">
 <meta property="og:url" content="gracekang.site/2020/01/04/http/url/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="什么是 URL 以及什么是 URI？URL 和 URI 的区别？">
+<meta property="og:description" content="HTTP 请求的内容通称为”资源”。”资源“这一概念非常宽泛，它可以是一份文档，一张图片，或所有其他你能够想到的格式。每个资源都由一个 (URI) 来进行标识。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-06T11:37:37.609Z">
+<meta property="og:image" content="/images/url_madeOf.png">
+<meta property="og:image" content="/images/url_madeof_mdn_0.png">
+<meta property="og:image" content="/images/url_madeof_mdn_1.png">
+<meta property="og:image" content="/images/url_madeof_mdn_2.png">
+<meta property="og:image" content="/images/url_madeof_mdn_3.png">
+<meta property="og:image" content="/images/url_madeof_mdn_4.png">
+<meta property="og:image" content="/images/url_madeof_mdn_5.png">
+<meta property="og:updated_time" content="2020-01-15T08:51:50.658Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="输入一个url页面都发生了什么">
-<meta name="twitter:description" content="什么是 URL 以及什么是 URI？URL 和 URI 的区别？">
+<meta name="twitter:title" content="url简析">
+<meta name="twitter:description" content="HTTP 请求的内容通称为”资源”。”资源“这一概念非常宽泛，它可以是一份文档，一张图片，或所有其他你能够想到的格式。每个资源都由一个 (URI) 来进行标识。">
+<meta name="twitter:image" content="/images/url_madeOf.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -156,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      输入一个url页面都发生了什么
+      url简析
     </h1>
   
 
@@ -169,8 +177,44 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="什么是-URL-以及什么是-URI？"><a href="#什么是-URL-以及什么是-URI？" class="headerlink" title="什么是 URL 以及什么是 URI？"></a>什么是 URL 以及什么是 URI？</h3><h3 id="URL-和-URI-的区别？"><a href="#URL-和-URI-的区别？" class="headerlink" title="URL 和 URI 的区别？"></a>URL 和 URI 的区别？</h3><a id="more"></a>
-<h3 id="为什么限制-url-的长度"><a href="#为什么限制-url-的长度" class="headerlink" title="为什么限制 url 的长度"></a>为什么限制 url 的长度</h3>
+        <p>HTTP 请求的内容通称为”资源”。”资源“这一概念非常宽泛，它可以是一份文档，一张图片，或所有其他你能够想到的格式。每个资源都由一个 (URI) 来进行标识。</p>
+<a id="more"></a>
+<p>一般情况下，资源的名称和位置由同一个 URL（统一资源定位符，它是 URI 的一种）来标识。也有某些特殊情况，资源的名称和位置由不同的 URI 进行标识：例如，待请求的资源希望客户端从另外一个位置访问它。我们可以使用一个特定的首部字段，Alt-Svc，来指示这种情况。</p>
+<h3 id="什么是-URL-以及什么是-URN？"><a href="#什么是-URL-以及什么是-URN？" class="headerlink" title="什么是 URL 以及什么是 URN？"></a>什么是 URL 以及什么是 URN？</h3><p>URN 和 URL 都已经是 URI 的子集。URN 作用就好像一个人的名字，URL 就像一个人的地址。换句话说：URN 确定了东西的身份，URL 提供了找到它的方式。”</p>
+<ul>
+<li>URI 的最常见形式是统一资源定位符 (URL)，它也被称为 Web 地址。<blockquote>
+<p><a href="https://developer.mozilla.org" target="_blank" rel="noopener">https://developer.mozilla.org</a></p>
+</blockquote>
+</li>
+<li>URN 是另一种形式的 URI，它通过特定命名空间中的唯一名称来标识资源。<blockquote>
+<p>urn:isbn:9780141036144</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="URL-的组成结构？"><a href="#URL-的组成结构？" class="headerlink" title="URL 的组成结构？"></a>URL 的组成结构？</h3><p>URL 举例：</p>
+<p><img src="/images/url_madeOf.png"></p>
+<ul>
+<li><p><strong>protocol 协议头:</strong><br><img src="/images/url_madeof_mdn_0.png" width="30%" height="30%"></p>
+<p>http:// 是协议。它表明了浏览器必须使用何种协议。它通常都是 HTTP 协议或是 HTTP 协议的安全版，即 HTTPS。Web 需要它们二者之一，但浏览器也知道如何处理其他协议，比如 mailto:（打开邮件客户端）或者 ftp:（处理文件传输)</p>
+</li>
+<li><p><strong>Domain Name:</strong><br><img src="/images/url_madeof_mdn_1.png" width="30%" height="30%"><br>域名。 它表明正在请求哪个 Web 服务器。或者可以直接使用 IP address, 但是因为它不太方便，所以它不经常在网络上使用。</p>
+</li>
+<li><p><strong>port 端口号:</strong><br><img src="/images/url_madeof_mdn_2.png" width="30%" height="30%"><br>端口号。 如果 Web 服务器使用 HTTP 协议的标准端口（HTTP 为 80，HTTPS 为 443）来授予其资源的访问权限，则通常会被忽略。否则是强制性的。</p>
+</li>
+<li><p><strong>path 目录路径:</strong><br><img src="/images/url_madeof_mdn_3.png" width="30%" height="30%"><br><code>/path/to/myfile.html</code>是网络服务器上资源的路径。在 Web 的早期阶段，像这样的路径表示 Web 服务器上的物理文件位置。如今，它主要是由没有任何物理现实的 Web 服务器处理的抽象。</p>
+</li>
+<li><p><strong>query 查询参数:</strong><br><img src="/images/url_madeof_mdn_4.png" width="30%" height="30%"><br><code>?key1=value1&amp;key2=value2</code> 是提供给网络服务器的额外参数。 这些参数是用 &amp; 符号分隔的键/值对列表。在返回资源之前，Web 服务器可以使用这些参数来执行额外的操作。每个 Web 服务器都有自己关于参数的规则，唯一可靠的方式来知道特定 Web 服务器是否处理参数是通过询问 Web 服务器所有者。</p>
+</li>
+<li><p><strong>anchor 即#后面的 hash 值，一般用来定位到某个位置:</strong><br><img src="/images/url_madeof_mdn_5.png" width="30%" height="30%"><br><code>#SomewhereInTheDocument</code>是资源本身的另一部分的锚点. 锚点表示资源中的一种“书签”，给浏览器显示位于该“加书签”位置的内容的方向。例如，在 HTML 文档上，浏览器将滚动到定义锚点的位置;在视频或音频文档上，浏览器将尝试转到锚代表的时间。值得注意的是，＃后面的部分（也称为片段标识符）从来没有发送到请求的服务器。</p>
+</li>
+</ul>
+<h3 id="URL-和-URI-的区别？"><a href="#URL-和-URI-的区别？" class="headerlink" title="URL 和 URI 的区别？"></a>URL 和 URI 的区别？</h3><ul>
+<li>URI：Uniform Resource Identifier，统一资源标识符，URI 可以表示一个域，也可以表示一个资源。</li>
+<li>URL：Uniform Resource Location 统一资源定位符<br>统一资源定位器，它是一种具体的 URI，即 URL 可以用来标识一个资源，而且还指明了如何 locate 这个资源。</li>
+</ul>
+<p>URI 是以一种抽象的，高层次概念定义统一资源标识，而 URL 和 URN 则是具体的资源标识的方式。URL 和 URN 都是一种 URI。</p>
+<h3 id="为什么限制-url-的长度"><a href="#为什么限制-url-的长度" class="headerlink" title="为什么限制 url 的长度"></a>为什么限制 url 的长度</h3><p>HTTP 协议并未规定 GET 和 POST 的请求长度限制，所谓的请求长度限制是由浏览器和 web 服务器决定和设置的。<strong>服务器是因为处理长 URL 要消耗比较多的资源，为了性能和安全（防止恶意构造长 URL 来攻击）考虑，会给 URL 长度加限制。</strong></p>
+
       
 
       
