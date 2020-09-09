@@ -14,8 +14,37 @@
     "body_y": [0.3, -0.9]
   },
   "motions": {
-    "idle": [{ "file": "motions/WakeUp.mtn" }],
-
-    "tap_body": [{ "file": "motions/Breath2.mtn", "sound": "./maojiao.mp3" }]
+    "idle": [
+      {
+        "file": "motions/05.mtn"
+      },
+      {
+        "file": "motions/01.mtn"
+      },
+      {
+        "file": "motions/04.mtn"
+      },
+      {
+        "file": "motions/06.mtn"
+      },
+      {
+        "file": "motions/07.mtn"
+      },
+      {
+        "file": "motions/08.mtn"
+      }
+    ],
+    "tap_body": [
+      {
+        "file": "motions/02.mtn",
+        "sound": "1.mp3"
+      }
+    ],
+    "flick_head": [
+      {
+        "file": "motions/03.mtn",
+        "sound": "1.mp3"
+      }
+    ]
   }
 }
