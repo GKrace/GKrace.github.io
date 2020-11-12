@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="gracekang.site">
   <title>一些二叉树相关算法题（持续更新） | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，给出: 1234567891011前序遍历 preorder = [3,9,20,15,7]中序遍历 inorder = [9,3,15,20,7]返回如下的二叉树：    3   / \  9  20    /  \   15   7限制：0 &amp;lt;= 节点个数 &amp;lt;=">
+  <meta name="description" content="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，给出:">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些二叉树相关算法题（持续更新）">
 <meta property="og:url" content="gracekang.site/2020/11/04/acm/someQuestion/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，给出: 1234567891011前序遍历 preorder = [3,9,20,15,7]中序遍历 inorder = [9,3,15,20,7]返回如下的二叉树：    3   / \  9  20    /  \   15   7限制：0 &amp;lt;= 节点个数 &amp;lt;=">
+<meta property="og:description" content="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，给出:">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/images/acm_0.png">
 <meta property="og:image" content="/images/acm_1.png">
-<meta property="og:updated_time" content="2020-11-12T08:25:29.927Z">
+<meta property="og:updated_time" content="2020-11-12T09:02:52.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一些二叉树相关算法题（持续更新）">
-<meta name="twitter:description" content="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，给出: 1234567891011前序遍历 preorder = [3,9,20,15,7]中序遍历 inorder = [9,3,15,20,7]返回如下的二叉树：    3   / \  9  20    /  \   15   7限制：0 &amp;lt;= 节点个数 &amp;lt;=">
+<meta name="twitter:description" content="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，给出:">
 <meta name="twitter:image" content="/images/acm_0.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
@@ -171,6 +171,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。"><a href="#1-输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。" class="headerlink" title="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。"></a>1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</h3><p>例如，给出:</p>
+<a id="more"></a>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">前序遍历 preorder = [<span class="number">3</span>,<span class="number">9</span>,<span class="number">20</span>,<span class="number">15</span>,<span class="number">7</span>]</span><br><span class="line">中序遍历 inorder = [<span class="number">9</span>,<span class="number">3</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">返回如下的二叉树：</span><br><span class="line">    <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">9</span>  <span class="number">20</span></span><br><span class="line">    /  \</span><br><span class="line">   <span class="number">15</span>   <span class="number">7</span></span><br><span class="line">限制：</span><br><span class="line"><span class="number">0</span> &lt;= 节点个数 &lt;= <span class="number">5000</span></span><br></pre></td></tr></table></figure>
 <p>已知：</p>
 <ul>
@@ -418,11 +419,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -438,7 +439,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,11 +451,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
               </li>
             
             <div class="clearfix"></div>

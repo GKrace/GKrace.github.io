@@ -168,36 +168,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。"><a href="#1-输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。" class="headerlink" title="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。"></a>1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</h3><p>例如，给出:</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">前序遍历 preorder = [<span class="number">3</span>,<span class="number">9</span>,<span class="number">20</span>,<span class="number">15</span>,<span class="number">7</span>]</span><br><span class="line">中序遍历 inorder = [<span class="number">9</span>,<span class="number">3</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">7</span>]</span><br><span class="line"></span><br><span class="line">返回如下的二叉树：</span><br><span class="line">    <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">9</span>  <span class="number">20</span></span><br><span class="line">    /  \</span><br><span class="line">   <span class="number">15</span>   <span class="number">7</span></span><br><span class="line">限制：</span><br><span class="line"><span class="number">0</span> &lt;= 节点个数 &lt;= <span class="number">5000</span></span><br></pre></td></tr></table></figure>
-<p>已知：</p>
-<ul>
-<li>前序序列遍历性质： 节点按照[ 根节点 | 左子树 | 右子树 ] 排列</li>
-<li><p>中序序列遍历性质：节点按照[ 左子树 | 根节点 | 右子树 ] 排列</p>
-<p><img src="/images/acm_0.png" width="70%" height="50%"><br>分治法的设计思想是：将一个难以直接解决的大问题，分割成一些规模较小的相同问题，以便各个击破，分而治之。这个过程就是分治算法的体现，接下来用递归进行对子树的划分。分治算法就是把一个复杂的问题分成两个或更多的相同或相似的子问题，再把子问题分成更小的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。<br>分治策略是：对于一个规模为n的问题，若该问题可以容易地解决（比如说规模n较小）则直接解决，否则将其分解为k个规模较小的子问题，这些子问题互相独立且与原问题形式相同，递归地解这些子问题，然后将各子问题的解合并得到原问题的解。这种算法设计策略叫做分治法。</p>
-</li>
-</ul>
-<p>分治算法解析：<br>递推参数：</p>
-<ul>
-<li>root:根节点是前序遍历的索引</li>
-<li>left：左子树是中序遍历的左边界</li>
-<li>right: 右子树是中序遍历的右边界</li>
-</ul>
-<p>终止条件： 当 left &gt; right ，代表已经越过叶节点，此时返回 null ；</p>
-<p>递推工作：</p>
-<ul>
-<li>建立根节点 node ： 节点值为 preorder[root] ；</li>
-<li>划分左右子树： 查找根节点在中序遍历 inorder 中的索引 i ；</li>
-<li>构建左右子树： 开启左右子树递归；<br><img src="/images/acm_1.png" width="70%" height="50%"></li>
-</ul>
-<p>解题思路：</p>
-<ul>
-<li>前序遍历的第一位即为根节点</li>
-<li>中序遍历中搜索根节点，得到根节点在中序遍历中的<code>index</code></li>
-<li><code>[0,index-1]</code> 为左子树，<code>[index+1,length-1]</code>为右子树</li>
-<li>递归 排除前序遍历或中序遍历为空的情况，直接返回 null</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buildTree = <span class="function"><span class="keyword">function</span> (<span class="params">preorder, inorder</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!preorder.length || !inorder.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> rootVal = preorder[<span class="number">0</span>];</span><br><span class="line">  <span class="keyword">const</span> node = <span class="keyword">new</span> TreeNode(rootVal);</span><br><span class="line">  <span class="keyword">let</span> i = inorder.indexOf(rootVal);</span><br><span class="line">  node.left = buildTree(preorder.slice(<span class="number">1</span>, i + <span class="number">1</span>), inorder.slice(<span class="number">0</span>, i));</span><br><span class="line">  node.right = buildTree(preorder.slice(i + <span class="number">1</span>), inorder.slice(i + <span class="number">1</span>));</span><br><span class="line">  <span class="keyword">return</span> node;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2020/11/04/acm/someQuestion/#more">more >></a>
+        
       
 
       
@@ -1059,11 +1032,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1079,7 +1052,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1091,11 +1064,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
               </li>
             
             <div class="clearfix"></div>
