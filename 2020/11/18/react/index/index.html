@@ -6,18 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.site">
-  <title>Archives: 2017 | Grace</title>
+  <title>react相关 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是我 也都不是我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace">
-<meta property="og:url" content="gracekang.site/archives/2017/index.html">
+  <meta name="description" content="jsx 的执行过程 1.我们写 jsx &amp;lt;h1&amp;gt;hello&amp;lt;h1/&amp;gt; 2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement 3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react相关">
+<meta property="og:url" content="gracekang.site/2020/11/18/react/index/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="是我 也都不是我">
+<meta property="og:description" content="jsx 的执行过程 1.我们写 jsx &amp;lt;h1&amp;gt;hello&amp;lt;h1/&amp;gt; 2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement 3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="gracekang.site/2020/11/18/react/index/images/react_0.png">
+<meta property="og:updated_time" content="2020-11-18T12:41:49.508Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace">
-<meta name="twitter:description" content="是我 也都不是我">
+<meta name="twitter:title" content="react相关">
+<meta name="twitter:description" content="jsx 的执行过程 1.我们写 jsx &amp;lt;h1&amp;gt;hello&amp;lt;h1/&amp;gt; 2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement 3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素">
+<meta name="twitter:image" content="gracekang.site/2020/11/18/react/index/images/react_0.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -145,98 +149,185 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="react-react/index" class="article article-type-react " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/css/css3/" class="archive-article-date">
-  	<time datetime="2017-03-30T13:22:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/css/css3/">css3新增特性</a>
+    <h1 class="article-title" itemprop="name">
+      react相关
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/11/18/react/index/" class="archive-article-date">
+  	<time datetime="2020-11-18T11:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="jsx-的执行过程"><a href="#jsx-的执行过程" class="headerlink" title="jsx 的执行过程"></a>jsx 的执行过程</h2><ul>
+<li>1.我们写 jsx <code>&lt;h1&gt;hello&lt;h1/&gt;</code></li>
+<li>2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement</li>
+<li><p>3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素的样式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> element = React.newCreateElement(</span><br><span class="line">  <span class="string">"h1"</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    className: <span class="string">"name"</span>,</span><br><span class="line">    style: &#123;</span><br><span class="line">      color: <span class="string">"red"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"hello"</span>,</span><br><span class="line">  React.newCreateElement(<span class="string">"span"</span>, <span class="literal">null</span>, <span class="string">"hi"</span>),</span><br><span class="line">  <span class="string">"Grace"</span></span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(element);</span><br><span class="line"><span class="keyword">let</span> root = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line">ReactDOM.render(element, root);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><img src="./images/react_0.png"></p>
+</blockquote>
+</li>
+<li><p>4.把虚拟 DOM 给了 reactDOM.render，render 会把虚拟 DOM 转换成真实的 DOM，并插入页面</p>
+</li>
+</ul>
+<h2 id="更新元素渲染"><a href="#更新元素渲染" class="headerlink" title="更新元素渲染"></a>更新元素渲染</h2><ul>
+<li>React 元素都是 immutable 不可变的。当元素被创建之后，你是无法改变其内容或属性的。一个元素就好像是动画里的一帧，它代表应用界面在某一时间点的样子</li>
+<li>更新界面的唯一办法是创建一个新的元素，然后将它传入 ReactDOM.render()方法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"><span class="keyword">let</span> root: HTMLElement | <span class="literal">null</span> = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tick</span>(<span class="params"></span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> element: React.ReactElement = (</span><br><span class="line">    &lt;div&gt;&#123;<span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString()&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">  ReactDOM.render(element, root);</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">setInterval(tick, 1000);</span></span><br></pre></td></tr></table></figure>
+<h2 id="React-只会更新必要的部分"><a href="#React-只会更新必要的部分" class="headerlink" title="React 只会更新必要的部分"></a>React 只会更新必要的部分</h2><p>React DOM 首先会比较元素内容先后的不同，而在渲染过程中只会更新改变了的部分。<br>即便我们每秒都创建了一个描述整个 UI 树的新元素，React DOM 也只会更新渲染文本节点中发生变化的内容</p>
+<h2 id="createElement-的简易实现"><a href="#createElement-的简易实现" class="headerlink" title="createElement 的简易实现"></a>createElement 的简易实现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; type 元素的类型</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; config 配置对象，用于设置元素属性</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; children 第一个儿子</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">newCreateElement</span>(<span class="params">type, config, children</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (config) &#123;</span><br><span class="line">    <span class="keyword">delete</span> config._owner;</span><br><span class="line">    <span class="keyword">delete</span> config._store;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> props = &#123; ...config &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 参数长度大于3 则存在chilren节点，排除前两个参数，取出所有children节点</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">3</span>) &#123;</span><br><span class="line">    children = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// chilren 可能是数组[不止一个儿子] 也可能是一个对象，也可能是一个字符串、数字、null、react元素</span></span><br><span class="line">  props.children = children;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    type,</span><br><span class="line">    props,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> React = &#123; newCreateElement &#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> React;</span><br></pre></td></tr></table></figure>
+<h2 id="ReactDOM-render-的简易实现"><a href="#ReactDOM-render-的简易实现" class="headerlink" title="ReactDOM render 的简易实现"></a>ReactDOM render 的简易实现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 虚拟DOM转换成真实DOM，并插入到容器中</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; vdom 虚拟DOM</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; container 插入到哪个容器中</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">vdom, container</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> dom = createDOM(vdom);</span><br><span class="line">  container.appendChild(dom);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 把虚拟DOM转换成真实DOM</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; vdom null 数字 字符串 react元素</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createDOM</span>(<span class="params">vdom</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 如果vdom是一个字符串或数字，则创建文本节点返回</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> vdom === <span class="string">"string"</span> || <span class="keyword">typeof</span> vdom === <span class="string">"number"</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>.createTextNode(vdom);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 否则就是一个React元素</span></span><br><span class="line">  <span class="keyword">let</span> &#123; type, props &#125; = vdom;</span><br><span class="line">  <span class="keyword">let</span> dom = <span class="built_in">document</span>.createElement(type); <span class="comment">// span div</span></span><br><span class="line">  updateProps(dom, props); <span class="comment">// 更新属性，把虚拟dom的属性设置到真实DOM上</span></span><br><span class="line">  <span class="comment">// 处理子节点 如果子节点就是一个单节点</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    <span class="keyword">typeof</span> props.children === <span class="string">"string"</span> ||</span><br><span class="line">    <span class="keyword">typeof</span> props.children === <span class="string">"number"</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    dom.textContent = props.children;</span><br><span class="line">    <span class="comment">//  说明是一个react元素节点</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (</span><br><span class="line">    <span class="keyword">typeof</span> props.children === <span class="string">"object"</span> &amp;&amp;</span><br><span class="line">    props.children !== <span class="literal">null</span> &amp;&amp;</span><br><span class="line">    props.children.type</span><br><span class="line">  ) &#123;</span><br><span class="line">    render(props.children, dom);</span><br><span class="line">    <span class="comment">// 是个数组说明有多个子节点</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(props.children)) &#123;</span><br><span class="line">    reconcileChildren(props.children, dom);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    dom.textContent = props.children ? props.children.toString() : <span class="string">""</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> dom;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *把子节点从虚拟DOM全部专程真实DOM并且插入到父节点中</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; children 子节点的虚拟DOM数组</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; parentDOM 父亲节点的真实DOM</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reconcileChildren</span>(<span class="params">childrenVdom, parentDOM</span>) </span>&#123;</span><br><span class="line">  childrenVdom.forEach(<span class="function">(<span class="params">childrenVdom</span>) =&gt;</span> render(childrenVdom, parentDOM));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *把属性对象中的属性设置到DOM元素上</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; dom DOM元素</span></span><br><span class="line"><span class="comment"> * @param &#123;*&#125; props  属性对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">updateProps</span>(<span class="params">dom, props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> props) &#123;</span><br><span class="line">    <span class="keyword">if</span> (key === <span class="string">"children"</span>) <span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">if</span> (key === <span class="string">"style"</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> styleObj = props[key];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> styleObj) &#123;</span><br><span class="line">        dom.style[key] = styleObj[key]; <span class="comment">// dom.style.color = 'red'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      dom[key] = props[key]; <span class="comment">// dom.calssName = 'tittle'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ReactDOM = &#123; render &#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> ReactDOM;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.site/2020/11/18/react/index/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/30/css/float/" class="archive-article-date">
-  	<time datetime="2017-03-29T20:00:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/04/acm/someQuestion/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一些二叉树相关算法题（持续更新）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/30/css/float/">css浮动之详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jsx-的执行过程"><span class="toc-number">1.</span> <span class="toc-text">jsx 的执行过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新元素渲染"><span class="toc-number">2.</span> <span class="toc-text">更新元素渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-只会更新必要的部分"><span class="toc-number">3.</span> <span class="toc-text">React 只会更新必要的部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#createElement-的简易实现"><span class="toc-number">4.</span> <span class="toc-text">createElement 的简易实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReactDOM-render-的简易实现"><span class="toc-number">5.</span> <span class="toc-text">ReactDOM render 的简易实现</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="react/index"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
 
 
           </div>
@@ -259,8 +350,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
