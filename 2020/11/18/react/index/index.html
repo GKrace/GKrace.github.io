@@ -17,7 +17,7 @@
 <meta property="og:description" content="jsx 的执行过程 1.我们写 jsx &amp;lt;h1&amp;gt;hello&amp;lt;h1/&amp;gt; 2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement 3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/images/react_0.png">
-<meta property="og:updated_time" content="2020-11-20T07:21:09.748Z">
+<meta property="og:updated_time" content="2020-12-11T08:45:38.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react相关">
 <meta name="twitter:description" content="jsx 的执行过程 1.我们写 jsx &amp;lt;h1&amp;gt;hello&amp;lt;h1/&amp;gt; 2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement 3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素">
@@ -173,6 +173,7 @@
 <li>1.我们写 jsx <code>&lt;h1&gt;hello&lt;h1/&gt;</code></li>
 <li>2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement</li>
 <li><p>3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素的样式</p>
+<a id="more"></a>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> element = React.newCreateElement(</span><br><span class="line">  <span class="string">"h1"</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    className: <span class="string">"name"</span>,</span><br><span class="line">    style: &#123;</span><br><span class="line">      color: <span class="string">"red"</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"hello"</span>,</span><br><span class="line">  React.newCreateElement(<span class="string">"span"</span>, <span class="literal">null</span>, <span class="string">"hi"</span>),</span><br><span class="line">  <span class="string">"Grace"</span></span><br><span class="line">);</span><br><span class="line"><span class="built_in">console</span>.log(element);</span><br><span class="line"><span class="keyword">let</span> root = <span class="built_in">document</span>.getElementById(<span class="string">"root"</span>);</span><br><span class="line">ReactDOM.render(element, root);</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><img src="/images/react_0.png"></p>
@@ -432,11 +433,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">diary</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -444,7 +449,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -453,14 +462,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
             
             <div class="clearfix"></div>
