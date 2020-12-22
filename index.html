@@ -167,48 +167,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="浏览器的渲染进程"><a href="#浏览器的渲染进程" class="headerlink" title="浏览器的渲染进程"></a>浏览器的渲染进程</h2><p>页面的渲染，JS 的执行，事件的循环，都在渲染进程内进行。渲染进程是多线程的，我们来看渲染进程包含哪些进程：</p>
+        <p>本系列分 3 个章节：</p>
 <ul>
-<li><p>GUI 渲染线程</p>
-<ol>
-<li>负责渲染浏览器界面，解析 HTML，CSS，构建 DOM 树和 RenderObject 树，布局和绘制等。</li>
-<li>当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行</li>
-<li>注意，GUI 渲染线程与 JS 引擎线程是互斥的，当 JS 引擎执行时 GUI 线程会被挂起（相当于被冻结了），GUI 更新会被保存在一个队列中等到 JS 引擎空闲时立即被执行。</li>
-</ol>
-</li>
-<li><p>JS 引擎线程</p>
-<ol>
-<li>也称为 JS 内核，负责处理 Javascript 脚本程序。（例如 V8 引擎）</li>
-<li>JS 引擎线程负责解析 Javascript 脚本，运行代码。</li>
-<li>JS 引擎一直等待着任务队列中任务的到来，然后加以处理，一个 Tab 页（renderer 进程）中无论什么时候都只有一个 JS 线程在运行 JS 程序</li>
-<li>同样注意，GUI 渲染线程与 JS 引擎线程是互斥的，所以如果 JS 执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。</li>
-</ol>
-</li>
-<li><p>事件触发线程</p>
-<ol>
-<li>归属于浏览器而不是 JS 引擎，用来控制事件循环（可以理解，JS 引擎自己都忙不过来，需要浏览器另开线程协助）</li>
-<li>当 JS 引擎执行代码块如 setTimeOut 时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX 异步请求等），会将对应任务添加到事件线程中</li>
-<li>当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待 JS 引擎的处理</li>
-<li>注意，由于 JS 的单线程关系，所以这些待处理队列中的事件都得排队等待 JS 引擎处理（当 JS 引擎空闲时才会去执行）</li>
-</ol>
-</li>
-<li><p>定时触发器线程</p>
-<ol>
-<li>传说中的 setInterval 与 setTimeout 所在线程</li>
-<li>浏览器定时计数器并不是由 JavaScript 引擎计数的,（因为 JavaScript 引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）</li>
-<li>因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待 JS 引擎空闲后执行）</li>
-<li>注意，W3C 在 HTML 标准中规定，规定要求 setTimeout 中低于 4ms 的时间间隔算为 4ms。</li>
-</ol>
-</li>
-<li><p>异步 http 请求线程</p>
-<ol>
-<li>在 XMLHttpRequest 在连接后是通过浏览器新开一个线程请求</li>
-<li>将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由 JavaScript 引擎执行。</li>
-</ol>
-</li>
+<li><a href="https://gracekang.icu/2020/12/21/js_singlethread/eventLoop1/">浏览器进程机制梳理</a></li>
+<li>二、浏览器内核中线程之间的关系</li>
 </ul>
-<p><img src="/images/eventLoop_3.png" width="40%" height="40%"></p>
-
+<h2 id="浏览器的渲染进程-amp-amp-浏览器内核"><a href="#浏览器的渲染进程-amp-amp-浏览器内核" class="headerlink" title="浏览器的渲染进程 &amp;&amp; 浏览器内核"></a>浏览器的渲染进程 &amp;&amp; 浏览器内核</h2><p>简单来说浏览器内核是通过取得页面内容、整理信息（应用 CSS）、计算和组合最终输出可视化的图像结果，通常也被称为渲染引擎。<strong>从上面我们可以知道，Chrome 浏览器为每个 tab 页面单独启用进程，因此每个 tab 网页都有由其独立的渲染引擎实例。</strong> 面的渲染，JS 的执行，事件的循环，都在渲染进程内进行。<strong>渲染进程是多线程的</strong>，我们来看渲染进程包含哪些线程：</p>
+        
+          <a class="article-more-a" href="/2020/12/22/js_singlethread/eventLoop2/#more">more >></a>
+        
       
 
       
@@ -284,10 +251,9 @@
         <p>本系列分 3 个章节：</p>
 <ul>
 <li>浏览器进程机制梳理</li>
-<li><a href="http://gracekang.icu/2020/12/22/js_singlethread/eventLoop2/">浏览器内核中线程之间的关系</a></li>
+<li><a href="http://gracekang.icu/2020/12/22/js_singlethread/eventLoop2/">二、浏览器内核中线程之间的关系</a></li>
 </ul>
 <p>首先进行区分两个概念：</p>
-<h2 id="线程和进程的定义"><a href="#线程和进程的定义" class="headerlink" title="线程和进程的定义"></a>线程和进程的定义</h2><p><strong>线程（英语：thread）</strong>是操作系统能够进行运算调度的最小单位。大部分情况下，它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程。</p>
         
           <a class="article-more-a" href="/2020/12/21/js_singlethread/eventLoop1/#more">more >></a>
         
@@ -1085,11 +1051,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1109,11 +1075,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">

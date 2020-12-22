@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="gracekang.icu">
   <title>JS运行机制梳理一(浏览器进程机制梳理) | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本系列分 3 个章节：  浏览器进程机制梳理 浏览器内核中线程之间的关系  首先进行区分两个概念： 线程和进程的定义线程（英语：thread）是操作系统能够进行运算调度的最小单位。大部分情况下，它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程。">
+  <meta name="description" content="本系列分 3 个章节：  浏览器进程机制梳理 二、浏览器内核中线程之间的关系  首先进行区分两个概念：">
 <meta name="keywords" content="JS运行机制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS运行机制梳理一(浏览器进程机制梳理)">
 <meta property="og:url" content="gracekang.icu/2020/12/21/js_singlethread/eventLoop1/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="本系列分 3 个章节：  浏览器进程机制梳理 浏览器内核中线程之间的关系  首先进行区分两个概念： 线程和进程的定义线程（英语：thread）是操作系统能够进行运算调度的最小单位。大部分情况下，它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程。">
+<meta property="og:description" content="本系列分 3 个章节：  浏览器进程机制梳理 二、浏览器内核中线程之间的关系  首先进行区分两个概念：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/images/eventLoop_0.png">
 <meta property="og:image" content="/images/eventLoop_1.png">
 <meta property="og:image" content="/images/eventLoop_2.png">
-<meta property="og:updated_time" content="2020-12-21T12:59:05.461Z">
+<meta property="og:updated_time" content="2020-12-22T08:48:31.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS运行机制梳理一(浏览器进程机制梳理)">
-<meta name="twitter:description" content="本系列分 3 个章节：  浏览器进程机制梳理 浏览器内核中线程之间的关系  首先进行区分两个概念： 线程和进程的定义线程（英语：thread）是操作系统能够进行运算调度的最小单位。大部分情况下，它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程。">
+<meta name="twitter:description" content="本系列分 3 个章节：  浏览器进程机制梳理 二、浏览器内核中线程之间的关系  首先进行区分两个概念：">
 <meta name="twitter:image" content="/images/eventLoop_0.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
@@ -174,11 +174,12 @@
         <p>本系列分 3 个章节：</p>
 <ul>
 <li>浏览器进程机制梳理</li>
-<li><a href="http://gracekang.icu/2020/12/22/js_singlethread/eventLoop2/">浏览器内核中线程之间的关系</a></li>
+<li><a href="http://gracekang.icu/2020/12/22/js_singlethread/eventLoop2/">二、浏览器内核中线程之间的关系</a></li>
 </ul>
 <p>首先进行区分两个概念：</p>
-<h2 id="线程和进程的定义"><a href="#线程和进程的定义" class="headerlink" title="线程和进程的定义"></a>线程和进程的定义</h2><p><strong>线程（英语：thread）</strong>是操作系统能够进行运算调度的最小单位。大部分情况下，它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程。</p>
 <a id="more"></a>
+<h2 id="线程和进程的定义"><a href="#线程和进程的定义" class="headerlink" title="线程和进程的定义"></a>线程和进程的定义</h2><p><strong>线程（英语：thread）</strong>是操作系统能够进行运算调度的最小单位。大部分情况下，它被包含在进程之中，是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程。</p>
+<!-- more -->
 <p><strong>进程：</strong>用户下达运行程序的命令后，就会产生进程。同一程序可产生多个进程（一对多关系），以允许同时有多位用户运行同一程序，却不会相冲突。<br>进程需要一些资源才能完成工作，如 CPU 使用时间、存储器、文件以及 I/O 设备，且为依序逐一进行，也就是每个 CPU 核心任何时间内仅能运行一项进程。<br><strong>进程与线程的区别：</strong>进程是计算机管理运行程序的一种方式，一个进程下可包含一个或者多个线程。线程可以理解为子进程。</p>
 <p>进程在运行时，状态（state）会改变。所谓状态，就是指进程目前的动作：</p>
 <ul>
@@ -216,6 +217,20 @@
 <li>避免第三方插件 crash 影响整个浏览器</li>
 <li>多进程充分利用多核优势</li>
 <li>方便使用沙盒模型隔离插件等进程，提高浏览器稳定性</li>
+</ul>
+<h3 id="浏览器进程中的通信"><a href="#浏览器进程中的通信" class="headerlink" title="浏览器进程中的通信"></a>浏览器进程中的通信</h3><p>浏览器的 Browser 进程（控制进程）是如何和内核通信的，如果自己打开任务管理器，然后打开一个浏览器，就可以看到：任务管理器中出现了两个进程（一个是主控进程，一个则是打开 Tab 页的渲染进程）这个过程：</p>
+<ul>
+<li><p>Browser 进程收到用户请求，首先需要获取页面内容（譬如通过网络下载资源），随后将该任务通过 RendererHost 接口传递给 Render 进程</p>
+</li>
+<li><p>Renderer 进程的 Renderer 接口收到消息，简单解释后，交给渲染线程，然后开始渲染</p>
+<ul>
+<li>渲染线程接收请求，加载网页并渲染网页，这其中可能需要 Browser 进程获取资源和需要 GPU 进程来帮助渲染</li>
+<li>当然可能会有 JS 线程操作 DOM（这样可能会造成回流并重绘）</li>
+<li>最后 Render 进程将结果传递给 Browser 进程</li>
+</ul>
+</li>
+<li><p>Browser 进程接收到结果并将结果绘制出来</p>
+</li>
 </ul>
 
       
@@ -338,7 +353,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程和进程的定义"><span class="toc-number">1.</span> <span class="toc-text">线程和进程的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器是多进程的"><span class="toc-number">2.</span> <span class="toc-text">浏览器是多进程的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#站点隔离-Site-Isolation"><span class="toc-number">2.1.</span> <span class="toc-text">站点隔离(Site Isolation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各浏览器版本历史"><span class="toc-number">2.2.</span> <span class="toc-text">各浏览器版本历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器多进程的优势"><span class="toc-number">2.3.</span> <span class="toc-text">浏览器多进程的优势</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线程和进程的定义"><span class="toc-number">1.</span> <span class="toc-text">线程和进程的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器是多进程的"><span class="toc-number">2.</span> <span class="toc-text">浏览器是多进程的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#站点隔离-Site-Isolation"><span class="toc-number">2.1.</span> <span class="toc-text">站点隔离(Site Isolation)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#各浏览器版本历史"><span class="toc-number">2.2.</span> <span class="toc-text">各浏览器版本历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器多进程的优势"><span class="toc-number">2.3.</span> <span class="toc-text">浏览器多进程的优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浏览器进程中的通信"><span class="toc-number">2.4.</span> <span class="toc-text">浏览器进程中的通信</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -465,11 +480,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,11 +504,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
