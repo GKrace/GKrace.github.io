@@ -147,6 +147,205 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="JavaScript-JavaScript/数组去重" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/JavaScript/数组去重/">数组去重方法</a>
+    </h1>
+  
+
+        
+        <a href="/JavaScript/数组去重/" class="archive-article-date">
+  	<time datetime="2021-01-14T16:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单一数据类型（排除对象，NAN）进行去重，含有 NAN 的用 set</p>
+<h2 id="1-indexOf"><a href="#1-indexOf" class="headerlink" title="1. indexOf"></a>1. indexOf</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (result.indexOf(item) === <span class="number">-1</span>) &#123;</span><br><span class="line">      result.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-sort-排序"><a href="#2-sort-排序" class="headerlink" title="2. sort 排序"></a>2. sort 排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  arr.sort();</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[index + <span class="number">1</span>] !== item) &#123;</span><br><span class="line">      result.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-filter"><a href="#3-filter" class="headerlink" title="3. filter"></a>3. filter</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.filter(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arr.indexOf(item) === index;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>除对象外全部去重</p>
+<p><code>Array.from(new Set(array));</code><br><code>[...new Set(array)]</code></p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">return</span> arr.filter(<span class="function">(<span class="params">a</span>) =&gt;</span> !seen.has(a) &amp;&amp; seen.set(a, <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Object-键值对"><a href="#Object-键值对" class="headerlink" title="Object 键值对"></a>Object 键值对</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length,</span><br><span class="line">    newArr = [],</span><br><span class="line">    obj = &#123;&#125;;</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj[item]) &#123;</span><br><span class="line">      obj[item] = <span class="number">1</span>;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  全部去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length,</span><br><span class="line">    newArr = [],</span><br><span class="line">    obj = &#123;&#125;;</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj.hasOwnProperty(<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item))) &#123;</span><br><span class="line">      obj[<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item)] = <span class="literal">true</span>;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>indexOf</td>
+<td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN, NaN]</td>
+<td>对象和 NaN 不去重</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>[/a/, /a/, “1”, 1, String, 1, String, NaN, NaN, null, undefined]</td>
+<td>对象和 NaN 不去重 数字 1 也不去重</td>
+</tr>
+<tr>
+<td>filter + indexOf</td>
+<td>[1, “1”, null, undefined, String, String, /a/, /a/]</td>
+<td>对象不去重 NaN 会被忽略掉</td>
+</tr>
+<tr>
+<td>优化后的键值对方法</td>
+<td>[1, “1”, null, undefined, String, /a/, NaN]</td>
+<td>全部去重</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN]</td>
+<td>对象不去重 NaN 去重</td>
+</tr>
+</tbody>
+</table>
+<h2 id="js-中的类型比较"><a href="#js-中的类型比较" class="headerlink" title="js 中的类型比较"></a>js 中的类型比较</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1 = <span class="string">"1"</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str1 == str2); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(str1 === str2); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> == <span class="literal">null</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> === <span class="literal">null</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> == <span class="literal">undefined</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> === <span class="literal">undefined</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断请用 isNAN()</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> == <span class="literal">NaN</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js中正则表达式也是对象 因此都是false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/a/</span> == <span class="regexp">/a/</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/a/</span> === <span class="regexp">/a/</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; == &#123;&#125;); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; === &#123;&#125;); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/JavaScript/数组去重/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="npm-npm/npm" class="article article-type-npm  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/npm/npm/">nrm和npm</a>
+    </h1>
+  
+
+        
+        <a href="/npm/npm/" class="archive-article-date">
+  	<time datetime="2021-01-07T17:36:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="nrm-是一个-npm-源管理器，方便你快速在-npm-源之间进行切换"><a href="#nrm-是一个-npm-源管理器，方便你快速在-npm-源之间进行切换" class="headerlink" title="nrm 是一个 npm 源管理器，方便你快速在 npm 源之间进行切换"></a>nrm 是一个 npm 源管理器，方便你快速在 npm 源之间进行切换</h2><p>众所周知，没有梯子使用 npm 的官方源是不靠谱的，<code>https://registry.npmjs.org/</code>，并且在公司需要用公司的私有源，方便来回切换，nrm 由此出现。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install -g nrm  <span class="comment">//安装nrm</span></span><br><span class="line">nrm ls <span class="comment">//查看可选源(带*号的为当前源)</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/npm_0.png" width="50%" height="60%"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm use &lt;registry&gt; ; <span class="comment">// 切换源</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/npm_2.png" width="50%" height="60%"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// registry为源名  url为源地址</span></span><br><span class="line">nrm add &lt;registry&gt;  url</span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line">nrm del &lt;registry&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>npm init</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/npm/npm/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="JavaScript-js_singlethread/eventLoop2" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -154,12 +353,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/23/js_singlethread/eventLoop2/">浏览器渲染页面的流程</a>
+      <a class="article-title" href="/js_singlethread/eventLoop2/">浏览器渲染页面的流程</a>
     </h1>
   
 
         
-        <a href="/2020/12/23/js_singlethread/eventLoop2/" class="archive-article-date">
+        <a href="/js_singlethread/eventLoop2/" class="archive-article-date">
   	<time datetime="2020-12-22T16:59:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-22</time>
 </a>
         
@@ -175,7 +374,7 @@
 <li>绘制 render 树（paint），绘制页面像素信息</li>
 <li>浏览器会将各层的信息发送给 GPU，GPU 会将各层合成（composite），显示在屏幕上。
         
-          <a class="article-more-a" href="/2020/12/23/js_singlethread/eventLoop2/#more">more >></a>
+          <a class="article-more-a" href="/js_singlethread/eventLoop2/#more">more >></a>
         
       
 
@@ -199,7 +398,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/23/js_singlethread/eventLoop2/">展开全文 >></a>
+          <a class="article-more-a" href="/js_singlethread/eventLoop2/">展开全文 >></a>
         </p>
       
 
@@ -236,12 +435,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/21/js_singlethread/eventLoop1/">JS运行机制梳理及eventLoop</a>
+      <a class="article-title" href="/js_singlethread/eventLoop1/">JS运行机制梳理及eventLoop</a>
     </h1>
   
 
         
-        <a href="/2020/12/21/js_singlethread/eventLoop1/" class="archive-article-date">
+        <a href="/js_singlethread/eventLoop1/" class="archive-article-date">
   	<time datetime="2020-12-21T14:16:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-21</time>
 </a>
         
@@ -251,7 +450,7 @@
       
         <p>首先进行区分两个概念：</p>
         
-          <a class="article-more-a" href="/2020/12/21/js_singlethread/eventLoop1/#more">more >></a>
+          <a class="article-more-a" href="/js_singlethread/eventLoop1/#more">more >></a>
         
       
 
@@ -275,7 +474,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/21/js_singlethread/eventLoop1/">展开全文 >></a>
+          <a class="article-more-a" href="/js_singlethread/eventLoop1/">展开全文 >></a>
         </p>
       
 
@@ -312,12 +511,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/17/http/diff_session&token/">常见的前后端验证方式</a>
+      <a class="article-title" href="/http/diff_session&token/">常见的前后端验证方式</a>
     </h1>
   
 
         
-        <a href="/2020/12/17/http/diff_session&token/" class="archive-article-date">
+        <a href="/http/diff_session&token/" class="archive-article-date">
   	<time datetime="2020-12-17T11:41:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-17</time>
 </a>
         
@@ -329,7 +528,7 @@
 <li>Session-Cookie</li>
 <li>Token 验证（包括 JWT，SSO）
         
-          <a class="article-more-a" href="/2020/12/17/http/diff_session&token/#more">more >></a>
+          <a class="article-more-a" href="/http/diff_session&token/#more">more >></a>
         
       
 
@@ -353,7 +552,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/17/http/diff_session&token/">展开全文 >></a>
+          <a class="article-more-a" href="/http/diff_session&token/">展开全文 >></a>
         </p>
       
 
@@ -390,12 +589,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/15/http/cdn/">CDN是什么</a>
+      <a class="article-title" href="/http/cdn/">CDN是什么</a>
     </h1>
   
 
         
-        <a href="/2020/12/15/http/cdn/" class="archive-article-date">
+        <a href="/http/cdn/" class="archive-article-date">
   	<time datetime="2020-12-14T19:44:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-14</time>
 </a>
         
@@ -405,7 +604,7 @@
       
         <h2 id="CDN-是什么"><a href="#CDN-是什么" class="headerlink" title="CDN 是什么"></a>CDN 是什么</h2><p>Content Delivery Network 或 Content Ddistribute Network，即内容分发网络。<br>是构建在现有网络基础之上的智能虚拟网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN 的关键技术主要有内容存储和分发技术。本质是指一种透过互联网互相连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户。</p>
         
-          <a class="article-more-a" href="/2020/12/15/http/cdn/#more">more >></a>
+          <a class="article-more-a" href="/http/cdn/#more">more >></a>
         
       
 
@@ -429,7 +628,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/12/15/http/cdn/">展开全文 >></a>
+          <a class="article-more-a" href="/http/cdn/">展开全文 >></a>
         </p>
       
 
@@ -466,12 +665,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/18/react/index/">react相关</a>
+      <a class="article-title" href="/react/index/">react相关</a>
     </h1>
   
 
         
-        <a href="/2020/11/18/react/index/" class="archive-article-date">
+        <a href="/react/index/" class="archive-article-date">
   	<time datetime="2020-11-18T11:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-18</time>
 </a>
         
@@ -484,7 +683,7 @@
 <li>2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement</li>
 <li><p>3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素的样式</p>
         
-          <a class="article-more-a" href="/2020/11/18/react/index/#more">more >></a>
+          <a class="article-more-a" href="/react/index/#more">more >></a>
         
       
 
@@ -508,7 +707,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/18/react/index/">展开全文 >></a>
+          <a class="article-more-a" href="/react/index/">展开全文 >></a>
         </p>
       
 
@@ -545,12 +744,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/04/acm/someQuestion/">一些二叉树相关算法题（持续更新）</a>
+      <a class="article-title" href="/acm/someQuestion/">一些二叉树相关算法题（持续更新）</a>
     </h1>
   
 
         
-        <a href="/2020/11/04/acm/someQuestion/" class="archive-article-date">
+        <a href="/acm/someQuestion/" class="archive-article-date">
   	<time datetime="2020-11-03T17:15:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
 </a>
         
@@ -560,7 +759,7 @@
       
         <h3 id="1-输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。"><a href="#1-输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。" class="headerlink" title="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。"></a>1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</h3><p>例如，给出:</p>
         
-          <a class="article-more-a" href="/2020/11/04/acm/someQuestion/#more">more >></a>
+          <a class="article-more-a" href="/acm/someQuestion/#more">more >></a>
         
       
 
@@ -584,7 +783,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/04/acm/someQuestion/">展开全文 >></a>
+          <a class="article-more-a" href="/acm/someQuestion/">展开全文 >></a>
         </p>
       
 
@@ -621,12 +820,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/25/webpack/手撸cli/">实现一个cli工具</a>
+      <a class="article-title" href="/webpack/手撸cli/">实现一个cli工具</a>
     </h1>
   
 
         
-        <a href="/2020/08/25/webpack/手撸cli/" class="archive-article-date">
+        <a href="/webpack/手撸cli/" class="archive-article-date">
   	<time datetime="2020-08-24T16:42:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-24</time>
 </a>
         
@@ -674,7 +873,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/25/webpack/手撸cli/">展开全文 >></a>
+          <a class="article-more-a" href="/webpack/手撸cli/">展开全文 >></a>
         </p>
       
 
@@ -711,12 +910,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/06/JavaScript/高阶函数/">高阶函数</a>
+      <a class="article-title" href="/JavaScript/高阶函数/">高阶函数</a>
     </h1>
   
 
         
-        <a href="/2020/08/06/JavaScript/高阶函数/" class="archive-article-date">
+        <a href="/JavaScript/高阶函数/" class="archive-article-date">
   	<time datetime="2020-08-05T16:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
 </a>
         
@@ -730,7 +929,7 @@
 <li>输出一个函数</li>
 </ul>
         
-          <a class="article-more-a" href="/2020/08/06/JavaScript/高阶函数/#more">more >></a>
+          <a class="article-more-a" href="/JavaScript/高阶函数/#more">more >></a>
         
       
 
@@ -754,165 +953,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/06/JavaScript/高阶函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="javascript-JavaScript/someExpands" class="article article-type-javascript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/14/JavaScript/someExpands/">Bind，call，apply,new,instanceof,Object.create实现原理</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/14/JavaScript/someExpands/" class="archive-article-date">
-  	<time datetime="2020-07-13T16:35:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实现-bind"><a href="#实现-bind" class="headerlink" title="实现 bind"></a>实现 bind</h3><blockquote>
-<p>bind()方法会创建一个新函数。当这个新函数被调用时，bind()的第一个参数将作为它运行时的 this,之后的序列参数将会在传递的实参前传入作为它的参数。</p>
-</blockquote>
-<ul>
-<li>返回一个函数</li>
-<li>可以传入参数</li>
-</ul>
-        
-          <a class="article-more-a" href="/2020/07/14/JavaScript/someExpands/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/14/JavaScript/someExpands/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript/Promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/27/JavaScript/Promise/">Promise</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/27/JavaScript/Promise/" class="archive-article-date">
-  	<time datetime="2020-05-27T15:31:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Promise 是什么，在控制台输入<code>console.dir(Promise)</code>，得到如下结果：</p>
-        
-          <a class="article-more-a" href="/2020/05/27/JavaScript/Promise/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/27/JavaScript/Promise/">展开全文 >></a>
+          <a class="article-more-a" href="/JavaScript/高阶函数/">展开全文 >></a>
         </p>
       
 
@@ -1071,15 +1112,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1240,5 +1285,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<div id="live2d-widget" class="live2d-widget-container" style="position: fixed; left: 30px; bottom: -50px; width: 150px; height: 300px; z-index: 99999; opacity: 1; pointer-events: none;"><canvas id="live2d_canvas" width="150" height=" 300" class="live2d_canvas" style="position: absolute; left: 0px; top: 0px; width: 150px; height:  300px;"></canvas></div><script src="https://cdn.zhangxinxu.com/sp/demo/live2d/live2d/js/live2d.js"></script><script>loadlive2d("live2d_canvas", "live2dw/assets/hijiki.model.json");</script></body>
+</body>
 </html>
