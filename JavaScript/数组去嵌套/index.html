@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.icu">
-  <title>Archives: 2020/1 | Grace</title>
+  <title>数组扁平化 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是我 也都不是我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace">
-<meta property="og:url" content="gracekang.icu/archives/2020/01/index.html">
+  <meta name="description" content="递归12345678910111213var arr = [1, [2, [3, 4]]];function flatten(arr) &amp;#123;  var result = [];  arr.forEach((item, index) =&amp;gt; &amp;#123;    Array.isArray(item)      ? (result = result.concat(flatten(item)">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组扁平化">
+<meta property="og:url" content="gracekang.icu/JavaScript/数组去嵌套/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="是我 也都不是我">
+<meta property="og:description" content="递归12345678910111213var arr = [1, [2, [3, 4]]];function flatten(arr) &amp;#123;  var result = [];  arr.forEach((item, index) =&amp;gt; &amp;#123;    Array.isArray(item)      ? (result = result.concat(flatten(item)">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-01-18T11:32:42.410Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace">
-<meta name="twitter:description" content="是我 也都不是我">
+<meta name="twitter:title" content="数组扁平化">
+<meta name="twitter:description" content="递归12345678910111213var arr = [1, [2, [3, 4]]];function flatten(arr) &amp;#123;  var result = [];  arr.forEach((item, index) =&amp;gt; &amp;#123;    Array.isArray(item)      ? (result = result.concat(flatten(item)">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -145,174 +147,172 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="JavaScript-JavaScript/数组去嵌套" class="article article-type-JavaScript " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数组扁平化
+    </h1>
+  
+
+        
+        <a href="/JavaScript/数组去嵌套/" class="archive-article-date">
+  	<time datetime="2021-01-17T23:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line"></span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Array</span>.isArray(item)</span><br><span class="line">      ? (result = result.concat(flatten(item)))</span><br><span class="line">      : result.push(item);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(flatten(arr));</span><br></pre></td></tr></table></figure>
+<h2 id="toString-join"><a href="#toString-join" class="headerlink" title="toString join()"></a>toString join()</h2><p>使用场景有限，如果数组同时有数字和字符串数字，就不适用了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line">arr.join(<span class="string">""</span>).split(<span class="string">","</span>);</span><br><span class="line">arr.toString().split(<span class="string">","</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="es6-拓展运算符"><a href="#es6-拓展运算符" class="headerlink" title="es6 拓展运算符"></a>es6 拓展运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"><span class="built_in">console</span>.log([].concat(...arr)); <span class="comment">// [1, 2, [3, 4]]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function-apply-bind-concat"><a href="#Function-apply-bind-concat" class="headerlink" title="Function.apply.bind([].concat, [])"></a>Function.apply.bind([].concat, [])</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.apply.bind([].concat, []);</span><br></pre></td></tr></table></figure>
+<h2 id="Array-flat"><a href="#Array-flat" class="headerlink" title="Array.flat()"></a>Array.flat()</h2><p>es6 中的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]], <span class="number">1</span>];</span><br><span class="line">arr.flat(<span class="literal">Infinity</span>);</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/http/https/" class="archive-article-date">
-  	<time datetime="2020-01-09T20:33:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/http/https/">https</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.icu/JavaScript/数组去嵌套/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/http/difference_get_post/" class="archive-article-date">
-  	<time datetime="2020-01-06T16:39:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/JavaScript/深拷贝/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深拷贝</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/http/difference_get_post/">get 和 post 的区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#递归"><span class="toc-number">1.</span> <span class="toc-text">递归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toString-join"><span class="toc-number">2.</span> <span class="toc-text">toString join()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#es6-拓展运算符"><span class="toc-number">3.</span> <span class="toc-text">es6 拓展运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Function-apply-bind-concat"><span class="toc-number">4.</span> <span class="toc-text">Function.apply.bind([].concat, [])</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Array-flat"><span class="toc-number">5.</span> <span class="toc-text">Array.flat()</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/http/http_compare/" class="archive-article-date">
-  	<time datetime="2020-01-06T15:13:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/http/http_compare/">http各版本对比</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/http/url/" class="archive-article-date">
-  	<time datetime="2020-01-03T20:21:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/http/url/">url简析</a>
-    </h1>
+  <div id="SOHUCS" sid="JavaScript/数组去嵌套"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -335,8 +335,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

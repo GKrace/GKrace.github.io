@@ -147,6 +147,344 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="JavaScript-JavaScript/数组去嵌套" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/JavaScript/数组去嵌套/">数组扁平化</a>
+    </h1>
+  
+
+        
+        <a href="/JavaScript/数组去嵌套/" class="archive-article-date">
+  	<time datetime="2021-01-17T23:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line"></span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Array</span>.isArray(item)</span><br><span class="line">      ? (result = result.concat(flatten(item)))</span><br><span class="line">      : result.push(item);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(flatten(arr));</span><br></pre></td></tr></table></figure>
+<h2 id="toString-join"><a href="#toString-join" class="headerlink" title="toString join()"></a>toString join()</h2><p>使用场景有限，如果数组同时有数字和字符串数字，就不适用了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line">arr.join(<span class="string">""</span>).split(<span class="string">","</span>);</span><br><span class="line">arr.toString().split(<span class="string">","</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="es6-拓展运算符"><a href="#es6-拓展运算符" class="headerlink" title="es6 拓展运算符"></a>es6 拓展运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"><span class="built_in">console</span>.log([].concat(...arr)); <span class="comment">// [1, 2, [3, 4]]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Function-apply-bind-concat"><a href="#Function-apply-bind-concat" class="headerlink" title="Function.apply.bind([].concat, [])"></a>Function.apply.bind([].concat, [])</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.apply.bind([].concat, []);</span><br></pre></td></tr></table></figure>
+<h2 id="Array-flat"><a href="#Array-flat" class="headerlink" title="Array.flat()"></a>Array.flat()</h2><p>es6 中的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]], <span class="number">1</span>];</span><br><span class="line">arr.flat(<span class="literal">Infinity</span>);</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/JavaScript/数组去嵌套/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="JavaScript-JavaScript/深拷贝" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/JavaScript/深拷贝/">深拷贝</a>
+    </h1>
+  
+
+        
+        <a href="/JavaScript/深拷贝/" class="archive-article-date">
+  	<time datetime="2021-01-17T22:35:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果数组元素是基本类型，就会拷贝一份，互不影响，而如果是对象或者数组，就会只拷贝对象和数组的引用，这样我们无论在新旧数组进行了修改，两者都会发生变化。</p>
+<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>concat 和 slice 是一种浅拷贝。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">"old"</span>, <span class="number">1</span>, <span class="literal">true</span>, <span class="literal">null</span>, <span class="literal">undefined</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> new_arr = arr.concat();</span><br><span class="line"><span class="keyword">var</span> new_arr2 = arr.slice();</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(array);</span><br></pre></td></tr></table></figure>
+<h2 id="深拷贝数组"><a href="#深拷贝数组" class="headerlink" title="深拷贝数组"></a>深拷贝数组</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> new_arr = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(arr));</span><br></pre></td></tr></table></figure>
+<h2 id="深拷贝对象"><a href="#深拷贝对象" class="headerlink" title="深拷贝对象"></a>深拷贝对象</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deepCopy = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">"object"</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="comment">// if (obj === null || typeof obj !== 'object') return obj;</span></span><br><span class="line">  <span class="keyword">var</span> newObj = obj <span class="keyword">instanceof</span> <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">      newObj[key] =</span><br><span class="line">        <span class="keyword">typeof</span> obj[key] === <span class="string">"object"</span> ? deepCopy(obj[key]) : obj[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h2><p>尽管使用深拷贝会完全的克隆一个新对象，不会产生副作用，但是深拷贝因为使用递归，性能会不如浅拷贝，在开发中，还是要根据实际情况进行选择。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/JavaScript/深拷贝/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="JavaScript-JavaScript/类型检测" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/JavaScript/类型检测/">javascript中的类型检测</a>
+    </h1>
+  
+
+        
+        <a href="/JavaScript/类型检测/" class="archive-article-date">
+  	<time datetime="2021-01-15T19:35:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><p>es6 前的 js 共 6 种数据类型，分别是：</p>
+<ul>
+<li>Undefined、Null、Boolean、Number、String、Object</li>
+</ul>
+<p>然而用 typeof 得到的返回值分别是：</p>
+<ul>
+<li>undefined、object、boolean、number、string、object</li>
+</ul>
+<font color="#dd0000">注意：null 和 Object 类型全都返回了 <code>&quot;object&quot;</code>, 函数返回 <code>&quot;function&quot;</code></font>
+
+<h2 id="更好的办法：-Object-prototype-toString"><a href="#更好的办法：-Object-prototype-toString" class="headerlink" title="更好的办法： Object.prototype.toString"></a>更好的办法： Object.prototype.toString</h2><p>当 toString 方法被调用的时候，下面的步骤会被执行：</p>
+<ul>
+<li>如果 this 值是 undefined，就返回 [object Undefined]</li>
+<li>如果 this 的值是 null，就返回 [object Null]</li>
+<li>让 O 成为 ToObject(this) 的结果</li>
+<li>让 class 成为 O 的内部属性 [[Class]] 的值</li>
+<li>最后返回由 “[object “ 和 class 和 “]” 三个部分组成的字符串</li>
+</ul>
+<p>调用<code>Object.prototype.toString</code>会返回一个由 <code>&quot;[object &quot; 和 class 和 &quot;]&quot;</code>组成的字符串，而 class 是要判断的对象的内部属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="number">1</span>; <span class="comment">// [object Number]</span></span><br><span class="line"><span class="keyword">var</span> string = <span class="string">"123"</span>; <span class="comment">// [object String]</span></span><br><span class="line"><span class="keyword">var</span> boolean = <span class="literal">true</span>; <span class="comment">// [object Boolean]</span></span><br><span class="line"><span class="keyword">var</span> und = <span class="literal">undefined</span>; <span class="comment">// [object Undefined]</span></span><br><span class="line"><span class="keyword">var</span> nul = <span class="literal">null</span>; <span class="comment">// [object Null]</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;; <span class="comment">// [object Object]</span></span><br><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; <span class="comment">// [object Array]</span></span><br><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">// [object Date]</span></span><br><span class="line"><span class="keyword">var</span> error = <span class="keyword">new</span> <span class="built_in">Error</span>(); <span class="comment">// [object Error]</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/a/g</span>; <span class="comment">// [object RegExp]</span></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;; <span class="comment">// [object Function]</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(location);</span><br><span class="line"><span class="comment">// "[object Location]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(history);</span><br><span class="line"><span class="comment">// "[object History]"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">arguments</span>[i]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 除此之外</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">Math</span>)); <span class="comment">// [object Math]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">JSON</span>)); <span class="comment">// [object JSON]</span></span><br><span class="line"><span class="comment">// arguements</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">arguments</span>)); <span class="comment">// [object Arguments]</span></span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+<h2 id="判定类型的方法"><a href="#判定类型的方法" class="headerlink" title="判定类型的方法"></a>判定类型的方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"object"</span> || <span class="keyword">typeof</span> obj === <span class="string">"function"</span></span><br><span class="line">    ? class2type[<span class="built_in">Object</span>.prototype.toString.call(obj)] || <span class="string">"object"</span></span><br><span class="line">    : <span class="keyword">typeof</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>typeof</li>
+<li>constructor</li>
+<li>instanceof</li>
+<li>Object.prototype.toString</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/JavaScript/类型检测/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="JavaScript-JavaScript/函数截流和防抖" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/JavaScript/函数截流和防抖/">函数截流和防抖</a>
+    </h1>
+  
+
+        
+        <a href="/JavaScript/函数截流和防抖/" class="archive-article-date">
+  	<time datetime="2021-01-15T19:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>是指事件触发 n 秒之后执行，如果你在一个事件触发的 n 秒内又触发了这个事件，就以新的事件的时间为准，n 秒后才执行。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">if</span> (timeout) clearTimeout(timeout);</span><br><span class="line">    <span class="comment">// 立即执行</span></span><br><span class="line">    <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">      <span class="keyword">var</span> callNow = !timeout;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        timeout = <span class="literal">null</span>;</span><br><span class="line">      &#125;, wait);</span><br><span class="line">      <span class="keyword">if</span> (callNow) &#123;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-截流"><a href="#2-截流" class="headerlink" title="2. 截流"></a>2. 截流</h2><p>时间戳版本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> lastCallTime = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">var</span> nowDate = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nowDate - lastCallTime &lt; wait) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    func.apply(context, args);</span><br><span class="line">    lastCallTime = nowDate;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定时器版本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">if</span> (!timeout) &#123;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        timeout = <span class="literal">null</span>;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/JavaScript/函数截流和防抖/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="JavaScript-JavaScript/数组去重" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -160,7 +498,7 @@
 
         
         <a href="/JavaScript/数组去重/" class="archive-article-date">
-  	<time datetime="2021-01-14T16:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-14</time>
+  	<time datetime="2021-01-15T16:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
 </a>
         
       </header>
@@ -658,334 +996,9 @@
 
 
   
-    <article id="react-react/index" class="article article-type-react  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/react/index/">react相关</a>
-    </h1>
-  
-
-        
-        <a href="/react/index/" class="archive-article-date">
-  	<time datetime="2020-11-18T11:24:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="jsx-的执行过程"><a href="#jsx-的执行过程" class="headerlink" title="jsx 的执行过程"></a>jsx 的执行过程</h2><ul>
-<li>1.我们写 jsx <code>&lt;h1&gt;hello&lt;h1/&gt;</code></li>
-<li>2.打包的时候，会调用 webpack 中的 react-loader，把 jsx 写法转换成 js 写法 createElement</li>
-<li><p>3.我们在浏览器里执行 create-Element， 得到虚拟 DOM，就是一个 react 元素，就是一个普通的 js 对象，描述了你在界面上想要看到的 DOM 元素的样式</p>
-        
-          <a class="article-more-a" href="/react/index/#more">more >></a>
-        
-      
-
-      
-    </li></ul></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/react/index/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-acm/someQuestion" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/acm/someQuestion/">一些二叉树相关算法题（持续更新）</a>
-    </h1>
-  
-
-        
-        <a href="/acm/someQuestion/" class="archive-article-date">
-  	<time datetime="2020-11-03T17:15:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。"><a href="#1-输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。" class="headerlink" title="1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。"></a>1.输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</h3><p>例如，给出:</p>
-        
-          <a class="article-more-a" href="/acm/someQuestion/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/acm/someQuestion/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="webpack-webpack/手撸cli" class="article article-type-webpack  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/webpack/手撸cli/">实现一个cli工具</a>
-    </h1>
-  
-
-        
-        <a href="/webpack/手撸cli/" class="archive-article-date">
-  	<time datetime="2020-08-24T16:42:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自己动手，丰衣足食。<br>参考链接：<a href="https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md" target="_blank" rel="noopener">commander.js</a></p>
-<p>先说我们想要实现的功能：</p>
-<blockquote>
-<p>初始化项目： <code>grace-cli create project-name</code><br>初始化配置文件： <code>grace-cli config set repo repo-name</code></p>
-</blockquote>
-<p>vue-cli 中所应用的模块：</p>
-<ul>
-<li>commander ：参数解析 –help 其实就借助了他,解析用户输入的命令</li>
-<li>inquirer ：交互式命令行工具，有他就可以实现命令行的选择功能</li>
-<li>download-git-repo ：拉取 GitHub 上的文件</li>
-<li>chalk ：命令行中画出各种各样的颜色</li>
-<li>ora：小图标 （loading、succeed、warn 等）</li>
-<li>metalsmith ：读取所有文件,实现模板渲染</li>
-<li>consolidate ：统一模板引擎</li>
-</ul>
-<h2 id="初始化工程"><a href="#初始化工程" class="headerlink" title="初始化工程"></a>初始化工程</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init -y <span class="comment"># 初始化package.json</span></span><br><span class="line"><span class="built_in">npm</span> install eslint husky --save-dev <span class="comment"># eslint是负责代码校验工作,husky提供了git钩子功能</span></span><br><span class="line">npx eslint --init <span class="comment"># 初始化eslint配置文件</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建文件及文件夹目录"><a href="#创建文件及文件夹目录" class="headerlink" title="创建文件及文件夹目录"></a>创建文件及文件夹目录</h3><figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">├── bin</span><br><span class="line">│   └── www  <span class="comment">// 全局命令执行的根文件:可执行脚本</span></span><br><span class="line">├── src</span><br><span class="line">│   ├── main.js <span class="comment">// 入口文件</span></span><br><span class="line">│   └── utils   <span class="comment">// 存放工具方法</span></span><br><span class="line">|       |<span class="variable">___constants</span>.js  <span class="comment">//  存放用户所需要的常量</span></span><br><span class="line">|       |<span class="variable">___common</span>.js</span><br><span class="line">│   ├── create.js <span class="comment">// create 命令所有逻辑</span></span><br><span class="line">│   ├── config.js <span class="comment">// config 命令所有逻辑</span></span><br><span class="line">│── .huskyrc    <span class="comment">// git hook</span></span><br><span class="line">│── .eslintrc.json <span class="comment">// 代码规范校</span></span><br><span class="line">├── package.json</span><br><span class="line">|<span class="variable">__</span> README.md</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/webpack/手撸cli/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/高阶函数" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/高阶函数/">高阶函数</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/高阶函数/" class="archive-article-date">
-  	<time datetime="2020-08-05T16:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是高阶函数"><a href="#什么是高阶函数" class="headerlink" title="什么是高阶函数"></a>什么是高阶函数</h2><p>高阶函数两个特点，满足其中一个即可：</p>
-<ul>
-<li>接受一个或多个函数作为输入，例如，回调函数</li>
-<li>输出一个函数</li>
-</ul>
-        
-          <a class="article-more-a" href="/JavaScript/高阶函数/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/高阶函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1120,15 +1133,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
             
             <div class="clearfix"></div>

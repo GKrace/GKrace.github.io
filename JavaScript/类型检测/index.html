@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.icu">
-  <title>Archives: 2020/1 | Grace</title>
+  <title>javascript中的类型检测 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是我 也都不是我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace">
-<meta property="og:url" content="gracekang.icu/archives/2020/01/index.html">
+  <meta name="description" content="typeofes6 前的 js 共 6 种数据类型，分别是：  Undefined、Null、Boolean、Number、String、Object  然而用 typeof 得到的返回值分别是：  undefined、object、boolean、number、string、object  注意：null 和 Object 类型全都返回了 &amp;quot;object&amp;quot;, 函数返回 &amp;qu">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript中的类型检测">
+<meta property="og:url" content="gracekang.icu/JavaScript/类型检测/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="是我 也都不是我">
+<meta property="og:description" content="typeofes6 前的 js 共 6 种数据类型，分别是：  Undefined、Null、Boolean、Number、String、Object  然而用 typeof 得到的返回值分别是：  undefined、object、boolean、number、string、object  注意：null 和 Object 类型全都返回了 &amp;quot;object&amp;quot;, 函数返回 &amp;qu">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-01-17T14:35:05.372Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace">
-<meta name="twitter:description" content="是我 也都不是我">
+<meta name="twitter:title" content="javascript中的类型检测">
+<meta name="twitter:description" content="typeofes6 前的 js 共 6 种数据类型，分别是：  Undefined、Null、Boolean、Number、String、Object  然而用 typeof 得到的返回值分别是：  undefined、object、boolean、number、string、object  注意：null 和 Object 类型全都返回了 &amp;quot;object&amp;quot;, 函数返回 &amp;qu">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -145,174 +147,201 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="JavaScript-JavaScript/类型检测" class="article article-type-JavaScript " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      javascript中的类型检测
+    </h1>
+  
+
+        
+        <a href="/JavaScript/类型检测/" class="archive-article-date">
+  	<time datetime="2021-01-15T19:35:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><p>es6 前的 js 共 6 种数据类型，分别是：</p>
+<ul>
+<li>Undefined、Null、Boolean、Number、String、Object</li>
+</ul>
+<p>然而用 typeof 得到的返回值分别是：</p>
+<ul>
+<li>undefined、object、boolean、number、string、object</li>
+</ul>
+<font color="#dd0000">注意：null 和 Object 类型全都返回了 <code>&quot;object&quot;</code>, 函数返回 <code>&quot;function&quot;</code></font>
+
+<h2 id="更好的办法：-Object-prototype-toString"><a href="#更好的办法：-Object-prototype-toString" class="headerlink" title="更好的办法： Object.prototype.toString"></a>更好的办法： Object.prototype.toString</h2><p>当 toString 方法被调用的时候，下面的步骤会被执行：</p>
+<ul>
+<li>如果 this 值是 undefined，就返回 [object Undefined]</li>
+<li>如果 this 的值是 null，就返回 [object Null]</li>
+<li>让 O 成为 ToObject(this) 的结果</li>
+<li>让 class 成为 O 的内部属性 [[Class]] 的值</li>
+<li>最后返回由 “[object “ 和 class 和 “]” 三个部分组成的字符串</li>
+</ul>
+<p>调用<code>Object.prototype.toString</code>会返回一个由 <code>&quot;[object &quot; 和 class 和 &quot;]&quot;</code>组成的字符串，而 class 是要判断的对象的内部属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="number">1</span>; <span class="comment">// [object Number]</span></span><br><span class="line"><span class="keyword">var</span> string = <span class="string">"123"</span>; <span class="comment">// [object String]</span></span><br><span class="line"><span class="keyword">var</span> boolean = <span class="literal">true</span>; <span class="comment">// [object Boolean]</span></span><br><span class="line"><span class="keyword">var</span> und = <span class="literal">undefined</span>; <span class="comment">// [object Undefined]</span></span><br><span class="line"><span class="keyword">var</span> nul = <span class="literal">null</span>; <span class="comment">// [object Null]</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;; <span class="comment">// [object Object]</span></span><br><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; <span class="comment">// [object Array]</span></span><br><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">// [object Date]</span></span><br><span class="line"><span class="keyword">var</span> error = <span class="keyword">new</span> <span class="built_in">Error</span>(); <span class="comment">// [object Error]</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/a/g</span>; <span class="comment">// [object RegExp]</span></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;; <span class="comment">// [object Function]</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(location);</span><br><span class="line"><span class="comment">// "[object Location]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(history);</span><br><span class="line"><span class="comment">// "[object History]"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">arguments</span>[i]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 除此之外</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">Math</span>)); <span class="comment">// [object Math]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">JSON</span>)); <span class="comment">// [object JSON]</span></span><br><span class="line"><span class="comment">// arguements</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">arguments</span>)); <span class="comment">// [object Arguments]</span></span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+<h2 id="判定类型的方法"><a href="#判定类型的方法" class="headerlink" title="判定类型的方法"></a>判定类型的方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"object"</span> || <span class="keyword">typeof</span> obj === <span class="string">"function"</span></span><br><span class="line">    ? class2type[<span class="built_in">Object</span>.prototype.toString.call(obj)] || <span class="string">"object"</span></span><br><span class="line">    : <span class="keyword">typeof</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>typeof</li>
+<li>constructor</li>
+<li>instanceof</li>
+<li>Object.prototype.toString</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/http/https/" class="archive-article-date">
-  	<time datetime="2020-01-09T20:33:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/http/https/">https</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.icu/JavaScript/类型检测/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/http/difference_get_post/" class="archive-article-date">
-  	<time datetime="2020-01-06T16:39:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/JavaScript/深拷贝/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          深拷贝
+        
+      </div>
+    </a>
+  
+  
+    <a href="/JavaScript/函数截流和防抖/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">函数截流和防抖</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/http/difference_get_post/">get 和 post 的区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#typeof"><span class="toc-number">1.</span> <span class="toc-text">typeof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更好的办法：-Object-prototype-toString"><span class="toc-number">2.</span> <span class="toc-text">更好的办法： Object.prototype.toString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判定类型的方法"><span class="toc-number">3.</span> <span class="toc-text">判定类型的方法</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/http/http_compare/" class="archive-article-date">
-  	<time datetime="2020-01-06T15:13:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-06</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/http/http_compare/">http各版本对比</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-http">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/http/url/" class="archive-article-date">
-  	<time datetime="2020-01-03T20:21:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/http/url/">url简析</a>
-    </h1>
+  <div id="SOHUCS" sid="JavaScript/类型检测"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -335,8 +364,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
