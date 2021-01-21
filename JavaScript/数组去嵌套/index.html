@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Grace">
 <meta property="og:description" content="递归12345678910111213var arr = [1, [2, [3, 4]]];function flatten(arr) &amp;#123;  var result = [];  arr.forEach((item, index) =&amp;gt; &amp;#123;    Array.isArray(item)      ? (result = result.concat(flatten(item)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-18T11:32:42.410Z">
+<meta property="og:updated_time" content="2021-01-21T07:24:50.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组扁平化">
 <meta name="twitter:description" content="递归12345678910111213var arr = [1, [2, [3, 4]]];function flatten(arr) &amp;#123;  var result = [];  arr.forEach((item, index) =&amp;gt; &amp;#123;    Array.isArray(item)      ? (result = result.concat(flatten(item)">
@@ -168,6 +168,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line"></span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Array</span>.isArray(item)</span><br><span class="line">      ? (result = result.concat(flatten(item)))</span><br><span class="line">      : result.push(item);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(flatten(arr));</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="toString-join"><a href="#toString-join" class="headerlink" title="toString join()"></a>toString join()</h2><p>使用场景有限，如果数组同时有数字和字符串数字，就不适用了</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line">arr.join(<span class="string">""</span>).split(<span class="string">","</span>);</span><br><span class="line">arr.toString().split(<span class="string">","</span>);</span><br></pre></td></tr></table></figure>
 <h2 id="es6-拓展运算符"><a href="#es6-拓展运算符" class="headerlink" title="es6 拓展运算符"></a>es6 拓展运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"><span class="built_in">console</span>.log([].concat(...arr)); <span class="comment">// [1, 2, [3, 4]]</span></span><br></pre></td></tr></table></figure>
@@ -418,6 +419,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
@@ -430,7 +435,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -442,23 +455,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">

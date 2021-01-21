@@ -168,17 +168,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="node-环境安装"><a href="#node-环境安装" class="headerlink" title="node 环境安装"></a>node 环境安装</h2><p>安装 node 安装包，node 官方网站: <a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/download/</a><br><img src="/images/npm_3.png" width="60%" height="60%"></p>
-<p>windows 下直接双击安装即可，安装之后打开命令行，用下面两个简单的命令，分别检测 Node.js 和 NPM 是否真的安装正确。</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line"></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>输出如下版本号即代表安装成功<br><img src="/images/npm_4.png" width="30%" height="30%"></p>
-<h2 id="包安装"><a href="#包安装" class="headerlink" title="包安装"></a>包安装</h2><p>打开命令行，输入下面命令进行安装所需要的包：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">npm</span> install -g grace-operate-<span class="class"><span class="keyword">data</span></span></span><br></pre></td></tr></table></figure>
-<p>安装成功如图：<br><img src="/images/npm_5.png" width="50%" height="100%"></p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>输入命令<code>delete</code>，会出现要求你选择所操作的文件目录，直接把需要修改的 txt 文件拖拽进去即可，按回车键。</p>
-<p><img src="/images/npm_6.png" width="30%" height="100%"></p>
-<p>更改过的数据会在命令行打印出来，可简单对比下有无问题</p>
-<p>有问题请@我</p>
-
+        
+          <a class="article-more-a" href="/npm/npmUse/#more">more >></a>
+        
       
 
       
@@ -252,13 +244,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line"></span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Array</span>.isArray(item)</span><br><span class="line">      ? (result = result.concat(flatten(item)))</span><br><span class="line">      : result.push(item);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(flatten(arr));</span><br></pre></td></tr></table></figure>
-<h2 id="toString-join"><a href="#toString-join" class="headerlink" title="toString join()"></a>toString join()</h2><p>使用场景有限，如果数组同时有数字和字符串数字，就不适用了</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line">arr.join(<span class="string">""</span>).split(<span class="string">","</span>);</span><br><span class="line">arr.toString().split(<span class="string">","</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="es6-拓展运算符"><a href="#es6-拓展运算符" class="headerlink" title="es6 拓展运算符"></a>es6 拓展运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"><span class="built_in">console</span>.log([].concat(...arr)); <span class="comment">// [1, 2, [3, 4]]</span></span><br></pre></td></tr></table></figure>
-<h2 id="Function-apply-bind-concat"><a href="#Function-apply-bind-concat" class="headerlink" title="Function.apply.bind([].concat, [])"></a>Function.apply.bind([].concat, [])</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.apply.bind([].concat, []);</span><br></pre></td></tr></table></figure>
-<h2 id="Array-flat"><a href="#Array-flat" class="headerlink" title="Array.flat()"></a>Array.flat()</h2><p>es6 中的方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, [<span class="number">1</span>, <span class="number">2</span>, [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]], <span class="number">1</span>];</span><br><span class="line">arr.flat(<span class="literal">Infinity</span>);</span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/JavaScript/数组去嵌套/#more">more >></a>
+        
       
 
       
@@ -332,12 +320,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>如果数组元素是基本类型，就会拷贝一份，互不影响，而如果是对象或者数组，就会只拷贝对象和数组的引用，这样我们无论在新旧数组进行了修改，两者都会发生变化。</p>
-<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>concat 和 slice 是一种浅拷贝。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">"old"</span>, <span class="number">1</span>, <span class="literal">true</span>, <span class="literal">null</span>, <span class="literal">undefined</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> new_arr = arr.concat();</span><br><span class="line"><span class="keyword">var</span> new_arr2 = arr.slice();</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(array);</span><br></pre></td></tr></table></figure>
-<h2 id="深拷贝数组"><a href="#深拷贝数组" class="headerlink" title="深拷贝数组"></a>深拷贝数组</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> new_arr = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(arr));</span><br></pre></td></tr></table></figure>
-<h2 id="深拷贝对象"><a href="#深拷贝对象" class="headerlink" title="深拷贝对象"></a>深拷贝对象</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deepCopy = <span class="function"><span class="keyword">function</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">"object"</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="comment">// if (obj === null || typeof obj !== 'object') return obj;</span></span><br><span class="line">  <span class="keyword">var</span> newObj = obj <span class="keyword">instanceof</span> <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj.hasOwnProperty(key)) &#123;</span><br><span class="line">      newObj[key] =</span><br><span class="line">        <span class="keyword">typeof</span> obj[key] === <span class="string">"object"</span> ? deepCopy(obj[key]) : obj[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h2><p>尽管使用深拷贝会完全的克隆一个新对象，不会产生副作用，但是深拷贝因为使用递归，性能会不如浅拷贝，在开发中，还是要根据实际情况进行选择。</p>
-
+<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2>
+        
+          <a class="article-more-a" href="/JavaScript/深拷贝/#more">more >></a>
+        
       
 
       
@@ -419,25 +405,9 @@
 <li>undefined、object、boolean、number、string、object</li>
 </ul>
 <font color="#dd0000">注意：null 和 Object 类型全都返回了 <code>&quot;object&quot;</code>, 函数返回 <code>&quot;function&quot;</code></font>
-
-<h2 id="更好的办法：-Object-prototype-toString"><a href="#更好的办法：-Object-prototype-toString" class="headerlink" title="更好的办法： Object.prototype.toString"></a>更好的办法： Object.prototype.toString</h2><p>当 toString 方法被调用的时候，下面的步骤会被执行：</p>
-<ul>
-<li>如果 this 值是 undefined，就返回 [object Undefined]</li>
-<li>如果 this 的值是 null，就返回 [object Null]</li>
-<li>让 O 成为 ToObject(this) 的结果</li>
-<li>让 class 成为 O 的内部属性 [[Class]] 的值</li>
-<li>最后返回由 “[object “ 和 class 和 “]” 三个部分组成的字符串</li>
-</ul>
-<p>调用<code>Object.prototype.toString</code>会返回一个由 <code>&quot;[object &quot; 和 class 和 &quot;]&quot;</code>组成的字符串，而 class 是要判断的对象的内部属性。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> number = <span class="number">1</span>; <span class="comment">// [object Number]</span></span><br><span class="line"><span class="keyword">var</span> string = <span class="string">"123"</span>; <span class="comment">// [object String]</span></span><br><span class="line"><span class="keyword">var</span> boolean = <span class="literal">true</span>; <span class="comment">// [object Boolean]</span></span><br><span class="line"><span class="keyword">var</span> und = <span class="literal">undefined</span>; <span class="comment">// [object Undefined]</span></span><br><span class="line"><span class="keyword">var</span> nul = <span class="literal">null</span>; <span class="comment">// [object Null]</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;; <span class="comment">// [object Object]</span></span><br><span class="line"><span class="keyword">var</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; <span class="comment">// [object Array]</span></span><br><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">// [object Date]</span></span><br><span class="line"><span class="keyword">var</span> error = <span class="keyword">new</span> <span class="built_in">Error</span>(); <span class="comment">// [object Error]</span></span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/a/g</span>; <span class="comment">// [object RegExp]</span></span><br><span class="line"><span class="keyword">var</span> func = <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;&#125;; <span class="comment">// [object Function]</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(location);</span><br><span class="line"><span class="comment">// "[object Location]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(history);</span><br><span class="line"><span class="comment">// "[object History]"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">arguments</span>[i]));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 除此之外</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">Math</span>)); <span class="comment">// [object Math]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">JSON</span>)); <span class="comment">// [object JSON]</span></span><br><span class="line"><span class="comment">// arguements</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.toString.call(<span class="built_in">arguments</span>)); <span class="comment">// [object Arguments]</span></span><br><span class="line">&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
-<h2 id="判定类型的方法"><a href="#判定类型的方法" class="headerlink" title="判定类型的方法"></a>判定类型的方法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> obj === <span class="string">"object"</span> || <span class="keyword">typeof</span> obj === <span class="string">"function"</span></span><br><span class="line">    ? class2type[<span class="built_in">Object</span>.prototype.toString.call(obj)] || <span class="string">"object"</span></span><br><span class="line">    : <span class="keyword">typeof</span> obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>typeof</li>
-<li>constructor</li>
-<li>instanceof</li>
-<li>Object.prototype.toString</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/JavaScript/类型检测/#more">more >></a>
+        
       
 
       
@@ -1105,6 +1075,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
@@ -1117,7 +1091,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">interview</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1129,23 +1111,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
