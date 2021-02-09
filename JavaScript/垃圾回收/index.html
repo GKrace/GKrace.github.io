@@ -6,18 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.icu">
-  <title>Grace</title>
+  <title>垃圾回收机制详解 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="是我 也都不是我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Grace">
-<meta property="og:url" content="gracekang.icu/index.html">
+  <meta name="description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收  如 C/C++ 就是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制的，可以参考下面这段 C 代码： 1234567891011// 在堆中分配内存char* p =  (char*)malloc(2048);  // 在堆空间中分配 2048 字节的空间，并将分配后的引用地址保存到 p 中 // 使用 p 指向的内存 &amp;#">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="垃圾回收机制详解">
+<meta property="og:url" content="gracekang.icu/JavaScript/垃圾回收/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="是我 也都不是我">
+<meta property="og:description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收  如 C/C++ 就是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制的，可以参考下面这段 C 代码： 1234567891011// 在堆中分配内存char* p =  (char*)malloc(2048);  // 在堆空间中分配 2048 字节的空间，并将分配后的引用地址保存到 p 中 // 使用 p 指向的内存 &amp;#">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/images/js_gar0.png">
+<meta property="og:image" content="/images/js_gar1.png">
+<meta property="og:image" content="/images/js_gar2.png">
+<meta property="og:image" content="/images/js_gar3.png">
+<meta property="og:updated_time" content="2021-02-09T16:58:46.278Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Grace">
-<meta name="twitter:description" content="是我 也都不是我">
+<meta name="twitter:title" content="垃圾回收机制详解">
+<meta name="twitter:description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收  如 C/C++ 就是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制的，可以参考下面这段 C 代码： 1234567891011// 在堆中分配内存char* p =  (char*)malloc(2048);  // 在堆空间中分配 2048 字节的空间，并将分配后的引用地址保存到 p 中 // 使用 p 指向的内存 &amp;#">
+<meta name="twitter:image" content="/images/js_gar0.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -145,16 +152,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="JavaScript-JavaScript/垃圾回收" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+            <article id="JavaScript-JavaScript/垃圾回收" class="article article-type-JavaScript " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/垃圾回收/">垃圾回收机制详解</a>
+    <h1 class="article-title" itemprop="name">
+      垃圾回收机制详解
     </h1>
   
 
@@ -230,16 +235,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/垃圾回收/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.icu/JavaScript/垃圾回收/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/diary/diary_4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【2021-02-03】</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -254,766 +318,39 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="diary-diary/diary_4" class="article article-type-diary  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/diary/diary_4/">【2021-02-03】</a>
-    </h1>
-  
-
-        
-        <a href="/diary/diary_4/" class="archive-article-date">
-  	<time datetime="2021-02-03T10:36:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我在 21 年 2 月 3 日写下这段文字，我希望今年一年的你哪天觉得迷茫、倦怠或是丧气了的时候就来读一读。</p>
-        
-          <a class="article-more-a" href="/diary/diary_4/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">diary</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/diary/diary_4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#不同语言的垃圾回收策略"><span class="toc-number">1.</span> <span class="toc-text">不同语言的垃圾回收策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代际假说和分代收集"><span class="toc-number">2.</span> <span class="toc-text">代际假说和分代收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垃圾回收器的工作流程"><span class="toc-number">3.</span> <span class="toc-text">垃圾回收器的工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新生区的垃圾回收-副垃圾回收器"><span class="toc-number">4.</span> <span class="toc-text">新生区的垃圾回收-副垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么新生区会被设置的比较小，一般为-1-8M？"><span class="toc-number">4.1.</span> <span class="toc-text">为什么新生区会被设置的比较小，一般为 1-8M？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果活动对象一直存在怎么办？"><span class="toc-number">4.2.</span> <span class="toc-text">如果活动对象一直存在怎么办？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#老生区的垃圾回收-主垃圾回收器"><span class="toc-number">5.</span> <span class="toc-text">老生区的垃圾回收-主垃圾回收器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#停顿问题"><span class="toc-number">6.</span> <span class="toc-text">停顿问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用计数法"><span class="toc-number">7.</span> <span class="toc-text">引用计数法</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="npm-npm/npmUse" class="article article-type-npm  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/npm/npmUse/">给大神出的npm包使用指南</a>
-    </h1>
-  
-
-        
-        <a href="/npm/npmUse/" class="archive-article-date">
-  	<time datetime="2021-01-21T14:57:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="node-环境安装"><a href="#node-环境安装" class="headerlink" title="node 环境安装"></a>node 环境安装</h2><p>安装 node 安装包，node 官方网站: <a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/download/</a><br><img src="/images/npm_3.png" width="60%" height="60%"></p>
-        
-          <a class="article-more-a" href="/npm/npmUse/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/npm/npmUse/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/数组去嵌套" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/数组去嵌套/">数组扁平化</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/数组去嵌套/" class="archive-article-date">
-  	<time datetime="2021-01-17T23:22:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]]];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line"></span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">Array</span>.isArray(item)</span><br><span class="line">      ? (result = result.concat(flatten(item)))</span><br><span class="line">      : result.push(item);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(flatten(arr));</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/JavaScript/数组去嵌套/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/数组去嵌套/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/深拷贝" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/深拷贝/">深拷贝</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/深拷贝/" class="archive-article-date">
-  	<time datetime="2021-01-17T22:35:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如果数组元素是基本类型，就会拷贝一份，互不影响，而如果是对象或者数组，就会只拷贝对象和数组的引用，这样我们无论在新旧数组进行了修改，两者都会发生变化。</p>
-<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2>
-        
-          <a class="article-more-a" href="/JavaScript/深拷贝/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/深拷贝/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/类型检测" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/类型检测/">javascript中的类型检测</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/类型检测/" class="archive-article-date">
-  	<time datetime="2021-01-15T19:35:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><p>es6 前的 js 共 6 种数据类型，分别是：</p>
-<ul>
-<li>Undefined、Null、Boolean、Number、String、Object</li>
-</ul>
-<p>然而用 typeof 得到的返回值分别是：</p>
-<ul>
-<li>undefined、object、boolean、number、string、object</li>
-</ul>
-<font color="#dd0000">注意：null 和 Object 类型全都返回了 <code>&quot;object&quot;</code>, 函数返回 <code>&quot;function&quot;</code></font>
-        
-          <a class="article-more-a" href="/JavaScript/类型检测/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/类型检测/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/函数截流和防抖" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/函数截流和防抖/">函数截流和防抖</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/函数截流和防抖/" class="archive-article-date">
-  	<time datetime="2021-01-15T19:04:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>是指事件触发 n 秒之后执行，如果你在一个事件触发的 n 秒内又触发了这个事件，就以新的事件的时间为准，n 秒后才执行。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">if</span> (timeout) clearTimeout(timeout);</span><br><span class="line">    <span class="comment">// 立即执行</span></span><br><span class="line">    <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">      <span class="keyword">var</span> callNow = !timeout;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        timeout = <span class="literal">null</span>;</span><br><span class="line">      &#125;, wait);</span><br><span class="line">      <span class="keyword">if</span> (callNow) &#123;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-截流"><a href="#2-截流" class="headerlink" title="2. 截流"></a>2. 截流</h2><p>时间戳版本</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> lastCallTime = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">var</span> nowDate = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nowDate - lastCallTime &lt; wait) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    func.apply(context, args);</span><br><span class="line">    lastCallTime = nowDate;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定时器版本</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">if</span> (!timeout) &#123;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        timeout = <span class="literal">null</span>;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/函数截流和防抖/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/数组去重" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/数组去重/">数组去重方法</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/数组去重/" class="archive-article-date">
-  	<time datetime="2021-01-15T16:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>单一数据类型（排除对象，NAN）进行去重，含有 NAN 的用 set</p>
-<h2 id="1-indexOf"><a href="#1-indexOf" class="headerlink" title="1. indexOf"></a>1. indexOf</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (result.indexOf(item) === <span class="number">-1</span>) &#123;</span><br><span class="line">      result.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-sort-排序"><a href="#2-sort-排序" class="headerlink" title="2. sort 排序"></a>2. sort 排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  arr.sort();</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[index + <span class="number">1</span>] !== item) &#123;</span><br><span class="line">      result.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-filter"><a href="#3-filter" class="headerlink" title="3. filter"></a>3. filter</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.filter(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arr.indexOf(item) === index;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>除对象外全部去重</p>
-<p><code>Array.from(new Set(array));</code><br><code>[...new Set(array)]</code></p>
-<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">return</span> arr.filter(<span class="function">(<span class="params">a</span>) =&gt;</span> !seen.has(a) &amp;&amp; seen.set(a, <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Object-键值对"><a href="#Object-键值对" class="headerlink" title="Object 键值对"></a>Object 键值对</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length,</span><br><span class="line">    newArr = [],</span><br><span class="line">    obj = &#123;&#125;;</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj[item]) &#123;</span><br><span class="line">      obj[item] = <span class="number">1</span>;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  全部去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length,</span><br><span class="line">    newArr = [],</span><br><span class="line">    obj = &#123;&#125;;</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj.hasOwnProperty(<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item))) &#123;</span><br><span class="line">      obj[<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item)] = <span class="literal">true</span>;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>结果</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>indexOf</td>
-<td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN, NaN]</td>
-<td>对象和 NaN 不去重</td>
-</tr>
-<tr>
-<td>sort</td>
-<td>[/a/, /a/, “1”, 1, String, 1, String, NaN, NaN, null, undefined]</td>
-<td>对象和 NaN 不去重 数字 1 也不去重</td>
-</tr>
-<tr>
-<td>filter + indexOf</td>
-<td>[1, “1”, null, undefined, String, String, /a/, /a/]</td>
-<td>对象不去重 NaN 会被忽略掉</td>
-</tr>
-<tr>
-<td>优化后的键值对方法</td>
-<td>[1, “1”, null, undefined, String, /a/, NaN]</td>
-<td>全部去重</td>
-</tr>
-<tr>
-<td>Set</td>
-<td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN]</td>
-<td>对象不去重 NaN 去重</td>
-</tr>
-</tbody>
-</table>
-<h2 id="js-中的类型比较"><a href="#js-中的类型比较" class="headerlink" title="js 中的类型比较"></a>js 中的类型比较</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1 = <span class="string">"1"</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str1 == str2); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(str1 === str2); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> == <span class="literal">null</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> === <span class="literal">null</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> == <span class="literal">undefined</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> === <span class="literal">undefined</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断请用 isNAN()</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> == <span class="literal">NaN</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js中正则表达式也是对象 因此都是false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/a/</span> == <span class="regexp">/a/</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/a/</span> === <span class="regexp">/a/</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; == &#123;&#125;); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; === &#123;&#125;); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/数组去重/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="npm-npm/npm" class="article article-type-npm  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/npm/npm/">nrm和npm</a>
-    </h1>
-  
-
-        
-        <a href="/npm/npm/" class="archive-article-date">
-  	<time datetime="2021-01-07T17:36:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="nrm-是一个-npm-源管理器，方便你快速在-npm-源之间进行切换"><a href="#nrm-是一个-npm-源管理器，方便你快速在-npm-源之间进行切换" class="headerlink" title="nrm 是一个 npm 源管理器，方便你快速在 npm 源之间进行切换"></a>nrm 是一个 npm 源管理器，方便你快速在 npm 源之间进行切换</h2><p>众所周知，没有梯子使用 npm 的官方源是不靠谱的，<code>https://registry.npmjs.org/</code>，并且在公司需要用公司的私有源，方便来回切换，nrm 由此出现。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install -g nrm  <span class="comment">//安装nrm</span></span><br><span class="line">nrm ls <span class="comment">//查看可选源(带*号的为当前源)</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/npm_0.png" width="50%" height="60%"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm use &lt;registry&gt; ; <span class="comment">// 切换源</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/npm_2.png" width="50%" height="60%"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// registry为源名  url为源地址</span></span><br><span class="line">nrm add &lt;registry&gt;  url</span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line">nrm del &lt;registry&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>npm init</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/npm/npm/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-js_singlethread/eventLoop2" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/js_singlethread/eventLoop2/">浏览器渲染页面的流程</a>
-    </h1>
-  
-
-        
-        <a href="/js_singlethread/eventLoop2/" class="archive-article-date">
-  	<time datetime="2020-12-22T16:59:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简单梳理下浏览器渲染流程"><a href="#简单梳理下浏览器渲染流程" class="headerlink" title="简单梳理下浏览器渲染流程"></a>简单梳理下浏览器渲染流程</h2><p>浏览器器内核拿到内容后，渲染大概可以划分成以下几个步骤：</p>
-<ul>
-<li>解析 html 建立 dom 树</li>
-<li>解析 css 构建 render 树（将 CSS 代码解析成树形的数据结构，然后结合 DOM 合并成 render 树）</li>
-<li>布局 render 树（Layout/reflow），负责各元素尺寸、位置的计算</li>
-<li>绘制 render 树（paint），绘制页面像素信息</li>
-<li>浏览器会将各层的信息发送给 GPU，GPU 会将各层合成（composite），显示在屏幕上。
-        
-          <a class="article-more-a" href="/js_singlethread/eventLoop2/#more">more >></a>
-        
-      
-
-      
-    </li></ul></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JS运行机制</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/js_singlethread/eventLoop2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+  <div id="SOHUCS" sid="JavaScript/垃圾回收"></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
   
 
 
@@ -1036,8 +373,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
