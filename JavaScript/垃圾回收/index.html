@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="gracekang.icu">
   <title>垃圾回收机制详解 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收  如 C/C++ 就是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制的，可以参考下面这段 C 代码： 1234567891011// 在堆中分配内存char* p =  (char*)malloc(2048);  // 在堆空间中分配 2048 字节的空间，并将分配后的引用地址保存到 p 中 // 使用 p 指向的内存 &amp;#">
+  <meta name="description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="垃圾回收机制详解">
 <meta property="og:url" content="gracekang.icu/JavaScript/垃圾回收/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收  如 C/C++ 就是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制的，可以参考下面这段 C 代码： 1234567891011// 在堆中分配内存char* p =  (char*)malloc(2048);  // 在堆空间中分配 2048 字节的空间，并将分配后的引用地址保存到 p 中 // 使用 p 指向的内存 &amp;#">
+<meta property="og:description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/images/js_gar0.png">
 <meta property="og:image" content="/images/js_gar1.png">
 <meta property="og:image" content="/images/js_gar2.png">
 <meta property="og:image" content="/images/js_gar3.png">
-<meta property="og:updated_time" content="2021-02-09T16:58:46.278Z">
+<meta property="og:updated_time" content="2021-02-22T07:26:02.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="垃圾回收机制详解">
-<meta name="twitter:description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收  如 C/C++ 就是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制的，可以参考下面这段 C 代码： 1234567891011// 在堆中分配内存char* p =  (char*)malloc(2048);  // 在堆空间中分配 2048 字节的空间，并将分配后的引用地址保存到 p 中 // 使用 p 指向的内存 &amp;#">
+<meta name="twitter:description" content="不同语言的垃圾回收策略垃圾数据回收分为  手动回收 自动回收">
 <meta name="twitter:image" content="/images/js_gar0.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
@@ -175,7 +175,8 @@
         <h2 id="不同语言的垃圾回收策略"><a href="#不同语言的垃圾回收策略" class="headerlink" title="不同语言的垃圾回收策略"></a>不同语言的垃圾回收策略</h2><p>垃圾数据回收分为</p>
 <ul>
 <li>手动回收</li>
-<li>自动回收</li>
+<li>自动回收<a id="more"></a>
+</li>
 </ul>
 <p>如 C/C++ 就是使用手动回收策略，何时分配内存、何时销毁内存都是由代码控制的，可以参考下面这段 C 代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在堆中分配内存</span></span><br><span class="line"><span class="keyword">char</span>* p =  (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="number">2048</span>);  <span class="comment">// 在堆空间中分配 2048 字节的空间，并将分配后的引用地址保存到 p 中</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// 使用 p 指向的内存</span></span><br><span class="line"> &#123;</span><br><span class="line">   <span class="comment">//....</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用结束后，销毁这段内存</span></span><br><span class="line"><span class="built_in">free</span>(p)；</span><br><span class="line">p = <span class="literal">NULL</span>；</span><br></pre></td></tr></table></figure>
@@ -448,11 +449,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -468,23 +473,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,7 +481,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
             
             <div class="clearfix"></div>
@@ -649,5 +650,5 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-<div id="live2d-widget" class="live2d-widget-container" style="position: fixed; left: 30px; bottom: -50px; width: 150px; height: 300px; z-index: 99999; opacity: 1; pointer-events: none;"><canvas id="live2d_canvas" width="150" height=" 300" class="live2d_canvas" style="position: absolute; left: 0px; top: 0px; width: 150px; height:  300px;"></canvas></div><script src="https://cdn.zhangxinxu.com/sp/demo/live2d/live2d/js/live2d.js"></script><script>loadlive2d("live2d_canvas", "live2dw/assets/hijiki.model.json");</script></body>
+<div id="live2d-widget" class="live2d-widget-container" style="position: fixed; left: 30px; bottom: -50px; width: 150px; height: 300px; z-index: 99999; opacity: 1; pointer-events: none;"><canvas id="live2d_canvas" width="150" height=" 300" class="live2d_canvas" style="position: absolute; left: 0px; top: 0px; width: 150px; height:  300px;"></canvas></div><script src="https://cdn.zhangxinxu.com/sp/demo/live2d/live2d/js/live2d.js"></script><script>loadlive2d("live2d_canvas", "undefined");</script></body>
 </html>
