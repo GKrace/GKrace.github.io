@@ -322,7 +322,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="node-环境安装"><a href="#node-环境安装" class="headerlink" title="node 环境安装"></a>node 环境安装</h2><p>安装 node 安装包，node 官方网站: <a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/download/</a><br><img src="/images/npm_3.png" width="60%" height="60%"></p>
+        <h2 id="node-环境安装"><a href="#node-环境安装" class="headerlink" title="node 环境安装"></a>node 环境安装</h2>
         
           <a class="article-more-a" href="/npm/npmUse/#more">more >></a>
         
@@ -552,14 +552,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><p>es6 前的 js 共 6 种数据类型，分别是：</p>
-<ul>
-<li>Undefined、Null、Boolean、Number、String、Object</li>
-</ul>
-<p>然而用 typeof 得到的返回值分别是：</p>
-<ul>
-<li>undefined、object、boolean、number、string、object</li>
-</ul>
-<font color="#dd0000">注意：null 和 Object 类型全都返回了 <code>&quot;object&quot;</code>, 函数返回 <code>&quot;function&quot;</code></font>
         
           <a class="article-more-a" href="/JavaScript/类型检测/#more">more >></a>
         
@@ -636,12 +628,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>是指事件触发 n 秒之后执行，如果你在一个事件触发的 n 秒内又触发了这个事件，就以新的事件的时间为准，n 秒后才执行。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait, immediate</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">if</span> (timeout) clearTimeout(timeout);</span><br><span class="line">    <span class="comment">// 立即执行</span></span><br><span class="line">    <span class="keyword">if</span> (immediate) &#123;</span><br><span class="line">      <span class="keyword">var</span> callNow = !timeout;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        timeout = <span class="literal">null</span>;</span><br><span class="line">      &#125;, wait);</span><br><span class="line">      <span class="keyword">if</span> (callNow) &#123;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-截流"><a href="#2-截流" class="headerlink" title="2. 截流"></a>2. 截流</h2><p>时间戳版本</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> lastCallTime = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">var</span> nowDate = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (nowDate - lastCallTime &lt; wait) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    func.apply(context, args);</span><br><span class="line">    lastCallTime = nowDate;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定时器版本</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> timeout;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">if</span> (!timeout) &#123;</span><br><span class="line">      timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        timeout = <span class="literal">null</span>;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">      &#125;, wait);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/JavaScript/函数截流和防抖/#more">more >></a>
+        
       
 
       
@@ -715,52 +704,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>单一数据类型（排除对象，NAN）进行去重，含有 NAN 的用 set</p>
-<h2 id="1-indexOf"><a href="#1-indexOf" class="headerlink" title="1. indexOf"></a>1. indexOf</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (result.indexOf(item) === <span class="number">-1</span>) &#123;</span><br><span class="line">      result.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-sort-排序"><a href="#2-sort-排序" class="headerlink" title="2. sort 排序"></a>2. sort 排序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  arr.sort();</span><br><span class="line">  <span class="keyword">var</span> result = [];</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[index + <span class="number">1</span>] !== item) &#123;</span><br><span class="line">      result.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-filter"><a href="#3-filter" class="headerlink" title="3. filter"></a>3. filter</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.filter(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> arr.indexOf(item) === index;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>除对象外全部去重</p>
-<p><code>Array.from(new Set(array));</code><br><code>[...new Set(array)]</code></p>
-<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> seen = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">return</span> arr.filter(<span class="function">(<span class="params">a</span>) =&gt;</span> !seen.has(a) &amp;&amp; seen.set(a, <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Object-键值对"><a href="#Object-键值对" class="headerlink" title="Object 键值对"></a>Object 键值对</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length,</span><br><span class="line">    newArr = [],</span><br><span class="line">    obj = &#123;&#125;;</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj[item]) &#123;</span><br><span class="line">      obj[item] = <span class="number">1</span>;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  全部去重</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> length = arr.length,</span><br><span class="line">    newArr = [],</span><br><span class="line">    obj = &#123;&#125;;</span><br><span class="line">  arr.forEach(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj.hasOwnProperty(<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item))) &#123;</span><br><span class="line">      obj[<span class="keyword">typeof</span> item + <span class="built_in">JSON</span>.stringify(item)] = <span class="literal">true</span>;</span><br><span class="line">      newArr.push(item);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> newArr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>结果</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>indexOf</td>
-<td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN, NaN]</td>
-<td>对象和 NaN 不去重</td>
-</tr>
-<tr>
-<td>sort</td>
-<td>[/a/, /a/, “1”, 1, String, 1, String, NaN, NaN, null, undefined]</td>
-<td>对象和 NaN 不去重 数字 1 也不去重</td>
-</tr>
-<tr>
-<td>filter + indexOf</td>
-<td>[1, “1”, null, undefined, String, String, /a/, /a/]</td>
-<td>对象不去重 NaN 会被忽略掉</td>
-</tr>
-<tr>
-<td>优化后的键值对方法</td>
-<td>[1, “1”, null, undefined, String, /a/, NaN]</td>
-<td>全部去重</td>
-</tr>
-<tr>
-<td>Set</td>
-<td>[1, “1”, null, undefined, String, String, /a/, /a/, NaN]</td>
-<td>对象不去重 NaN 去重</td>
-</tr>
-</tbody>
-</table>
-<h2 id="js-中的类型比较"><a href="#js-中的类型比较" class="headerlink" title="js 中的类型比较"></a>js 中的类型比较</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1 = <span class="string">"1"</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"1"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str1 == str2); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(str1 === str2); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> == <span class="literal">null</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> === <span class="literal">null</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> == <span class="literal">undefined</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> === <span class="literal">undefined</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断请用 isNAN()</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> == <span class="literal">NaN</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">NaN</span> === <span class="literal">NaN</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js中正则表达式也是对象 因此都是false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/a/</span> == <span class="regexp">/a/</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="regexp">/a/</span> === <span class="regexp">/a/</span>); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; == &#123;&#125;); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(&#123;&#125; === &#123;&#125;); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/JavaScript/数组去重/#more">more >></a>
+        
       
 
       
@@ -833,14 +779,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="nrm-是一个-npm-源管理器，方便你快速在-npm-源之间进行切换"><a href="#nrm-是一个-npm-源管理器，方便你快速在-npm-源之间进行切换" class="headerlink" title="nrm 是一个 npm 源管理器，方便你快速在 npm 源之间进行切换"></a>nrm 是一个 npm 源管理器，方便你快速在 npm 源之间进行切换</h2><p>众所周知，没有梯子使用 npm 的官方源是不靠谱的，<code>https://registry.npmjs.org/</code>，并且在公司需要用公司的私有源，方便来回切换，nrm 由此出现。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install -g nrm  <span class="comment">//安装nrm</span></span><br><span class="line">nrm ls <span class="comment">//查看可选源(带*号的为当前源)</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/npm_0.png" width="50%" height="60%"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm use &lt;registry&gt; ; <span class="comment">// 切换源</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/npm_2.png" width="50%" height="60%"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// registry为源名  url为源地址</span></span><br><span class="line">nrm add &lt;registry&gt;  url</span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line">nrm del &lt;registry&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><p>npm init</p>
-
+        <h2 id="nrm-是一个-npm-源管理器，方便你快速在-npm-源之间进行切换"><a href="#nrm-是一个-npm-源管理器，方便你快速在-npm-源之间进行切换" class="headerlink" title="nrm 是一个 npm 源管理器，方便你快速在 npm 源之间进行切换"></a>nrm 是一个 npm 源管理器，方便你快速在 npm 源之间进行切换</h2>
+        
+          <a class="article-more-a" href="/npm/npm/#more">more >></a>
+        
       
 
       
@@ -1108,19 +1050,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
             
             <div class="clearfix"></div>
