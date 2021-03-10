@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.icu">
-  <title>interview | Grace</title>
+  <title>Archives: 2021/3 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录滴滴一面 2021.01.07  实现一个 EventBus 类，包含 on、off、emit、ones 宏任务、微任务 输出 实现一个模态框组件（开放） 实现一个 0.5 px 的 border HTTP 状态码 HTTP 缓存 Content-type 类型  滴滴二面 2021.01.11  唤起 APP 整套方案a. 如何兜底未安装的情况b. 如何下载完成进入对应页面 介绍整个校验服务">
-<meta name="keywords" content="interview">
-<meta property="og:type" content="article">
-<meta property="og:title" content="interview">
-<meta property="og:url" content="gracekang.icu/interview/inter/index.html">
+  <meta name="description" content="是我 也都不是我">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Grace">
+<meta property="og:url" content="gracekang.icu/archives/2021/03/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="记录滴滴一面 2021.01.07  实现一个 EventBus 类，包含 on、off、emit、ones 宏任务、微任务 输出 实现一个模态框组件（开放） 实现一个 0.5 px 的 border HTTP 状态码 HTTP 缓存 Content-type 类型  滴滴二面 2021.01.11  唤起 APP 整套方案a. 如何兜底未安装的情况b. 如何下载完成进入对应页面 介绍整个校验服务">
+<meta property="og:description" content="是我 也都不是我">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-03-05T02:47:55.480Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="interview">
-<meta name="twitter:description" content="记录滴滴一面 2021.01.07  实现一个 EventBus 类，包含 on、off、emit、ones 宏任务、微任务 输出 实现一个模态框组件（开放） 实现一个 0.5 px 的 border HTTP 状态码 HTTP 缓存 Content-type 类型  滴滴二面 2021.01.11  唤起 APP 整套方案a. 如何兜底未安装的情况b. 如何下载完成进入对应页面 介绍整个校验服务">
+<meta name="twitter:title" content="Grace">
+<meta name="twitter:description" content="是我 也都不是我">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -147,309 +145,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-interview/inter" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      interview
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-JavaScript">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/JavaScript/手写数组方法/" class="archive-article-date">
+  	<time datetime="2021-03-04T16:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-04</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/JavaScript/手写数组方法/">手写数组方法</a>
     </h1>
   
 
-        
-        <a href="/interview/inter/" class="archive-article-date">
-  	<time datetime="2020-05-03T16:31:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录<br>滴滴一面 2021.01.07</p>
-<ol>
-<li>实现一个 EventBus 类，包含 on、off、emit、ones</li>
-<li>宏任务、微任务 输出</li>
-<li>实现一个模态框组件（开放）</li>
-<li>实现一个 0.5 px 的 border</li>
-<li>HTTP 状态码</li>
-<li>HTTP 缓存</li>
-<li>Content-type 类型</li>
-</ol>
-<p>滴滴二面 2021.01.11</p>
-<ol start="8">
-<li>唤起 APP 整套方案<br>a. 如何兜底未安装的情况<br>b. 如何下载完成进入对应页面</li>
-<li>介绍整个校验服务项目</li>
-<li>在项目中如何遍历的组件树？</li>
-<li>TypeScript 有什么好处？</li>
-<li>为什么要去 Node 化？</li>
-<li>MVC、MVP、MVVM 思想</li>
-<li>Vue 2.x 和 3.0 的区别</li>
-<li>在 Vue 中，哪个钩子函数中应该发送请求</li>
-<li>Object.definePrototype 和 Proxy</li>
-<li>如何在 nginx 上开启缓存（etag、if-last-modifed）</li>
-<li>算法 1: “abc12 jjkaqw77 lala5” 输出 “lala5 abc12 jjkaqw77”</li>
-<li><p>算法 2: 洗牌算法</p>
-<p>百度一面 2021.01.12</p>
-</li>
-<li><p>项目：如何保证组件规范？</p>
-</li>
-<li>HTTP 缓存</li>
-<li>BFC 是什么、如何触发、开发中的应用</li>
-<li>浏览器渲染过程、重排和重绘</li>
-<li>JS 同步、异步任务，宏任务微任务，事件循环</li>
-<li>函数节流和防抖</li>
-<li>移动端适配 rem、em、vh、px</li>
-<li>如何实现 1px</li>
-<li>前端优化</li>
-<li>如何优化 Webpack 构建？</li>
-<li>Webpack 的构建流程</li>
-<li>编程题：实现一个倒计时器</li>
-<li>算法： 在字符串中找出第一个只出现一次的字符</li>
-</ol>
-<p>腾讯一面 2021.01.14</p>
-<ol>
-<li>HTTP 缓存</li>
-<li>HTTP 协议和 IP 协议的关系</li>
-<li>HTTP 协议是全双工协议吗</li>
-<li>Websocket 和 TCP 和 HTTP 关系</li>
-<li>访问一个接口的整个过程是什么？</li>
-<li>HTTPS 协议原理？如何保证客户端取到到证书是正确的？</li>
-<li>Cookie 是干什么的？Cookie 防护</li>
-<li>Promise 异常捕获的问题。内层和外层</li>
-<li>浏览器渲染页面的整个过程</li>
-<li>JS 文件如何不阻塞文档渲染</li>
-<li>Diff 算法原理</li>
-<li>Vue 数据状态如何传递？</li>
-<li>Vuex 使用场景</li>
-<li>Vue 数据是如何更新到视图上的？</li>
-<li>Vue 和 React 差别？选择？</li>
-<li>Vue 为什么不需要关心重复渲染的问题？</li>
-<li>不同页面之间传值的几种方法？</li>
-<li>算法：JS 数组去重的几种方法？时间复杂度</li>
-</ol>
-<p>百度二面 2021.01.15</p>
-<ol>
-<li>项目相关：活动页是如何发布的？</li>
-<li>Vue 组件传值方式</li>
-<li>浏览器 EventLoop</li>
-<li>Node 和浏览器端有什么区别？</li>
-<li>Node 中读取一个文件，如何知道读取文件失败了？</li>
-<li>Webpack 打包构建流程</li>
-<li>前端项目如何做优化？</li>
-<li>最近在关注什么新技术？</li>
-<li>平时怎么学习前端技术？</li>
-<li>编程题 1：实现一个 CSS 布局，尽可能多的方案</li>
-<li>编程题 2：n 个人吃饭人均花了 i 元，后来有来了 m 个人，这 m 个人每人发多少红包？</li>
-<li>编程题 3：实现一个正则，匹配 URL，包括 path，查询字符串</li>
-</ol>
-<p>阿里一面 2021.01.19</p>
-<p>字节一面 2021.01.22</p>
-<ol>
-<li>项目：校验流程为什么选择放到后端？</li>
-<li>项目：详细讲一下构建发布流程</li>
-<li>Webpack 中如果抽离公共依赖的？</li>
-<li>编程题 1：实现 Promise.all</li>
-<li>编程题 2： 2px 2px 3px rgb(1,2,3),2px 2px 3px rgb(11,22,33) 转成 object （正则去除分割逗号）</li>
-</ol>
-<p>百度三面 2021.01.24</p>
-<p>字节二面 2021.01.25</p>
-<ol>
-<li>CSS 如何实现 1px 物理像素，各个方案优缺点</li>
-<li>CSS Head 标签中有什么标签</li>
-<li>CSS 选择器优先级是如何计算的？</li>
-<li>Less 前端 ？ 后端？</li>
-<li>DOM 操作中 getComputeStyle 方法 有哪些参数？</li>
-<li>箭头函数和普通函数的区别？</li>
-<li>let 和 var 区别，在 for 循环体中定义 let，let 属于哪个作用域</li>
-<li>Node 中 GC，具体三色标记过程，标记清除、标记整理除了收缩两端还有什么？</li>
-<li>Node 中 require 和 export 底层实现？</li>
-<li>Node 中的 Eventloop，浏览器中宏任务类型？</li>
-<li>你觉得为什么 Vue 中 v-for 需要内嵌在 tag 内，而不是像服务端模版单独存在一个 tag</li>
-<li>编程题：实现一个 bind ； （如果循环调用 bind 会怎样？）</li>
-<li>算法题：二叉树的深度</li>
-</ol>
-<p>快手一面 2021.01.26</p>
-<ol>
-<li>Cookie 属性 httpOnly 和 SameSite</li>
-<li>HTTP 请求中的预检请求 Option，什么时候会发？哪些方法会发？</li>
-<li>webpack splitchunk 了解吗？</li>
-<li>webpack5 了解吗</li>
-<li>说说你对 TypeScript 理解</li>
-<li>a?.b 和 a??b 什么意识</li>
-<li>React Hook 了解吗？</li>
-<li>编程题 1 ： 归并排序 （两个有序数组合成一个）</li>
-<li>编程题 2 ：A(1)()===1 A(1)(2)(3)() ===6 A(1)(3)(5)(7)()===16</li>
-<li>系统设计题：实现一个 CheckBoxGroup，返回选中状态，以及整体 chekBoxgroup 的状态</li>
-</ol>
-<p>阿里二面 2021.01.27</p>
-<ol>
-<li>Vue 3.0 新特性</li>
-<li>移动端布局方案</li>
-<li>编程题：实现 IndexOf，不借助任何原生方法</li>
-<li>编程题：实现一个 DOM 事件代理方法 delegate，接收一个 dom 元素，有两个方法，分别是添加 on 和 off，对子元素绑定事件，支持动态插入</li>
-<li>编程题：实现一个 normalize 函数，能将输入的特定的字符串转化为特定的结构化数据<br>a. ‘[abc[bcd[def]]]’ -&gt; {value: ‘abc’, children: {value: ‘bcd’, children: {value: ‘def’}}}</li>
-</ol>
-<p>阿里三面 2021.01.28<br>基本全是项目，考察业务思考、技术深度</p>
-<p>快手二面 2021.01.29</p>
-<ol>
-<li>Vue 中的 $nextTick 是什么？</li>
-<li>Vue 中 data 为什么是一个函数？</li>
-<li>require 过程是怎样的？</li>
-<li>Webpack 构建过程 / 原理</li>
-<li>Webpack Plugin 事件勾子触发事件点</li>
-<li>webpack compiler 和 compilation</li>
-<li>算法题：二维数组顺指针输出</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.icu/interview/inter/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/acm/shuffle/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          shuffle洗牌算法
-        
-      </div>
-    </a>
   
   
-    <a href="/interview/css/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CSS部分</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    目录，不存在的…
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="interview/inter"></div> 
-<script type="text/javascript"> 
-(function(){ 
-var appid = "true"; 
-var conf = "true"; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-  
-
-  
+    
 
 
           </div>
@@ -472,8 +221,8 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
