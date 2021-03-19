@@ -147,6 +147,191 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="JavaScript-JavaScript/高阶函数" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/JavaScript/高阶函数/">高阶函数</a>
+    </h1>
+  
+
+        
+        <a href="/JavaScript/高阶函数/" class="archive-article-date">
+  	<time datetime="2020-08-05T16:52:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是高阶函数"><a href="#什么是高阶函数" class="headerlink" title="什么是高阶函数"></a>什么是高阶函数</h2><p>高阶函数两个特点，满足其中一个即可：</p>
+<ul>
+<li>接受一个或多个函数作为输入，例如，回调函数</li>
+<li>输出一个函数</li>
+</ul>
+        
+          <a class="article-more-a" href="/JavaScript/高阶函数/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/JavaScript/高阶函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="javascript-JavaScript/bind-call-apply" class="article article-type-javascript  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/JavaScript/bind-call-apply/">Bind，call，apply,new,instanceof,Object.create实现原理</a>
+    </h1>
+  
+
+        
+        <a href="/JavaScript/bind-call-apply/" class="archive-article-date">
+  	<time datetime="2020-07-13T16:35:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实现-call"><a href="#实现-call" class="headerlink" title="实现 call"></a>实现 call</h3><blockquote>
+<p>call() 方法在使用一个指定的 this 值和若干个指定的参数值的前提下调用某个函数或方法。</p>
+</blockquote>
+<ul>
+<li>call 改变了 this 的指向，指向到函数</li>
+<li>函数执行了</li>
+</ul>
+<p>模拟过程：当调用 call 的时候，将函数作为对象的参数并用对象进行调用</p>
+<ul>
+<li>将函数设为对象的属性</li>
+<li>执行该函数</li>
+<li>删除该函数</li>
+</ul>
+<p>First: 第一版实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call1 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  context.fn = <span class="keyword">this</span>;</span><br><span class="line">  context.fn();</span><br><span class="line">  <span class="keyword">delete</span> context.fn;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Second:进行传参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call2 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> args = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    args.push(<span class="string">"arguments["</span> + i + <span class="string">"]"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">eval</span>(<span class="string">"context.fn("</span> + args + <span class="string">")"</span>);</span><br><span class="line">  <span class="keyword">delete</span> context.fn;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Third: this 参数是 null 的情况，默认指向 window，考虑返回值的存在。举个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar.call(<span class="literal">null</span>); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p>其次，函数是有返回值的，最终版本为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第三版</span></span><br><span class="line"><span class="built_in">Function</span>.prototype.call2 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> context = context || <span class="built_in">window</span>;</span><br><span class="line">  context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> args = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">    args.push(<span class="string">"arguments["</span> + i + <span class="string">"]"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> result = <span class="built_in">eval</span>(<span class="string">"context.fn("</span> + args + <span class="string">")"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> context.fn;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="实现-apply"><a href="#实现-apply" class="headerlink" title="实现 apply"></a>实现 apply</h3><p>apply 实现与 call 类似</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.apply = <span class="function"><span class="keyword">function</span> (<span class="params">context, arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> context = <span class="built_in">Object</span>(context) || <span class="built_in">window</span>;</span><br><span class="line">  context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> result;</span><br><span class="line">  <span class="keyword">if</span> (!arr) &#123;</span><br><span class="line">    result = context.fn();</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> args = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">      args.push(<span class="string">"arr["</span> + i + <span class="string">"]"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    result = <span class="built_in">eval</span>(<span class="string">"context.fn("</span> + args + <span class="string">")"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">delete</span> context.fn;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="实现-bind"><a href="#实现-bind" class="headerlink" title="实现 bind"></a>实现 bind</h3><blockquote>
+<p>bind()方法会创建一个新函数。当这个新函数被调用时，bind()的第一个参数将作为它运行时的 this,之后的序列参数将会在传递的实参前传入作为它的参数。</p>
+</blockquote>
+<ul>
+<li>返回一个函数</li>
+<li>可以传入参数</li>
+</ul>
+        
+          <a class="article-more-a" href="/JavaScript/bind-call-apply/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/JavaScript/bind-call-apply/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-JavaScript/Promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -438,79 +623,6 @@
 
 
   
-    <article id="post-acm/stack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/acm/stack/">栈和队列</a>
-    </h1>
-  
-
-        
-        <a href="/acm/stack/" class="archive-article-date">
-  	<time datetime="2020-05-22T18:15:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="栈-后进先出-LIFO-Last-In-First-Out"><a href="#栈-后进先出-LIFO-Last-In-First-Out" class="headerlink" title="栈 后进先出(LIFO/Last In First Out)"></a>栈 后进先出(LIFO/Last In First Out)</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/acm/stack/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-interview/offset" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -558,6 +670,79 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/interview/offset/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-acm/stack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/acm/stack/">栈和队列</a>
+    </h1>
+  
+
+        
+        <a href="/acm/stack/" class="archive-article-date">
+  	<time datetime="2020-05-22T18:15:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="栈-后进先出-LIFO-Last-In-First-Out"><a href="#栈-后进先出-LIFO-Last-In-First-Out" class="headerlink" title="栈 后进先出(LIFO/Last In First Out)"></a>栈 后进先出(LIFO/Last In First Out)</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/acm/stack/">展开全文 >></a>
         </p>
       
 
@@ -948,34 +1133,101 @@
 
 
   
-    <article id="JavaScript-JavaScript/Object" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+    <article id="post-interview/myInter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/Object/">面向对象精要总结</a>
+      <a class="article-title" href="/interview/myInter/">my_interview</a>
     </h1>
   
 
         
-        <a href="/JavaScript/Object/" class="archive-article-date">
-  	<time datetime="2020-02-28T00:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-28</time>
+        <a href="/interview/myInter/" class="archive-article-date">
+  	<time datetime="2020-03-11T10:42:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一-基本数据类型及其区分"><a href="#一-基本数据类型及其区分" class="headerlink" title="一. 基本数据类型及其区分"></a>一. 基本数据类型及其区分</h2><p>javascript 中存在两种数据类型：</p>
+        <h3 id="小米-2"><a href="#小米-2" class="headerlink" title="小米 2"></a>小米 2</h3><ol>
+<li>为啥不写游戏了</li>
+</ol>
+<h4 id="2-类型转换-和-的区别-null-false-undefined-null-undefined-false"><a href="#2-类型转换-和-的区别-null-false-undefined-null-undefined-false" class="headerlink" title="2. 类型转换 == 和 === 的区别 null == false undefined == null undefined == false ?"></a>2. 类型转换 == 和 === 的区别 null == false undefined == null undefined == false ?</h4><p>区别是相等运算符（==）比较两个值是否相等，严格相等运算符（===）比较它们是否为“同一个值”。<br>如果两个值不是同一类型，严格相等运算符（===）直接返回 false，而相等运算符（==）会将它们转换成同一个类型，再用严格相等运算符进行比较。</p>
 <ul>
-<li>原始类型： 保存为简单数据值，存储方式为栈</li>
-<li>引用类型：保存为对象，本质是指向内存位置的引用，存储方式为堆</li>
+<li><p>=== 比较</p>
+<ul>
+<li>原始类型：值相同就返回 true，值不同就返回 false，NaN 与任何值都不相等（包括自身），正 0 等于负 0</li>
+<li>引用类型：比较是否指向同一个地址</li>
+<li>undefined 和 null 与自身严格相等<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span>  <span class="comment">// false</span></span><br><span class="line">+<span class="number">0</span> === <span class="number">-0</span> <span class="comment">// true</span></span><br><span class="line">&#123;&#125; === &#123;&#125; <span class="comment">// false</span></span><br><span class="line">[] === [] <span class="comment">// false</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; === <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-        
-          <a class="article-more-a" href="/JavaScript/Object/#more">more >></a>
-        
+</li>
+<li><p>== 相等运算符</p>
+<ul>
+<li><p>原始类型的值: 原始类型的数据会转换成数值类型再进行比较</p>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> == <span class="literal">true</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 等同于 1 === Number(true)</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="literal">false</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 等同于 0 === Number(false)</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span> == <span class="literal">true</span>; <span class="comment">// false</span></span><br><span class="line"><span class="comment">// 等同于 2 === Number(true)</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span> == <span class="literal">false</span>; <span class="comment">// false</span></span><br><span class="line"><span class="comment">// 等同于 2 === Number(false)</span></span><br><span class="line"></span><br><span class="line"><span class="string">"true"</span> == <span class="literal">true</span>; <span class="comment">// false</span></span><br><span class="line"><span class="comment">// 等同于 Number('true') === Number(true)</span></span><br><span class="line"><span class="comment">// 等同于 NaN === 1</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span> == <span class="number">0</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 等同于 Number('') === 0</span></span><br><span class="line"><span class="comment">// 等同于 0 === 0</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span> == <span class="literal">false</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 等同于 Number('') === Number(false)</span></span><br><span class="line"><span class="comment">// 等同于 0 === 0</span></span><br><span class="line"></span><br><span class="line"><span class="string">"1"</span> == <span class="literal">true</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 等同于 Number('1') === Number(true)</span></span><br><span class="line"><span class="comment">// 等同于 1 === 1</span></span><br><span class="line"></span><br><span class="line"><span class="string">"\n  123  \t"</span> == <span class="number">123</span>; <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 因为字符串转为数字时，省略前置和后置的空格</span></span><br></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>对象与原始类型值比较:对象转化成原始类型的值，再进行比较。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">？</span><br><span class="line">    [<span class="number">1</span>] == <span class="number">1</span>  <span class="comment">// true</span></span><br><span class="line">    <span class="comment">// 等同于 Number([1]) == 1</span></span><br><span class="line"></span><br><span class="line">    [<span class="number">1</span>] == <span class="string">'1'</span> <span class="comment">// true</span></span><br><span class="line">    <span class="comment">// 等同于 Number([1]) == Number('1')</span></span><br><span class="line"></span><br><span class="line">    [<span class="number">1</span>] == <span class="literal">true</span> <span class="comment">// true</span></span><br><span class="line">    <span class="comment">// 等同于 Number([1]) == Number(true)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>undefined 和 null 与其他类型的值比较时，结果都为 false，它们互相比较时结果为 true。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span> == <span class="literal">null</span>; <span class="comment">// false</span></span><br><span class="line"><span class="literal">false</span> == <span class="literal">undefined</span>; <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="literal">null</span>; <span class="comment">// false</span></span><br><span class="line"><span class="number">0</span> == <span class="literal">undefined</span>; <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">null</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-“11”-gt-“2”-返回的是什么值-为什么"><a href="#2-“11”-gt-“2”-返回的是什么值-为什么" class="headerlink" title="2. “11” &gt; “2” 返回的是什么值 为什么"></a>2. “11” &gt; “2” 返回的是什么值 为什么</h4><p>比较运算符：比较运算符用于比较两个值的大小，然后返回一个布尔值，表示是否满足指定的条件。对于非相等的比较，算法是先看两个运算子是否都是字符串，如果是的，就按照字典顺序比较（实际上是比较 Unicode 码点）；</p>
+<ul>
+<li>字符串的比较：字符串按照字典顺序进行比较。 调用<code>charCodeAt()</code> JavaScript 引擎内部首先比较首字符的 Unicode 码点。如果相等，再比较第二个字符的 Unicode 码点，以此类推。<br>大写字母 A-Z 对应的 ASCII 码值是 65-90<br>小写字母 a-z 对应的 ASCII 码值是 97-122<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"cat"</span> &gt; <span class="string">"dog"</span>; <span class="comment">// false</span></span><br><span class="line"><span class="string">"cat"</span> &gt; <span class="string">"catalog"</span>; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>+号运算符</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;+[] 是因为把&#123;&#125;当成了块级作用域 +[] 会先调用toString方法 <span class="string">''</span> +<span class="string">''</span>相当于NUmber(<span class="string">''</span>)</span><br><span class="line">[]+&#123;&#125; 相当于 <span class="string">''</span>+ <span class="string">'[object Object] '</span> 字符串拼接</span><br><span class="line">&#123;&#125;+<span class="number">0</span>  块级作用域 +<span class="number">0</span> <span class="comment">// 0</span></span><br><span class="line">[]+<span class="number">0</span> === <span class="string">""</span> + <span class="number">0</span>  <span class="string">"0"</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-css-常用的单位-rem-具体算法-设备像素比和逻辑像素比-dpr"><a href="#3-css-常用的单位-rem-具体算法-设备像素比和逻辑像素比-dpr" class="headerlink" title="3. css 常用的单位 rem 具体算法 设备像素比和逻辑像素比 dpr"></a>3. css 常用的单位 rem 具体算法 设备像素比和逻辑像素比 dpr</h4><p><img src="/images/my_inter_0.png" width="60%" height="60%"></p>
+<ul>
+<li><p>px（绝对长度单位）</p>
+</li>
+<li><p>em 相对长度单位 : 浏览器的默认字体都是 16px，那么 1em=16px，以此类推计算 12px=0.75em，10px=0.625em，2em=32px；为了简化 font-size 的换算，我们在 body 中写入一下代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;<span class="attribute">font-size</span>: <span class="number">62.5%</span>; &#125;</span><br><span class="line">公式16px*62.5%=10px</span><br></pre></td></tr></table></figure>
+<p>这样页面中 1em=10px,1.2em=12px,1.4em=14px,1.6em=16px，使得视觉、使用、书写都得到了极大的帮助。<br>em 的缺点：</p>
+<ul>
+<li>em 的值并不是固定的；</li>
+<li>em 会继承父级元素的字体大小（参考物是父元素的 font-size；）</li>
+<li>em 中所有的字体都是相对于父元素的大小决定的；所以如果一个设置了 font-size:1.2em 的元素在另一个设置了 font-size:1.2em 的元素里，而这个元素又在另一个设置了 font-size:1.2em 的元素里，那么最后计算的结果是 1.2X1.2X1.2=1.728em， 宽度高度也是同理</li>
+</ul>
+</li>
+<li><p>rem 浏览器的默认字体都是 16px，那么 1rem=16px，以此类推计算 12px=0.75rem，10px=0.625rem，2rem=32px； 为了简化 font-size 的换算，我们在根元素 html 中加入 font-size: 62.5%;</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">62.5%</span>;</span><br><span class="line">&#125; <span class="comment">/* 公式 16px*62.5%=10px \*/</span></span><br></pre></td></tr></table></figure>
+<p>特点：</p>
+<ul>
+<li>rem 单位可谓集相对大小和绝对大小的优点于一身</li>
+<li>和 em 不同的是 rem 总是相对于根元素(如:root{})，而不像 em 一样使用级联的方式来计算尺寸。这种相对单位使用起来更简单。</li>
+<li>rem 支持 IE9 及以上，意思是相对于根元素 html（网页），不会像 em 那样，依赖于父元素的字体大小，而造成混乱。使用起来安全了很多。</li>
+</ul>
+</li>
+<li><p>百分比 % 相对单位，每个子元素透过「百分比」乘以父元素的 px 值。</p>
+</li>
+<li>vw vh vw<ul>
+<li>1vw = 视口宽度的 1%</li>
+<li>vh 1vh = 视口高度的 1%</li>
+<li>vmin 选取 vw 和 vh 中最小的那个</li>
+<li>vmax 选取 vw 和 vh 中最大的那个</li>
+</ul>
+</li>
+</ul>
+<p>1<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>11<br>1<br>1<br>1<br>1</p>
+<ol start="4">
+<li>垂直水平居中 align-items justify-content 属性值都有那些</li>
+<li>bfc</li>
+<li>transfrom translate 具体干嘛的 8. 前端性能优化 懒加载的原理 如何判断 然后 offsetwidth 那个差值是啥 9. react 生命周期 删掉的周期是为啥 新增了啥 讲下 shouldcomponentupdate 10. react 组件之间通信 父子 兄弟节点 11. redux 流程 12. context 和 redux 区别了解 13. 数组去重有哪些方式 14. new Set 能去所有数组吗 如果里边有对象能去么 为什么 15. 如果实现全数据类型去重的方案 16. 实现 reduce</li>
+</ol>
+
       
 
       
@@ -988,7 +1240,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
         		</li>
       		
 		</ul>
@@ -998,160 +1250,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/Object/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="vue-vue/vue响应式原理" class="article article-type-vue  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/vue/vue响应式原理/">vue响应式原理</a>
-    </h1>
-  
-
-        
-        <a href="/vue/vue响应式原理/" class="archive-article-date">
-  	<time datetime="2020-02-26T20:35:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>待定</p>
-<h3 id="Vue2-的响应式原理"><a href="#Vue2-的响应式原理" class="headerlink" title="Vue2 的响应式原理"></a>Vue2 的响应式原理</h3>
-        
-          <a class="article-more-a" href="/vue/vue响应式原理/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/vue/vue响应式原理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="http-http/https" class="article article-type-http  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/http/https/">https</a>
-    </h1>
-  
-
-        
-        <a href="/http/https/" class="archive-article-date">
-  	<time datetime="2020-01-09T20:33:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HTTPS 是在 HTTP 上建立 SSL 加密层，并对传输数据进行加密，是 HTTP 协议的安全版。HTTPS 经由 HTTP 进行通信，但利用 SSL/TLS 来加密数据包。</p>
-        
-          <a class="article-more-a" href="/http/https/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/http/https/">展开全文 >></a>
+          <a class="article-more-a" href="/interview/myInter/">展开全文 >></a>
         </p>
       
 
@@ -1183,7 +1282,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1282,10 +1381,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
@@ -1294,11 +1389,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
+                <a href="javascript:void(0)" class="js-tag color3">my-interview</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1306,11 +1397,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">npm</a>
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1318,7 +1405,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1326,7 +1425,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
