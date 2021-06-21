@@ -6,25 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="gracekang.icu">
-  <title>给大神出的npm包使用指南 | Grace</title>
+  <title>html2Canvas踩坑实录 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="node 环境安装">
-<meta name="keywords" content="npm">
+  <meta name="description" content="最近项目需求，想分享一张海报到微信，于是用了 html2canvas 这个库，踩了很多坑（一些问题到现在还在坑里），特此记录下。">
+<meta name="keywords" content="tools">
 <meta property="og:type" content="article">
-<meta property="og:title" content="给大神出的npm包使用指南">
-<meta property="og:url" content="gracekang.icu/npm/npmUse/index.html">
+<meta property="og:title" content="html2Canvas踩坑实录">
+<meta property="og:url" content="gracekang.icu/tools/html2Canvas/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="node 环境安装">
+<meta property="og:description" content="最近项目需求，想分享一张海报到微信，于是用了 html2canvas 这个库，踩了很多坑（一些问题到现在还在坑里），特此记录下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/images/npm_3.png">
-<meta property="og:image" content="/images/npm_4.png">
-<meta property="og:image" content="/images/npm_5.png">
-<meta property="og:image" content="/images/npm_6.png">
-<meta property="og:updated_time" content="2021-02-25T06:52:40.116Z">
+<meta property="og:updated_time" content="2021-06-21T02:15:23.462Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="给大神出的npm包使用指南">
-<meta name="twitter:description" content="node 环境安装">
-<meta name="twitter:image" content="/images/npm_3.png">
+<meta name="twitter:title" content="html2Canvas踩坑实录">
+<meta name="twitter:description" content="最近项目需求，想分享一张海报到微信，于是用了 html2canvas 这个库，踩了很多坑（一些问题到现在还在坑里），特此记录下。">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -152,38 +147,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="npm-npm/npmUse" class="article article-type-npm " itemscope itemprop="blogPost">
+            <article id="post-tools/html2Canvas" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      给大神出的npm包使用指南
+      html2Canvas踩坑实录
     </h1>
   
 
         
-        <a href="/npm/npmUse/" class="archive-article-date">
-  	<time datetime="2021-01-21T14:57:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-21</time>
+        <a href="/tools/html2Canvas/" class="archive-article-date">
+  	<time datetime="2021-06-18T15:11:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="node-环境安装"><a href="#node-环境安装" class="headerlink" title="node 环境安装"></a>node 环境安装</h2><a id="more"></a>
-<p>安装 node 安装包，node 官方网站: <a href="https://nodejs.org/zh-cn/download/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/download/</a><br><img src="/images/npm_3.png" width="60%" height="60%"></p>
-<p>windows 下直接双击安装即可，安装之后打开命令行，用下面两个简单的命令，分别检测 Node.js 和 NPM 是否真的安装正确。</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">-v</span></span><br><span class="line"></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>输出如下版本号即代表安装成功<br><img src="/images/npm_4.png" width="30%" height="30%"></p>
-<h2 id="包安装"><a href="#包安装" class="headerlink" title="包安装"></a>包安装</h2><p>打开命令行，输入下面命令进行安装所需要的包：</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">npm</span> install -g grace-operate-<span class="class"><span class="keyword">data</span></span></span><br></pre></td></tr></table></figure>
-<p>安装成功如图：<br><img src="/images/npm_5.png" width="50%" height="100%"></p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>输入命令<code>delete</code>，会出现要求你选择所操作的文件目录，直接把需要修改的 txt 文件拖拽进去即可，按回车键。</p>
-<p><img src="/images/npm_6.png" width="30%" height="100%"></p>
-<p>更改过的数据会在命令行打印出来，可简单对比下有无问题</p>
-<p><strong>注意：所输入文件，一定是要规则命名的，名称中不能有空格。</strong><br>有问题请@我</p>
+        <p>最近项目需求，想分享一张海报到微信，于是用了 html2canvas 这个库，踩了很多坑（一些问题到现在还在坑里），特此记录下。</p>
 
       
 
@@ -197,7 +181,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tools</a>
         		</li>
       		
 		</ul>
@@ -253,7 +237,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.icu/npm/npmUse/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http:gracekang.icu/tools/html2Canvas/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -267,18 +251,9 @@
   
 <nav id="article-nav">
   
-    <a href="/diary/diary_4/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          【2021-02-03】
-        
-      </div>
-    </a>
   
-  
-    <a href="/JavaScript/数组去嵌套/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">数组扁平化</div>
+    <a href="/tools/charles/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Charles抓包说明</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -305,7 +280,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#node-环境安装"><span class="toc-number">1.</span> <span class="toc-text">node 环境安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包安装"><span class="toc-number">2.</span> <span class="toc-text">包安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行"><span class="toc-number">3.</span> <span class="toc-text">运行</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
@@ -321,7 +296,7 @@
   
 
   
-  <div id="SOHUCS" sid="npm/npmUse"></div> 
+  <div id="SOHUCS" sid="tools/html2Canvas"></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 

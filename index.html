@@ -147,6 +147,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tools/html2Canvas" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/tools/html2Canvas/">html2Canvas踩坑实录</a>
+    </h1>
+  
+
+        
+        <a href="/tools/html2Canvas/" class="archive-article-date">
+  	<time datetime="2021-06-18T15:11:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近项目需求，想分享一张海报到微信，于是用了 html2canvas 这个库，踩了很多坑（一些问题到现在还在坑里），特此记录下。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tools</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/tools/html2Canvas/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-tools/charles" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -170,30 +244,14 @@
         <p>以下操作适用于 mac</p>
 <h2 id="ios-包，安卓同理"><a href="#ios-包，安卓同理" class="headerlink" title="ios 包，安卓同理"></a>ios 包，安卓同理</h2><ul>
 <li>1.确保 iOS 设备和 Mac 处于同一局域网内，可开热点。</li>
-<li>2.Charles 中从菜单栏『Help -&gt; Local IP Address』获取 mac 局域网地址<br><img src="/images/charles_2.png" width="50%" height="50%"></li>
-<li>3.设置 iOS HTTP 代理，打开 iOS 设备对应 WIFI 设置，『配置代理-&gt;手动』添加代理 IP 地址（Mac 的局域网地址）和端口号（8888)<br><img src="/images/charles_3.png" width="30%" height="30%"></li>
-<li>4.在 iOS 设备上访问数据链接，Charles 弹出 Access Control 确认对话框，选择 Allow，可以开始抓取 HTTP 包。</li>
-<li><p>5.抓取 HTTPS 包：在菜单栏选择 『Help -&gt; SSL Proxying -&gt; Install Charles Root Certificate on a Mobile Device or a Remote Browser』</p>
-<p><img src="/images/charles_4.png" width="50%" height="50%"></p>
-<p>弹出以下提示框<br><img src="/images/charles_5.png" width="50%" height="50%"></p>
-</li>
-<li><p>6.根据上述提示，在 iOS 设备上使用 Safari 浏览器访问<code>http://chls.pro/ssl</code>，Safari 浏览器会自动下载证书并提示安装，根据提示一步一步安装好，证书会被添加到『设置 -&gt; 通用 -&gt; 描述文件』中。</p>
-</li>
-<li><p>7.进入『设置 -&gt; 通用 -&gt; 关于本机 -&gt; 证书信任设置』，对上一步安装的 Charles 证书启用完全信任。</p>
-<p><img src="/images/charles_6.png" width="50%" height="50%"></p>
-</li>
-<li><p>8.在 iOS 设备上访问 HTTPS 数据链接，可以开始抓取 HTTPS 包。抓包域名端口设置和 macOS 应用程序相同。</p>
-<p><img src="/images/charles_7.png" width="50%" height="50%"></p>
-</li>
-</ul>
-<p>以上，就可以愉快的抓手机上的 app 数据包了。</p>
-<h2 id="macos-包"><a href="#macos-包" class="headerlink" title="macos 包"></a>macos 包</h2><h3 id="1-下载好-charles，在菜单栏勾选『Proxy-gt-macOS-Proxy』"><a href="#1-下载好-charles，在菜单栏勾选『Proxy-gt-macOS-Proxy』" class="headerlink" title="1. 下载好 charles，在菜单栏勾选『Proxy -&gt; macOS Proxy』,"></a>1. 下载好 charles，在菜单栏勾选『Proxy -&gt; macOS Proxy』,</h3><p><img src="/images/charles_1.png" width="50%" height="50%"></p>
-<h3 id="2-打开电脑-『wifi-gt-网络偏好设置-gt-高级-gt-默认端口-8888』"><a href="#2-打开电脑-『wifi-gt-网络偏好设置-gt-高级-gt-默认端口-8888』" class="headerlink" title="2. 打开电脑 『wifi-&gt;网络偏好设置-&gt;高级-&gt;默认端口 8888』"></a>2. 打开电脑 『wifi-&gt;网络偏好设置-&gt;高级-&gt;默认端口 8888』</h3><p><img src="/images/charles_0.png" width="50%" height="50%"></p>
-
+<li>2.Charles 中从菜单栏『Help -&gt; Local IP Address』获取 mac 局域网地址
+        
+          <a class="article-more-a" href="/tools/charles/#more">more >></a>
+        
       
 
       
-    </div>
+    </li></ul></div>
     <div class="article-info article-info-index">
       
       
@@ -848,82 +906,6 @@
 
 
   
-    <article id="npm-npm/npmUse" class="article article-type-npm  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/npm/npmUse/">给大神出的npm包使用指南</a>
-    </h1>
-  
-
-        
-        <a href="/npm/npmUse/" class="archive-article-date">
-  	<time datetime="2021-01-21T14:57:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="node-环境安装"><a href="#node-环境安装" class="headerlink" title="node 环境安装"></a>node 环境安装</h2>
-        
-          <a class="article-more-a" href="/npm/npmUse/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">npm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/npm/npmUse/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1041,7 +1023,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1057,27 +1051,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
             
             <div class="clearfix"></div>
