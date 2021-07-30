@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="gracekang.icu">
   <title>继承的几种方式 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 原型链继承1234567891011function Father() &amp;#123;  this.name = &quot;father&quot;;&amp;#125;Father.prototype.getName = function () &amp;#123;  console.log(this.name);&amp;#125;;function Son() &amp;#123;&amp;#125;Son.prototype = new Fa">
+  <meta name="description" content="1. 原型链继承">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="继承的几种方式">
 <meta property="og:url" content="gracekang.icu/JavaScript/继承/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="1. 原型链继承1234567891011function Father() &amp;#123;  this.name = &quot;father&quot;;&amp;#125;Father.prototype.getName = function () &amp;#123;  console.log(this.name);&amp;#125;;function Son() &amp;#123;&amp;#125;Son.prototype = new Fa">
+<meta property="og:description" content="1. 原型链继承">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-04-07T09:24:22.748Z">
+<meta property="og:updated_time" content="2021-07-30T02:56:24.428Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="继承的几种方式">
-<meta name="twitter:description" content="1. 原型链继承1234567891011function Father() &amp;#123;  this.name = &quot;father&quot;;&amp;#125;Father.prototype.getName = function () &amp;#123;  console.log(this.name);&amp;#125;;function Son() &amp;#123;&amp;#125;Son.prototype = new Fa">
+<meta name="twitter:description" content="1. 原型链继承">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -167,9 +167,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">"father"</span>;</span><br><span class="line">&#125;</span><br><span class="line">Father.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Son.prototype = <span class="keyword">new</span> Father();</span><br><span class="line"><span class="keyword">var</span> son1 = <span class="keyword">new</span> Son();</span><br><span class="line"><span class="built_in">console</span>.log(son1.getName);</span><br></pre></td></tr></table></figure>
+        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><a id="more"></a>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">"father"</span></span><br><span class="line">&#125;</span><br><span class="line">Father.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Son.prototype = <span class="keyword">new</span> Father()</span><br><span class="line"><span class="keyword">var</span> son1 = <span class="keyword">new</span> Son()</span><br><span class="line"><span class="built_in">console</span>.log(son1.getName)</span><br></pre></td></tr></table></figure>
 <h2 id="构造函数继承"><a href="#构造函数继承" class="headerlink" title="构造函数继承"></a>构造函数继承</h2><p>优势：可以穿参数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = [<span class="string">"grace"</span>, <span class="string">"kang"</span>, <span class="string">"moka"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">son</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  father.call(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> son1 = <span class="keyword">new</span> son();</span><br><span class="line">son1.name.push(<span class="string">"buding"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(son1);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> son2 = <span class="keyword">new</span> father();</span><br><span class="line"><span class="built_in">console</span>.log(son2);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = [<span class="string">"grace"</span>, <span class="string">"kang"</span>, <span class="string">"moka"</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">son</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	father.call(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> son1 = <span class="keyword">new</span> son()</span><br><span class="line">son1.name.push(<span class="string">"buding"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(son1)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> son2 = <span class="keyword">new</span> father()</span><br><span class="line"><span class="built_in">console</span>.log(son2)</span><br></pre></td></tr></table></figure>
 
       
 
@@ -307,7 +308,7 @@
   
 
   
-  <div id="SOHUCS" sid="JavaScript/继承"></div> 
+  <div id="SOHUCS" sid="JavaScript/继承" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "true"; 
@@ -418,11 +419,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cocos</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,19 +459,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
             
             <div class="clearfix"></div>
@@ -478,7 +479,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br> npm i hexo-generator-json-content --save<br><br>
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
             3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
   jsonContent:
