@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="gracekang.icu">
   <title>实现一个cli工具 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="自己动手，丰衣足食。参考链接：commander.js 先说我们想要实现的功能：  初始化项目： grace-cli create project-name初始化配置文件： grace-cli config set repo repo-name  vue-cli 中所应用的模块：  commander ：参数解析 –help 其实就借助了他,解析用户输入的命令 inquirer ：交互式命令行工具">
+  <meta name="description" content="自己动手，丰衣足食。参考链接：commander.js">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实现一个cli工具">
 <meta property="og:url" content="gracekang.icu/webpack/手撸cli/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="自己动手，丰衣足食。参考链接：commander.js 先说我们想要实现的功能：  初始化项目： grace-cli create project-name初始化配置文件： grace-cli config set repo repo-name  vue-cli 中所应用的模块：  commander ：参数解析 –help 其实就借助了他,解析用户输入的命令 inquirer ：交互式命令行工具">
+<meta property="og:description" content="自己动手，丰衣足食。参考链接：commander.js">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-08-27T12:14:22.151Z">
+<meta property="og:updated_time" content="2021-08-11T11:22:51.866Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现一个cli工具">
-<meta name="twitter:description" content="自己动手，丰衣足食。参考链接：commander.js 先说我们想要实现的功能：  初始化项目： grace-cli create project-name初始化配置文件： grace-cli config set repo repo-name  vue-cli 中所应用的模块：  commander ：参数解析 –help 其实就借助了他,解析用户输入的命令 inquirer ：交互式命令行工具">
+<meta name="twitter:description" content="自己动手，丰衣足食。参考链接：commander.js">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -167,8 +167,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>自己动手，丰衣足食。<br>参考链接：<a href="https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md" target="_blank" rel="noopener">commander.js</a></p>
-<p>先说我们想要实现的功能：</p>
+        <p>自己动手，丰衣足食。<br>参考链接：<a href="https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md" target="_blank" rel="noopener">commander.js</a><br><a id="more"></a><br>先说我们想要实现的功能：</p>
 <blockquote>
 <p>初始化项目： <code>grace-cli create project-name</code><br>初始化配置文件： <code>grace-cli config set repo repo-name</code></p>
 </blockquote>
@@ -424,7 +423,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -433,10 +440,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cocos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,7 +475,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,11 +483,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">app</a>
               </li>
             
             <div class="clearfix"></div>

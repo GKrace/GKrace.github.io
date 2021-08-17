@@ -147,6 +147,181 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="http-http/ajax" class="article article-type-http  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/http/ajax/">跨域问题</a>
+    </h1>
+  
+
+        
+        <a href="/http/ajax/" class="archive-article-date">
+  	<time datetime="2021-08-15T21:12:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>域名 协议 端口号 相同。 其中有一个不一样则需要跨域。</p>
+<h2 id="为什么浏览器默认不支持跨域"><a href="#为什么浏览器默认不支持跨域" class="headerlink" title="为什么浏览器默认不支持跨域"></a>为什么浏览器默认不支持跨域</h2><p>防止进行恶意访问。</p>
+<ul>
+<li>cookie LocalStorage SessionStorage indexDB 不支持跨域</li>
+<li>DOM元素也有同源策略，iframe</li>
+<li>ajax 也不支持跨域</li>
+</ul>
+<h2 id="实现跨域"><a href="#实现跨域" class="headerlink" title="实现跨域"></a>实现跨域</h2><ul>
+<li>jsonp跨域</li>
+<li>cors跨域，纯后端提供的</li>
+<li>postMessage 两个页面之间进行通信</li>
+<li>document.domain 同一主域下，子域和父域进行通信</li>
+<li>location.hash + iframe </li>
+<li>window.name + iframe</li>
+<li>webpack里边代理 http-proxy</li>
+<li>nginx</li>
+<li>websocket</li>
+</ul>
+<h3 id="jsonp跨域原理及实现"><a href="#jsonp跨域原理及实现" class="headerlink" title="jsonp跨域原理及实现"></a>jsonp跨域原理及实现</h3><p>只能发送get请求，不支持post put delete ,不安全，xss攻击 不采用</p>
+<p><img src="/images/jsonp_01.png" width="60%" height="60%"></p>
+<p><strong>jsonp的实现以及示例</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp</span>(<span class="params">&#123;url, params,cb&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">window</span>[cb] = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>)</span>&#123;</span><br><span class="line">            resolve(data);</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(script)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">        params = &#123;...params,cb&#125;;</span><br><span class="line">        <span class="keyword">let</span> arr = [];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> params)&#123;</span><br><span class="line">            arr.push(<span class="string">`<span class="subst">$&#123;key&#125;</span>=<span class="subst">$&#123;params[key]&#125;</span>`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        script.src = <span class="string">`<span class="subst">$&#123;url&#125;</span>?<span class="subst">$&#123;arr.join(<span class="string">'&amp;'</span>)&#125;</span>`</span></span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 本地起服务示例用法</span></span><br><span class="line">jsonp(&#123;</span><br><span class="line">    url:<span class="string">'http://localhost:3999'</span>,</span><br><span class="line">    params:&#123;<span class="attr">wd</span>:<span class="string">'Gkrace有两只猫'</span>&#125;,</span><br><span class="line">    cb:<span class="string">'show'</span></span><br><span class="line">&#125;).then(<span class="function">(<span class="params">data</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//  安装express 启动server.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"><span class="keyword">let</span> app = express()</span><br><span class="line">app.get(<span class="string">""</span>, (req, res) =&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> &#123; wd, cb &#125; = req.query</span><br><span class="line">    <span class="built_in">console</span>.log(wd)</span><br><span class="line">    res.end(<span class="string">`<span class="subst">$&#123;cb&#125;</span>('分别是摩卡和布丁')`</span>) <span class="comment">// 服务端运行函数</span></span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">3999</span>)</span><br></pre></td></tr></table></figure></p>
+<p>即我们通过jsonp实现跨域从本地localhost服务获取到了数据<br><img src="/images/jsonp_02.png" width="60%" height="60%"></p>
+<p><img src="/images/jsonp_03.png" width="40%" height="20%"></p>
+<h3 id="cors跨域原理"><a href="#cors跨域原理" class="headerlink" title="cors跨域原理"></a>cors跨域原理</h3><p>原理是通过后端设置白名单，放行一些源可以访问数据。  </p>
+<p>没有添加白名单想从3999访问4999的数据是不行的<br><img src="/images/jsonp_04.png" width="60%" height="60%"></p>
+<p>我们打印 req.headers 请求已经过来了但是被浏览器屏蔽掉了，注意其中的源正是端口3999<br><img src="/images/jsonp_05.png" width="60%" height="60%"></p>
+<p>则我们将3999 加入可以访问的白名单里，即可实现访问数据，这个名单是后端进行维护的。完整代码如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单写一个ajax 想从端口3999访问端口4999的数据</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line"> xhr.open(<span class="string">'GET'</span>,<span class="string">'http://localhost:4999/getData'</span>,<span class="literal">true</span>);</span><br><span class="line"> xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span> || xhr.status === <span class="number">304</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(xhr.response)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> xhr.send()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 起两个server</span></span><br><span class="line"><span class="comment">// server1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">let</span> app = express()</span><br><span class="line"></span><br><span class="line">app.use(express.static(__dirname))</span><br><span class="line">app.listen(<span class="number">3999</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// server2</span></span><br><span class="line"><span class="keyword">let</span> app = express()</span><br><span class="line"><span class="comment">// 放行白名单里的源</span></span><br><span class="line"><span class="keyword">let</span> whiteList = [<span class="string">"http://localhost:3999"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// express的一个中间件</span></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> origin = req.headers.origin;</span><br><span class="line">    <span class="comment">// 在白名单里的源进行放行</span></span><br><span class="line">    <span class="keyword">if</span> (whiteList.includes(origin)) &#123;</span><br><span class="line">        <span class="comment">// 设置哪些源可以访问我</span></span><br><span class="line">        res.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>,origin)</span><br><span class="line">    &#125;</span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/getData'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.headers)</span><br><span class="line">    res.end(<span class="string">'🐱🐱猫'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.use(express.static(__dirname))</span><br><span class="line">app.listen(<span class="number">4999</span>)</span><br></pre></td></tr></table></figure>
+<p>我们在端口3999控制台成功打印4999中的数据<br><img src="/images/jsonp_06.png" width="60%" height="60%"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/http/ajax/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="JavaScript-JavaScript/lazyImage" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/JavaScript/lazyImage/">lazyImage</a>
+    </h1>
+  
+
+        
+        <a href="/JavaScript/lazyImage/" class="archive-article-date">
+  	<time datetime="2021-07-30T11:57:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/JavaScript/lazyImage/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="other-other/canvas_rect" class="article article-type-other  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -751,158 +926,6 @@
 
 
   
-    <article id="JavaScript-JavaScript/reduce" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/reduce/">reduce</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/reduce/" class="archive-article-date">
-  	<time datetime="2021-03-16T15:14:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Array-prototype-reduce"><a href="#Array-prototype-reduce" class="headerlink" title="Array.prototype.reduce()"></a>Array.prototype.reduce()</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="noopener">Array.prototype.reduce()</a> 方法对数组中的每个元素执行一个由您提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。</p>
-        
-          <a class="article-more-a" href="/JavaScript/reduce/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/reduce/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/手写数组方法" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/手写数组方法/">手写数组方法</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/手写数组方法/" class="archive-article-date">
-  	<time datetime="2021-03-04T16:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数组的原型链上主要有以下方法：</p>
-        
-          <a class="article-more-a" href="/JavaScript/手写数组方法/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/手写数组方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1000,7 +1023,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1009,10 +1040,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cocos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1048,7 +1075,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1056,11 +1083,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">app</a>
               </li>
             
             <div class="clearfix"></div>

@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="gracekang.icu">
   <title>Promise总结 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="从 0 到 1 完美诠释异步编程实现promise:  PromiseA+英文 promiseA+中文参考  掌握知识 掌握高阶函数的使用,使用高阶函数解决异步问题 掌握发布订阅模式和观察者模式 掌握 promise 核心应用,使用 promise 解决异步编程问题 实现一个完整的 promise 库 扩展 promise 中常见方法,all,race,finally… 掌握 generator">
+  <meta name="description" content="从 0 到 1 完美诠释异步编程">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise总结">
 <meta property="og:url" content="gracekang.icu/JavaScript/promise2/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="从 0 到 1 完美诠释异步编程实现promise:  PromiseA+英文 promiseA+中文参考  掌握知识 掌握高阶函数的使用,使用高阶函数解决异步问题 掌握发布订阅模式和观察者模式 掌握 promise 核心应用,使用 promise 解决异步编程问题 实现一个完整的 promise 库 扩展 promise 中常见方法,all,race,finally… 掌握 generator">
+<meta property="og:description" content="从 0 到 1 完美诠释异步编程">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/generator.png">
-<meta property="og:updated_time" content="2021-03-02T08:59:05.623Z">
+<meta property="og:updated_time" content="2021-08-11T11:24:16.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise总结">
-<meta name="twitter:description" content="从 0 到 1 完美诠释异步编程实现promise:  PromiseA+英文 promiseA+中文参考  掌握知识 掌握高阶函数的使用,使用高阶函数解决异步问题 掌握发布订阅模式和观察者模式 掌握 promise 核心应用,使用 promise 解决异步编程问题 实现一个完整的 promise 库 扩展 promise 中常见方法,all,race,finally… 掌握 generator">
+<meta name="twitter:description" content="从 0 到 1 完美诠释异步编程">
 <meta name="twitter:image" content="/generator.png">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
@@ -169,7 +169,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="从-0-到-1-完美诠释异步编程"><a href="#从-0-到-1-完美诠释异步编程" class="headerlink" title="从 0 到 1 完美诠释异步编程"></a>从 0 到 1 完美诠释异步编程</h1><p>实现<strong>promise</strong>:</p>
+        <h2 id="从-0-到-1-完美诠释异步编程"><a href="#从-0-到-1-完美诠释异步编程" class="headerlink" title="从 0 到 1 完美诠释异步编程"></a>从 0 到 1 完美诠释异步编程</h2><a id="more"></a>
+<p>实现<strong>promise</strong>:</p>
 <ul>
 <li><a href="https://promisesaplus.com" target="_blank" rel="noopener">PromiseA+英文</a></li>
 <li><a href="https://www.ituring.com.cn/article/66566" target="_blank" rel="noopener">promiseA+中文参考</a></li>
@@ -432,7 +433,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#从-0-到-1-完美诠释异步编程"><span class="toc-number">1.</span> <span class="toc-text">从 0 到 1 完美诠释异步编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#掌握知识"><span class="toc-number">1.1.</span> <span class="toc-text">掌握知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-number">1.2.</span> <span class="toc-text">关于函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#before-函数"><span class="toc-number">1.2.1.</span> <span class="toc-text">before 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-事务"><span class="toc-number">1.2.2.</span> <span class="toc-text">react 事务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型检测"><span class="toc-number">1.2.3.</span> <span class="toc-text">类型检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#柯里化函数"><span class="toc-number">1.2.4.</span> <span class="toc-text">柯里化函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#after"><span class="toc-number">1.2.5.</span> <span class="toc-text">after</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布订阅模式"><span class="toc-number">1.2.6.</span> <span class="toc-text">发布订阅模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观察者模式"><span class="toc-number">1.2.7.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-的优点"><span class="toc-number">1.2.8.</span> <span class="toc-text">Promise 的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-的特点"><span class="toc-number">1.2.9.</span> <span class="toc-text">Promise 的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-的实现"><span class="toc-number">1.2.10.</span> <span class="toc-text">Promise 的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#promise-只兼容同步代码"><span class="toc-number">1.2.10.1.</span> <span class="toc-text">promise 只兼容同步代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise兼容异步代码"><span class="toc-number">1.2.11.</span> <span class="toc-text">Promise兼容异步代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then-的链式调用"><span class="toc-number">1.2.12.</span> <span class="toc-text">then 的链式调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试写的-Promise-是否符合规范"><span class="toc-number">1.2.13.</span> <span class="toc-text">测试写的 Promise 是否符合规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#catch-实现"><span class="toc-number">1.2.14.</span> <span class="toc-text">catch 实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resolve-的实现"><span class="toc-number">1.2.15.</span> <span class="toc-text">resolve 的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reject-的实现"><span class="toc-number">1.2.16.</span> <span class="toc-text">reject 的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#finally-方法"><span class="toc-number">1.2.17.</span> <span class="toc-text">finally 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#all"><span class="toc-number">1.2.18.</span> <span class="toc-text">all</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reject"><span class="toc-number">1.2.19.</span> <span class="toc-text">reject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中断-promise-链-就是返回一个等待的-promise"><span class="toc-number">1.2.20.</span> <span class="toc-text">中断 promise 链 就是返回一个等待的 promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何放弃某个-promise-的执行结果"><span class="toc-number">1.2.21.</span> <span class="toc-text">如何放弃某个 promise 的执行结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#既能捕获同步有能捕获异步"><span class="toc-number">1.2.22.</span> <span class="toc-text">既能捕获同步有能捕获异步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator"><span class="toc-number">1.3.</span> <span class="toc-text">generator</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#将类数组转化成数组"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">将类数组转化成数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generator-问题"><span class="toc-number">1.3.1.</span> <span class="toc-text">generator 问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#co-的实现"><span class="toc-number">1.3.2.</span> <span class="toc-text">co 的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#async-await"><span class="toc-number">1.3.3.</span> <span class="toc-text">async+await</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回-Promise-对象"><span class="toc-number">1.3.4.</span> <span class="toc-text">返回 Promise 对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#promise-面试题目"><span class="toc-number">1.4.</span> <span class="toc-text">promise 面试题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">题目 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目-2"><span class="toc-number">1.4.2.</span> <span class="toc-text">题目 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-的优缺点"><span class="toc-number">1.4.3.</span> <span class="toc-text">Promise 的优缺点</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#从-0-到-1-完美诠释异步编程"><span class="toc-number">1.</span> <span class="toc-text">从 0 到 1 完美诠释异步编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#掌握知识"><span class="toc-number">2.</span> <span class="toc-text">掌握知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于函数"><span class="toc-number">3.</span> <span class="toc-text">关于函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#before-函数"><span class="toc-number">3.1.</span> <span class="toc-text">before 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#react-事务"><span class="toc-number">3.2.</span> <span class="toc-text">react 事务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型检测"><span class="toc-number">3.3.</span> <span class="toc-text">类型检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#柯里化函数"><span class="toc-number">3.4.</span> <span class="toc-text">柯里化函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#after"><span class="toc-number">3.5.</span> <span class="toc-text">after</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布订阅模式"><span class="toc-number">3.6.</span> <span class="toc-text">发布订阅模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观察者模式"><span class="toc-number">3.7.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-的优点"><span class="toc-number">3.8.</span> <span class="toc-text">Promise 的优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-的特点"><span class="toc-number">3.9.</span> <span class="toc-text">Promise 的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-的实现"><span class="toc-number">3.10.</span> <span class="toc-text">Promise 的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#promise-只兼容同步代码"><span class="toc-number">3.10.1.</span> <span class="toc-text">promise 只兼容同步代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise兼容异步代码"><span class="toc-number">3.11.</span> <span class="toc-text">Promise兼容异步代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#then-的链式调用"><span class="toc-number">3.12.</span> <span class="toc-text">then 的链式调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试写的-Promise-是否符合规范"><span class="toc-number">3.13.</span> <span class="toc-text">测试写的 Promise 是否符合规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#catch-实现"><span class="toc-number">3.14.</span> <span class="toc-text">catch 实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resolve-的实现"><span class="toc-number">3.15.</span> <span class="toc-text">resolve 的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reject-的实现"><span class="toc-number">3.16.</span> <span class="toc-text">reject 的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#finally-方法"><span class="toc-number">3.17.</span> <span class="toc-text">finally 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#all"><span class="toc-number">3.18.</span> <span class="toc-text">all</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reject"><span class="toc-number">3.19.</span> <span class="toc-text">reject</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中断-promise-链-就是返回一个等待的-promise"><span class="toc-number">3.20.</span> <span class="toc-text">中断 promise 链 就是返回一个等待的 promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何放弃某个-promise-的执行结果"><span class="toc-number">3.21.</span> <span class="toc-text">如何放弃某个 promise 的执行结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#既能捕获同步有能捕获异步"><span class="toc-number">3.22.</span> <span class="toc-text">既能捕获同步有能捕获异步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#generator"><span class="toc-number">4.</span> <span class="toc-text">generator</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#将类数组转化成数组"><span class="toc-number">4.0.1.</span> <span class="toc-text">将类数组转化成数组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generator-问题"><span class="toc-number">4.1.</span> <span class="toc-text">generator 问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#co-的实现"><span class="toc-number">4.2.</span> <span class="toc-text">co 的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#async-await"><span class="toc-number">4.3.</span> <span class="toc-text">async+await</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回-Promise-对象"><span class="toc-number">4.4.</span> <span class="toc-text">返回 Promise 对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#promise-面试题目"><span class="toc-number">5.</span> <span class="toc-text">promise 面试题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目-1"><span class="toc-number">5.1.</span> <span class="toc-text">题目 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目-2"><span class="toc-number">5.2.</span> <span class="toc-text">题目 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-的优缺点"><span class="toc-number">5.3.</span> <span class="toc-text">Promise 的优缺点</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -551,7 +552,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,10 +569,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cocos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,7 +604,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,11 +612,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">app</a>
               </li>
             
             <div class="clearfix"></div>

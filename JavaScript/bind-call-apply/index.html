@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="gracekang.icu">
   <title>Bind，call，apply,new,instanceof,Object.create实现原理 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="实现 call call() 方法在使用一个指定的 this 值和若干个指定的参数值的前提下调用某个函数或方法。   call 改变了 this 的指向，指向到函数 函数执行了  模拟过程：当调用 call 的时候，将函数作为对象的参数并用对象进行调用  将函数设为对象的属性 执行该函数 删除该函数  First: 第一版实现 12345Function.prototype.call1 = fun">
+  <meta name="description" content="实现 call">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bind，call，apply,new,instanceof,Object.create实现原理">
 <meta property="og:url" content="gracekang.icu/JavaScript/bind-call-apply/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="实现 call call() 方法在使用一个指定的 this 值和若干个指定的参数值的前提下调用某个函数或方法。   call 改变了 this 的指向，指向到函数 函数执行了  模拟过程：当调用 call 的时候，将函数作为对象的参数并用对象进行调用  将函数设为对象的属性 执行该函数 删除该函数  First: 第一版实现 12345Function.prototype.call1 = fun">
+<meta property="og:description" content="实现 call">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-04-13T09:54:35.612Z">
+<meta property="og:updated_time" content="2021-08-11T11:22:29.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bind，call，apply,new,instanceof,Object.create实现原理">
-<meta name="twitter:description" content="实现 call call() 方法在使用一个指定的 this 值和若干个指定的参数值的前提下调用某个函数或方法。   call 改变了 this 的指向，指向到函数 函数执行了  模拟过程：当调用 call 的时候，将函数作为对象的参数并用对象进行调用  将函数设为对象的属性 执行该函数 删除该函数  First: 第一版实现 12345Function.prototype.call1 = fun">
+<meta name="twitter:description" content="实现 call">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -167,7 +167,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="实现-call"><a href="#实现-call" class="headerlink" title="实现 call"></a>实现 call</h3><blockquote>
+        <h3 id="实现-call"><a href="#实现-call" class="headerlink" title="实现 call"></a>实现 call</h3><a id="more"></a>
+<blockquote>
 <p>call() 方法在使用一个指定的 this 值和若干个指定的参数值的前提下调用某个函数或方法。</p>
 </blockquote>
 <ul>
@@ -197,7 +198,6 @@
 <li>返回一个函数</li>
 <li>可以传入参数</li>
 </ul>
-<a id="more"></a>
 <p>First：单纯实现指向</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind1 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.apply(context);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>Second: 考虑传参数</p>
@@ -465,7 +465,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,10 +482,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cocos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,7 +517,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,11 +525,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">app</a>
               </li>
             
             <div class="clearfix"></div>
