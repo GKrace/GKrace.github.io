@@ -172,7 +172,7 @@
         <p>Promise 是什么，在控制台输入<code>console.dir(Promise)</code>，得到如下结果：</p>
 <a id="more"></a>
 <p><img src="/images/Promise_0.png" width="40%" height="40%"><br>由此得出，Promise 是一个构造函数，其本身有 all()，race()，reject()，resolve()等方法，其原型链上有 catch()，finally()，then() 方法。</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var p = <span class="keyword">new</span> Promise(<span class="function"><span class="params">(resolve,reject)</span> =&gt;</span>&#123;</span><br><span class="line">       setTimeout(<span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">       &#125;,<span class="number">300</span>);</span><br><span class="line">       resolve(<span class="string">'grace'</span>)</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span>&#123;</span><br><span class="line">       setTimeout(<span class="function"><span class="params">()</span> =&gt;</span>&#123;</span><br><span class="line">         <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">       &#125;,<span class="number">300</span>);</span><br><span class="line">       resolve(<span class="string">'grace'</span>)</span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
 <p>Promise 构造函数接受一个函数作为参数，这个函数接收两个参数 resolve 和 reject，resolve 将 promise 的状态由未成功转变为成功，将一步操作的结果作为参数传递过去，reject 则将状态由未失败变成失败，在异步操作失败后进行调用，将异步操作报出的错误作为参数传递过去。创建完实例后，可以用 then 方法分别指定成功或者失败的回调函数。</p>
 <p>promise 的特点：</p>
 <ul>
@@ -307,18 +307,18 @@
   
 <nav id="article-nav">
   
-    <a href="/JavaScript/bind-call-apply/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/JavaScript/promise2/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Bind，call，apply,new,instanceof,Object.create实现原理
+          Promise总结
         
       </div>
     </a>
   
   
-    <a href="/JavaScript/promise2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Promise总结</div>
+    <a href="/acm/stack/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">栈和队列</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -464,15 +464,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,11 +480,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,15 +508,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +524,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">app</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
             
             <div class="clearfix"></div>

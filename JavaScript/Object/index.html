@@ -184,7 +184,7 @@
 </ul>
 <h4 id="1-鉴别原始类型"><a href="#1-鉴别原始类型" class="headerlink" title="1. 鉴别原始类型"></a>1. 鉴别原始类型</h4><p>typeof 操作符用于鉴别原始值，返回一个说明数据类型的字符串。特殊的是 <code>typeof(null)</code>返回 Object，这已经被 js 委员会认定为是一个错误，我们可以理解为 null 是一个空对象指针。判断一个值是否是 null 类型，最佳方法是直接和 null 进行比较，<code>console.log(value === null);</code></p>
 <h4 id="2-非强制转换比较"><a href="#2-非强制转换比较" class="headerlink" title="2. 非强制转换比较"></a>2. 非强制转换比较</h4><p><code>==</code>在进行比较时会将变量强制转换成另一种类型。</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"5"</span> == <span class="number">5</span>);  <span class="regexp">//</span> <span class="literal">true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"5"</span> === <span class="number">5</span>);  <span class="regexp">//</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> == <span class="literal">null</span>);  <span class="regexp">//</span> <span class="literal">true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> === <span class="literal">null</span>);  <span class="regexp">//</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"5"</span> == <span class="number">5</span>);  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"5"</span> === <span class="number">5</span>);  <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> == <span class="literal">null</span>);  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span> === <span class="literal">null</span>);  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 <h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><p>包括对象，数组，函数。 引用类型不在变量中直接保存对象，Object 变量实际不包含对象的实例，而是一个指针，指向内存中对象存储的位置，意味着，你将一个变量赋值给另一个变量的时候，只是拷贝了一份指针。</p>
 <h4 id="1-如何创建对象"><a href="#1-如何创建对象" class="headerlink" title="1. 如何创建对象"></a>1. 如何创建对象</h4><ul>
 <li>new 操作符 <code>var obj = new Object();</code></li>
@@ -433,15 +433,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,11 +449,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,15 +477,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,7 +493,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">app</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
             
             <div class="clearfix"></div>
