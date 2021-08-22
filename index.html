@@ -147,19 +147,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-http/ajax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-http/跨域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/http/ajax/">跨域问题</a>
+      <a class="article-title" href="/http/跨域/">跨域问题</a>
     </h1>
   
 
         
-        <a href="/http/ajax/" class="archive-article-date">
+        <a href="/http/跨域/" class="archive-article-date">
   	<time datetime="2021-08-15T21:12:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-15</time>
 </a>
         
@@ -167,40 +167,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>域名 协议 端口号 相同。 其中有一个不一样则需要跨域。</p>
-<h2 id="为什么浏览器默认不支持跨域"><a href="#为什么浏览器默认不支持跨域" class="headerlink" title="为什么浏览器默认不支持跨域"></a>为什么浏览器默认不支持跨域</h2><p>防止进行恶意访问。</p>
-<ul>
-<li>cookie LocalStorage SessionStorage indexDB 不支持跨域</li>
-<li>DOM元素也有同源策略，iframe</li>
-<li>ajax 也不支持跨域</li>
-</ul>
-<h2 id="实现跨域"><a href="#实现跨域" class="headerlink" title="实现跨域"></a>实现跨域</h2><ul>
-<li>jsonp跨域</li>
-<li>cors跨域，纯后端提供的</li>
-<li>postMessage 两个页面之间进行通信</li>
-<li>document.domain 同一主域下，子域和父域进行通信</li>
-<li>location.hash + iframe </li>
-<li>window.name + iframe</li>
-<li>webpack里边代理 http-proxy</li>
-<li>nginx</li>
-<li>websocket</li>
-</ul>
-<h3 id="jsonp跨域原理及实现"><a href="#jsonp跨域原理及实现" class="headerlink" title="jsonp跨域原理及实现"></a>jsonp跨域原理及实现</h3><p>只能发送get请求，不支持post put delete ,不安全，xss攻击 不采用</p>
-<p><img src="/images/jsonp_01.png" width="60%" height="60%"></p>
-<p><strong>jsonp的实现以及示例</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">jsonp</span>(<span class="params">&#123;url, params,cb&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">window</span>[cb] = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>)</span>&#123;</span><br><span class="line">            resolve(data);</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(script)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">        params = &#123;...params,cb&#125;;</span><br><span class="line">        <span class="keyword">let</span> arr = [];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> params)&#123;</span><br><span class="line">            arr.push(<span class="string">`<span class="subst">$&#123;key&#125;</span>=<span class="subst">$&#123;params[key]&#125;</span>`</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        script.src = <span class="string">`<span class="subst">$&#123;url&#125;</span>?<span class="subst">$&#123;arr.join(<span class="string">'&amp;'</span>)&#125;</span>`</span></span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 本地起服务示例用法</span></span><br><span class="line">jsonp(&#123;</span><br><span class="line">    url:<span class="string">'http://localhost:3999'</span>,</span><br><span class="line">    params:&#123;<span class="attr">wd</span>:<span class="string">'Gkrace有两只猫'</span>&#125;,</span><br><span class="line">    cb:<span class="string">'show'</span></span><br><span class="line">&#125;).then(<span class="function">(<span class="params">data</span>) =&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//  安装express 启动server.js</span></span><br><span class="line"><span class="comment">// -----------server.js-----------</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>)</span><br><span class="line"><span class="keyword">let</span> app = express()</span><br><span class="line">app.get(<span class="string">""</span>, (req, res) =&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> &#123; wd, cb &#125; = req.query</span><br><span class="line">    <span class="built_in">console</span>.log(wd)</span><br><span class="line">    res.end(<span class="string">`<span class="subst">$&#123;cb&#125;</span>('分别是摩卡和布丁')`</span>) <span class="comment">// 服务端运行函数</span></span><br><span class="line">&#125;)</span><br><span class="line">app.listen(<span class="number">3999</span>)</span><br></pre></td></tr></table></figure></p>
-<p>即我们通过jsonp实现跨域从本地localhost服务获取到了数据<br><img src="/images/jsonp_02.png" width="60%" height="60%"></p>
-<p><img src="/images/jsonp_03.png" width="40%" height="20%"></p>
-<h3 id="cors跨域原理"><a href="#cors跨域原理" class="headerlink" title="cors跨域原理"></a>cors跨域原理</h3><p>原理是通过后端设置白名单，放行一些源可以访问数据。  </p>
-<p>没有添加白名单想从3999访问4999的数据是不行的<br><img src="/images/jsonp_04.png" width="60%" height="60%"></p>
-<p>我们打印 req.headers 请求已经过来了但是被浏览器屏蔽掉了，注意其中的源正是端口3999<br><img src="/images/jsonp_05.png" width="60%" height="60%"></p>
-<p>则我们将3999 加入可以访问的白名单里，即可实现访问数据，这个名单是后端进行维护的。完整代码如下</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 简单写一个ajax 想从端口3999访问端口4999的数据</span></span><br><span class="line"> <span class="keyword">let</span> xhr = <span class="keyword">new</span> XMLHttpRequest;</span><br><span class="line"> xhr.open(<span class="string">'GET'</span>,<span class="string">'http://localhost:4999/getData'</span>,<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line"> xhr.open(<span class="string">'PUT'</span>,<span class="string">'http://localhost:4999/getData'</span>,<span class="literal">true</span>); <span class="comment">// a. 换个方法请求</span></span><br><span class="line"></span><br><span class="line"> xhr.setRequestHeader(<span class="string">'name'</span>,<span class="string">'buding'</span>) <span class="comment">// b.传输数据</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">// c. cookie默认是不能跨域的，但想强制带上，xhr提供了一个方法 </span></span><br><span class="line"> <span class="built_in">document</span>.cookie = <span class="string">'name=grace'</span>;</span><br><span class="line"> xhr.withCredentials = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"> xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span> || xhr.status === <span class="number">304</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(xhr.response)</span><br><span class="line"></span><br><span class="line">            <span class="comment">// d.获取到服务端给客户端传输的数据时，报错 Refused to get unsafe header "name"</span></span><br><span class="line">                    </span><br><span class="line">            <span class="built_in">console</span>.log(xhr.getResponseHeader(<span class="string">'name'</span>))</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> xhr.send()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 起两个server</span></span><br><span class="line"><span class="comment">// ----------server1.js---------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">let</span> app = express()</span><br><span class="line"></span><br><span class="line">app.use(express.static(__dirname))</span><br><span class="line">app.listen(<span class="number">3999</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// -----------server2.js----------</span></span><br><span class="line"><span class="keyword">let</span> app = express()</span><br><span class="line"><span class="comment">// 放行白名单里的源</span></span><br><span class="line"><span class="keyword">let</span> whiteList = [<span class="string">"http://localhost:3999"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// express的一个中间件</span></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> origin = req.headers.origin;</span><br><span class="line">    <span class="comment">// 在白名单里的源进行放行</span></span><br><span class="line">    <span class="keyword">if</span> (whiteList.includes(origin)) &#123;</span><br><span class="line">        <span class="comment">// 设置哪些源可以访问我 ，可以是 * 但是不能和设置携带cookie共用 Credentials</span></span><br><span class="line">        res.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>,origin)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// b. 设置允许客户端给服务端传输数据，允许携带哪些头可以访问我</span></span><br><span class="line">        res.setHeader(<span class="string">"Access-Control-Allow-Headers"</span>,<span class="string">'name'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// a.设置允许请求的方法 默认只支持简单请求GET POST HEAD ，如果想支持更多请求方法需要进行设置</span></span><br><span class="line">        res.setHeader(<span class="string">'Access-Control-Allow-Methods'</span>,<span class="string">'PUT'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 由于PUT每次都发OPTIONS 设置预检请求最大存活时间，隔6s只发一次</span></span><br><span class="line">        res.setHeader(<span class="string">'Access-Control-Allow-Max-Age'</span>,<span class="number">6000</span>)</span><br><span class="line">        <span class="keyword">if</span>(req.method === <span class="string">'OPTIONS'</span>)&#123;</span><br><span class="line">            res.end(); <span class="comment">// OPTIONS 请求不做任何处理</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  c.允许携带cookie</span></span><br><span class="line">        res.setHeader(<span class="string">"Access-Control-Allow-Credentials"</span>,<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// d.允许返回的头,我们这里设置的是name 为了前端获取不报错 Refused to get unsafe header "name"</span></span><br><span class="line">        res.setHeader(<span class="string">"Access-Control-Expose-Headers"</span>,<span class="string">'name'</span>)</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line">app.get(<span class="string">'/getData'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.headers)</span><br><span class="line">    res.end(<span class="string">'🐱🐱猫'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.put(<span class="string">'/getData'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.headers)</span><br><span class="line">    <span class="comment">// 服务端想给客户端返回数据</span></span><br><span class="line">    res.setHeader(<span class="string">"name"</span>, <span class="string">"moka"</span>)</span><br><span class="line">    res.end(<span class="string">'🐱🐱猫'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">app.use(express.static(__dirname))</span><br><span class="line">app.listen(<span class="number">4999</span>)</span><br></pre></td></tr></table></figure>
-<p>我们在端口3999控制台成功打印4999中的数据<br><img src="/images/jsonp_06.png" width="60%" height="60%"><br>如果想传输数据的话，加上这个<code>res.setHeader(&quot;Access-Control-Allow-Headers&quot;,&#39;name&#39;)</code> 即4999能获取到这个name值<br><img src="/images/jsonp_07.png" width="60%" height="60%"></p>
-<hr>
-
-<p><strong>注意：</strong> 在使用PUT方法时，network里看会有俩个请求， 多发了一个OPTIONS请求 ，用PUT方法时会先发一个预检请求，测试一下看能否跨域，能跨域在将请求体发送出去, 参考<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">阮一峰cors教程</a>，可以设置隔一定时间发一次请求<code>res.setHeader(&#39;Access-Control-Allow-Max-Age&#39;,6000)</code></p>
-<p><img src="/images/jsonp_08.png" width="60%" height="60%"></p>
-
+        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>域名 协议 端口号 相同。 其中有一个不一样则需要跨域。<br>
+        
+          <a class="article-more-a" href="/http/跨域/#more">more >></a>
+        
       
 
       
@@ -223,7 +193,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/http/ajax/">展开全文 >></a>
+          <a class="article-more-a" href="/http/跨域/">展开全文 >></a>
         </p>
       
 
@@ -1031,6 +1001,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">diary</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -1039,23 +1021,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">diary</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1067,19 +1045,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
