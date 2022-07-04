@@ -438,13 +438,6 @@
   </url>
   
   <url>
-    <loc>gracekang.icu/tags/css/</loc>
-    <lastmod>2022-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>gracekang.icu/tags/blog/</loc>
     <lastmod>2022-07-04</lastmod>
     <changefreq>daily</changefreq>
@@ -452,7 +445,28 @@
   </url>
   
   <url>
+    <loc>gracekang.icu/tags/css/</loc>
+    <lastmod>2022-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>gracekang.icu/tags/diary/</loc>
+    <lastmod>2022-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>gracekang.icu/tags/html/</loc>
+    <lastmod>2022-07-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>gracekang.icu/tags/http/</loc>
     <lastmod>2022-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -473,14 +487,14 @@
   </url>
   
   <url>
-    <loc>gracekang.icu/tags/%E6%8B%93%E5%B1%95%E7%9F%A5%E8%AF%86/</loc>
+    <loc>gracekang.icu/tags/npm/</loc>
     <lastmod>2022-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>gracekang.icu/tags/npm/</loc>
+    <loc>gracekang.icu/tags/%E6%8B%93%E5%B1%95%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2022-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -508,13 +522,6 @@
   </url>
   
   <url>
-    <loc>gracekang.icu/tags/webpack/</loc>
-    <lastmod>2022-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>gracekang.icu/tags/vue/</loc>
     <lastmod>2022-07-04</lastmod>
     <changefreq>daily</changefreq>
@@ -522,14 +529,7 @@
   </url>
   
   <url>
-    <loc>gracekang.icu/tags/http/</loc>
-    <lastmod>2022-07-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>gracekang.icu/tags/html/</loc>
+    <loc>gracekang.icu/tags/webpack/</loc>
     <lastmod>2022-07-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

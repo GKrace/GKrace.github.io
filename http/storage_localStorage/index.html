@@ -191,7 +191,7 @@
 </ul>
 <p>建议使用方法而不是属 性来访问数据，以免某个键会意外重写该对象上已经存在的成员。Storage 类型只能存储字符串。非字符串的数据在存储之前会被转换成字符串。</p>
 <h3 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h3><p>sessionStorage 对象存储特定于某个会话的数据，关闭浏览器消失。存储在 sessionStorage 中的数据可以跨越页面刷新而 存在，同时如果浏览器支持，浏览器崩溃并重启之后依然可用(Firefox 和 WebKit 都支持，IE 则不行)。<br>因为 seesionStorage 对象绑定于某个服务器会话，所以当文件在本地运行的时候是不可用的。存储在 sessionStorage 中的数据只能由最初给对象存储数据的页面访问到，所以对多页面应用有限制。 由于 sessionStorage 对象其实是 Storage 的一个实例，所以可以使用 setItem()或者直接设置新的属性来存储数据。下面是这两种方法的例子。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用方法存储数据</span></span><br><span class="line">sessionStorage.setItem(<span class="string">"name"</span>, <span class="string">"Grace"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用属性存储数据</span></span><br><span class="line">sessionStorage.book = <span class="string">'grace blog'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用方法存储数据</span></span><br><span class="line">sessionStorage.setItem(<span class="string">"name"</span>, <span class="string">"Grace"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用属性存储数据</span></span><br><span class="line">sessionStorage.book = 'grace blog';</span><br></pre></td></tr></table></figure>
 <p><img src="/images/storage_localStorage.jpg" width="50%" height="50%"></p>
 <h3 id="globalStorage"><a href="#globalStorage" class="headerlink" title="globalStorage"></a>globalStorage</h3><font color="#dd0000">globalStorage 已经废弃，替代品为 localStorage</font>
 
@@ -454,15 +454,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">diary</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,11 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">npm</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,19 +502,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
             
             <div class="clearfix"></div>

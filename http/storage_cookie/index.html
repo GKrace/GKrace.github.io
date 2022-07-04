@@ -209,7 +209,7 @@
 <li>Cookie 会被附加在每个 HTTP 请求中，所以无形中增加了流量。</li>
 <li>Cookie 的大小限制在 4KB 左右，对于复杂的存储需求来说是不够用的。</li>
 </ul>
-<h4 id="7-cookie-的属性"><a href="#7-cookie-的属性" class="headerlink" title="7. cookie 的属性"></a>7. cookie 的属性</h4><p><img src="/images/storage_cookie.png" width="100%" height="100%"><br>如此图显示，cookie主要有以下几个属性。在设置这些属性时，属性之间由一个分号和一个空格隔开。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"key=name; expires=Sat Dec 21 2019 21:16:10 GMT; domain=XXXX.com; path=/; secure; HttpOnly"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="7-cookie-的属性"><a href="#7-cookie-的属性" class="headerlink" title="7. cookie 的属性"></a>7. cookie 的属性</h4><p><img src="/images/storage_cookie.png" width="100%" height="100%"><br>如此图显示，cookie主要有以下几个属性。在设置这些属性时，属性之间由一个分号和一个空格隔开。<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"key=name; expires=Sat Dec 21 2019 21:16:10 GMT; domain=XXXX.com; path=/; secure; HttpOnly"</span></span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><strong>name：</strong> cookie 名，一个域名下绑定的 cookie，name 不能相同，相同的 name 值会被覆盖掉。</li>
 <li><strong>value：</strong> cookie 值，由于 cookie 规定是名称/值是不允许包含分号，逗号，空格的，所以为了不给用户到来麻烦，考虑服务器的兼容性，任何存储 cookie 的数据都应该被编码。</li>
@@ -239,7 +239,7 @@
 <p>以前，如果 SameSite 属性没有设置，或者没有得到运行浏览器的支持，那么它的行为等同于 None，Cookies 会被包含在任何请求中——包括跨站请求。但是，在新版本的浏览器中，SameSite 的默认属性是 SameSite=Lax。换句话说，当 Cookie 没有设置 SameSite 属性时，将会视作 SameSite 属性被设置为 Lax——这意味着 Cookies 将会在当前用户使用时被自动发送。如果想要指定 Cookies 在同站、跨站请求都被发送，那么需要明确指定 SameSite 为 None</p>
 </blockquote>
 <h4 id="10-JavaScript-如何操作-cookie-？"><a href="#10-JavaScript-如何操作-cookie-？" class="headerlink" title="10. JavaScript 如何操作 cookie ？"></a>10. JavaScript 如何操作 cookie ？</h4><p><strong><code>1. document.cookie 创建新的 cookie</code></strong><br>通过 Document.cookie 属性可创建新的 Cookie，只可通过该属性访问非 HttpOnly 标记的 Cookie。此方法一次只能对一个 coookie 进行设置或更新。打印出的结果是一个字符串类型，因为 cookie 本身就是存储在浏览器中的字符串。但这个字符串是有格式的，由键值对<code>key=value</code> 构成，键值对之间由一个分号和一个空格隔开。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"yummy_cookie=choco"</span>;</span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"tasty_cookie=strawberry"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.cookie);</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"yummy_cookie=choco"</span>;</span><br><span class="line"><span class="built_in">document</span>.cookie = <span class="string">"tasty_cookie=strawberry"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">document</span>.cookie);</span><br></pre></td></tr></table></figure>
 <p><strong><code>2. 删除 cookie 修改 cookie</code></strong><br>name/domain/path 这 3 个字段都相同的时候,cookie 会被覆盖<br>修改 cookie 只需要重新赋值，属性 path/domain 等要和旧 cookie 保持一致，否则会重新创建新的 cookie<br>删除 cookie 也需要重新赋值，把 cookie 的 expires 设置成一个过去的时间点，同样注意其各种属性一定要旧 cookie 保持一样。</p>
 <h4 id="11-服务端如何设置-cookie"><a href="#11-服务端如何设置-cookie" class="headerlink" title="11. 服务端如何设置 cookie"></a>11. 服务端如何设置 cookie</h4><p>服务端就是通过 setCookie 来设置 cookie 的，设置多个 cookie 时，得多写几个 setCookie</p>
 <h4 id="12-cookie-设置的初衷"><a href="#12-cookie-设置的初衷" class="headerlink" title="12.cookie 设置的初衷"></a>12.cookie 设置的初衷</h4><p>和服务端进行交互。</p>
@@ -491,15 +491,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">diary</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,11 +519,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">npm</a>
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,19 +539,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
+                <a href="javascript:void(0)" class="js-tag color3">webpack</a>
               </li>
             
             <div class="clearfix"></div>
