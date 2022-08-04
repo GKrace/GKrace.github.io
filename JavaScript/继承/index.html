@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="gracekang.icu">
   <title>继承的几种方式 | Grace</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 原型链继承">
+  <meta name="description" content="1. 原型链继承子类型的原型为父类型的一个实力对象.">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="继承的几种方式">
 <meta property="og:url" content="gracekang.icu/JavaScript/继承/index.html">
 <meta property="og:site_name" content="Grace">
-<meta property="og:description" content="1. 原型链继承">
+<meta property="og:description" content="1. 原型链继承子类型的原型为父类型的一个实力对象.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-07-30T02:56:24.428Z">
+<meta property="og:updated_time" content="2022-08-04T10:36:04.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="继承的几种方式">
-<meta name="twitter:description" content="1. 原型链继承">
+<meta name="twitter:description" content="1. 原型链继承子类型的原型为父类型的一个实力对象.">
   
     <link rel="alternative" href="/atom.xml" title="Grace" type="application/atom+xml">
   
@@ -167,8 +167,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><a id="more"></a>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">"father"</span></span><br><span class="line">&#125;</span><br><span class="line">Father.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Son</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Son.prototype = <span class="keyword">new</span> Father()</span><br><span class="line"><span class="keyword">var</span> son1 = <span class="keyword">new</span> Son()</span><br><span class="line"><span class="built_in">console</span>.log(son1.getName)</span><br></pre></td></tr></table></figure>
+        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><p>子类型的原型为父类型的一个实力对象.</p>
+<a id="more"></a>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.age=age;</span><br><span class="line">    <span class="keyword">this</span>.play=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">this</span>.sayName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.setAge=funciton()&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">price</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.price=price;</span><br><span class="line">    <span class="keyword">this</span>.setScore=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Student.prototype=<span class="keyword">new</span> Person()<span class="comment">//子类型的原型为父类型的一个实例对象</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s1=<span class="keyword">new</span> Student(<span class="number">12340</span>);</span><br></pre></td></tr></table></figure>
+<p>这种方式实现的本质是通过将子类的原型指向了父类的实例，所有子类的实例就可以通过<strong>proto</strong>访问到Student.prototype也就是Person的实例，这样就可以访问到父类的私有方法。然后再通过Student <strong>proto</strong>指向父类Person的Prototype可以获得父类原型上的方法，这样就做到了将父类的私有，共有方法和属性都当做子类的公有属性。<br>子类继承父类的属性和方法是将父类的私有属性和公有方法都作为自己的共有属性和方法，如果父类的私有属性中有引用类型的属性，那它被子类型继承的时候会作为共有属性，这样子类1操作这个属性的时候，就会影响到子类2。<br>PS: 注意：我们需要在子类中添加新的方法或者是复写父类的方法的时候，切记一定要放到替换原型的语句之后。  </p>
 <h2 id="构造函数继承"><a href="#构造函数继承" class="headerlink" title="构造函数继承"></a>构造函数继承</h2><p>优势：可以穿参数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">father</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = [<span class="string">"grace"</span>, <span class="string">"kang"</span>, <span class="string">"moka"</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">son</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	father.call(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> son1 = <span class="keyword">new</span> son()</span><br><span class="line">son1.name.push(<span class="string">"buding"</span>)</span><br><span class="line"><span class="built_in">console</span>.log(son1)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> son2 = <span class="keyword">new</span> father()</span><br><span class="line"><span class="built_in">console</span>.log(son2)</span><br></pre></td></tr></table></figure>
 
@@ -415,10 +417,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
@@ -431,11 +429,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">html</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -443,11 +437,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">npm</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -455,11 +445,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,7 +457,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">html</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
               </li>
              
               <li class="article-tag-list-item">
