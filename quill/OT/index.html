@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/images/quil/quil00.png">
 <meta property="og:image" content="/images/quil/quil1.png">
-<meta property="og:updated_time" content="2023-05-26T09:13:13.003Z">
+<meta property="og:updated_time" content="2023-05-26T09:20:45.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OT算法">
 <meta name="twitter:description" content="OT 算法能够在实时保证多个客户端数据的一致性，被广泛用于协同编辑场景。 Operational transformationOT 是一种支持高级协作软件系统中一系列协作功能的技术。OT 最初是为了在纯文本文件的协作编辑中进行一致性维护和并发控制而发明的。它的能力已经得到了扩展，其应用也扩大到包括组撤销、锁定、冲突解决、操作通知和压缩，组感知、HTML/XML 话题树结构文档编辑、协作办公生产力工">
@@ -171,7 +171,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>OT 算法能够在实时保证多个客户端数据的一致性，被广泛用于协同编辑场景。</p>
-<h2 id="Operational-transformation"><a href="#Operational-transformation" class="headerlink" title="Operational transformation"></a>Operational transformation</h2><p>OT 是一种支持高级协作软件系统中一系列协作功能的技术。OT 最初是为了在纯文本文件的协作编辑中进行一致性维护和并发控制而发明的。它的能力已经得到了扩展，其应用也扩大到包括组撤销、锁定、冲突解决、操作通知和压缩，组感知、HTML/XML 话题树结构文档编辑、协作办公生产力工具、应用程序共享和协作计算机辅助媒体工具。2009 年 OT 被采纳为 Apache Wave 和 Google Docs 协作功能背后的核心技术。</p>
+<h2 id="Operational-transformation"><a href="#Operational-transformation" class="headerlink" title="Operational transformation"></a>Operational transformation</h2><p>OT 是一种支持高级协作软件系统中一系列协作功能的技术。OT 最初是为了在纯文本文件的协作编辑中进行一致性维护和并发控制而发明的。它的能力已经得到了扩展，其应用也扩大到包括组撤销、锁定、冲突解决、操作通知和压缩，组感知、HTML/XML 话题树结构文档编辑、协作办公生产力工具、应用程序共享和协作计算机辅助媒体工具。2009 年 OT 被采纳为 Apache Wave 和 Google Docs 协作功能背后的核心技术。<br><a id="more"></a></p>
 <p>利用 OT 的协作系统通常使用复制进行文档存储，每个客户端都有自己的文档副本；客户端以无锁、无阻塞的方式对他们的本地副本进行操作，然后将变化广播给其他的客户端；这保证了客户端在其他高延迟的环境中的高响应性，例如 web。当一个客户端收到从另一个客户端广播的变化时，它通常在执行这些变化之前对其进行转换；转换确保所有站点都能保持与应用相关的一致性标准（不变性）。在这种操作模式下，系统特别适合于实现协作功能，如在网络等高延迟环境下的同步文档编辑。</p>
 <h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>指导思想： 系统不需要是正确的，它只需要保持一致，并且需要努力保持你的意图。<br>协同编辑的冲突处理不一定是完全正确的，因为冲突本来就意味着操作是互斥的，互斥双方的操作意图不可能完全保留。冲突处理最重要的是保证协同双方最终数据的一致性，然后在这个基础上努力保持各自的操作意图。  </p>
 <p> <img src="/images/quil/quil00.png" width="50%" height="50%"><br>OT的基本思想可以通过使用一个简单的文本编辑场景来说明，如下所示。给定一个文本文件，有一个字符串 “abc”，在两个合作站点复制；还有两个并发的操作：  </p>
@@ -442,11 +442,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,6 +462,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">eth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -474,15 +478,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">npm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,7 +490,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color1">quill</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -502,11 +506,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">quill</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">eth</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">

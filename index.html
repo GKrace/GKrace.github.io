@@ -168,43 +168,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>OT 算法能够在实时保证多个客户端数据的一致性，被广泛用于协同编辑场景。</p>
-<h2 id="Operational-transformation"><a href="#Operational-transformation" class="headerlink" title="Operational transformation"></a>Operational transformation</h2><p>OT 是一种支持高级协作软件系统中一系列协作功能的技术。OT 最初是为了在纯文本文件的协作编辑中进行一致性维护和并发控制而发明的。它的能力已经得到了扩展，其应用也扩大到包括组撤销、锁定、冲突解决、操作通知和压缩，组感知、HTML/XML 话题树结构文档编辑、协作办公生产力工具、应用程序共享和协作计算机辅助媒体工具。2009 年 OT 被采纳为 Apache Wave 和 Google Docs 协作功能背后的核心技术。</p>
-<p>利用 OT 的协作系统通常使用复制进行文档存储，每个客户端都有自己的文档副本；客户端以无锁、无阻塞的方式对他们的本地副本进行操作，然后将变化广播给其他的客户端；这保证了客户端在其他高延迟的环境中的高响应性，例如 web。当一个客户端收到从另一个客户端广播的变化时，它通常在执行这些变化之前对其进行转换；转换确保所有站点都能保持与应用相关的一致性标准（不变性）。在这种操作模式下，系统特别适合于实现协作功能，如在网络等高延迟环境下的同步文档编辑。</p>
-<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>指导思想： 系统不需要是正确的，它只需要保持一致，并且需要努力保持你的意图。<br>协同编辑的冲突处理不一定是完全正确的，因为冲突本来就意味着操作是互斥的，互斥双方的操作意图不可能完全保留。冲突处理最重要的是保证协同双方最终数据的一致性，然后在这个基础上努力保持各自的操作意图。  </p>
-<p> <img src="/images/quil/quil00.png" width="50%" height="50%"><br>OT的基本思想可以通过使用一个简单的文本编辑场景来说明，如下所示。给定一个文本文件，有一个字符串 “abc”，在两个合作站点复制；还有两个并发的操作：  </p>
-<ul>
-<li>O1 = Insert[0, “x”] （在 “0 “位置插入字符 “x”）</li>
-<li>O2 = Delete[2, “c”] (删除位置为 “2 “的字符 “c”)</li>
-</ul>
-<p>分别由合作站点1和2的两个用户生成。假设这两个操作是按照O1和O2的顺序执行的（在站点1)<br>在执行O1之后，文件变成了 <code>&quot;xabc&quot;</code>。为了在O1之后执行O2，O2必须针对O1进行转换，成为： <code>O2&#39;=Delete[3, &quot;c&quot;]</code>，由于O1插入了一个字符 <code>&quot;x&quot;</code>，所以其位置参数增加了1。在 <code>&quot;xabc&quot;</code>上执行O2’会删除正确的字符 <code>&quot;c&quot;</code>，文件变成 <code>&quot;xab&quot;</code>。然而，如果O2在没有转换的情况下被执行，它将错误地删除字符 <code>&quot;b&quot;</code>而不是 <code>&quot;c&quot;</code>。OT的基本思想是根据以前执行的并发操作的效果来转换（或调整）编辑操作的参数，以便转换后的操作可以达到正确的效果，并保持文档的一致性。</p>
-<h2 id="常见冲突处理方式"><a href="#常见冲突处理方式" class="headerlink" title="常见冲突处理方式"></a>常见冲突处理方式</h2><p>假设 AB 同时编辑同一个内容， 常见处理冲突的方式有：</p>
-<ol>
-<li><strong>加锁</strong>: 用户 A 在编辑时，就锁住文档，只能 A 进行更新。用户 B 就不能编辑，或编辑后提交修改被服务器丢弃；</li>
-<li><strong>覆盖</strong>: 谁最后修改，就全量使用他的修改，更早一些的其他人的修改会被丢弃。</li>
-<li><strong>用户自行处理冲突</strong>: 就像 git merge 导致的冲突一样，会提示哪个地方被同时修改了，让合并者手动选择使用哪一个修改；</li>
-<li><strong>使用一致性算法</strong>: 比如 OT 算法，可以让用户编辑进行算法处理进行调整，在多个客户端生成一致的修改结果。</li>
-</ol>
-<p>加锁体验极差，几乎不会选择这种模式<br>直接覆盖会导致用户的修改被他人覆盖，体验也不好。<br>手动处理冲突会增加用户使用和操作的成本，实时性差，不适合高频同时修改的场景。<br>一致性算法基本是用户体验最好的选择，但实现相对复杂。</p>
-<h2 id="不一致的场景"><a href="#不一致的场景" class="headerlink" title="不一致的场景"></a>不一致的场景</h2><p>假设没有OT解决一致性冲突的问题，有两个用户AB同时编辑一个文档，字符串内容为”123”</p>
-<ol>
-<li>用户A在末尾添加一个字符”A”,修改应用在本地，内容变成了”12A”,之后客户端发送一个数据<code>insert(3, &quot;A&quot;)</code>给服务端，代表在位置3插入A，服务器将修改的消息推送到其他客户端，需要一定的时间。</li>
-<li>用户 B 在收到推送消息前，也在 “123 的尾部添加了内容 “B”，在本地变成了 “123B”，并将 insert(3, “B”) 的修改描述提交服务器；</li>
-<li>用户 B 收到了 insert(3, “A”) 消息，应用后，将 “123B” 变成了 “123AB”;</li>
-<li>用户 A 则收到  insert(3, “B”) 消息，应用后，将 “123B” 变成了 “123BA”;<br>用户 A 看到的内容是 “123BA”，用户 B 看到的内容是 “123AB”，内容不一致，不符合预期。</li>
-</ol>
-<h2 id="使用OT"><a href="#使用OT" class="headerlink" title="使用OT"></a>使用OT</h2><ol>
-<li>用户 A 在末尾添加 “A”，本地变成 “123A”，并发送 insert(3, A)，这个操作计作 OA；</li>
-<li>用户 B 在末尾添加 “B”，本地变成 “123B”，并发送 insert(3, B)，这个操作计作 OB；</li>
-<li>用户 A 收到 OB，执行 transform(OA, OB)，得到修正后的操作 insert(4, B)，记为 OB’，相比 OB，它将插入位置从 3 修正为 4，于是 “123A” 变成了 “123AB”；</li>
-<li>用户 B 则收到 OA，同样执行 transform(OA, OB)，得到修正操作 insert(3, A)，记为 O1’，让内容从 “123A” 变成 “123AB”。transform 方法会同时产生 OA’ 和 OB’。<br>用户 A  和用户 B 看到的是 一致 的 “123AB”。  </li>
-</ol>
-<p>这里的核心在于这个 transfrom 方法，它能够对操作进行修正。transform 没有固定实现，要根据实际需求自行实现。</p>
-<p>这里有一个经典的菱形示意图。<br> <img src="/images/quil/quil1.png" width="50%" height="50%"><br>从起始版本 S 开始，它接受了两个 并发操作 A 和 B。我们使用 trasform 方法生成 A’ 和 B’。我们有：</p>
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">从起始版本 S 开始，它接受了两个 并发操作 <span class="keyword">A</span> 和 B。</span><br><span class="line">我们使用 trasform 方法生成 <span class="keyword">A</span>' 和 B'。</span><br><span class="line">我们有：这样，从 S 得到相同的 T，保证了一致性。</span><br></pre></td></tr></table></figure>
-<h2 id="其他协同编辑框架"><a href="#其他协同编辑框架" class="headerlink" title="其他协同编辑框架"></a>其他协同编辑框架</h2><p>基于CRDT的数据协同框架<a href="https://github.com/yjs/yjs" target="_blank" rel="noopener">https://github.com/yjs/yjs</a><br>文档：<a href="https://docs.yjs.dev/" target="_blank" rel="noopener">https://docs.yjs.dev/</a></p>
-<h2 id="相关库"><a href="#相关库" class="headerlink" title="相关库"></a>相关库</h2><p>基于OT的数据协同框架 <a href="https://github.com/Operational-Transformation/ot.js/" target="_blank" rel="noopener">otjs</a><br>这里有在线OT可视化demo:<a href="http://operational-transformation.github.io/" target="_blank" rel="noopener">http://operational-transformation.github.io/</a></p>
-<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p><a href="https://www3.ntu.edu.sg/scse/staff/czsun/projects/otfaq/" target="_blank" rel="noopener">OT FAQ</a><br><a href="https://zhuanlan.zhihu.com/p/425265438" target="_blank" rel="noopener">多人协同编辑技术的演进</a><br><a href="https://www.cnblogs.com/WindrunnerMax/p/17035547.html" target="_blank" rel="noopener">初探富文本之OT协同算法</a><br><a href="http://www.alloyteam.com/2020/01/14221/" target="_blank" rel="noopener">浅谈协同文档中的数据一致性</a><br><a href="http://www.alloyteam.com/2019/07/13659/" target="_blank" rel="noopener">揭开在线协作的神秘面纱 – OT 算法</a><br><a href="https://segmentfault.com/a/1190000040203619" target="_blank" rel="noopener">OT算法在协同编辑中的应用</a><br><a href="https://josephg.com/blog/crdts-are-the-future/" target="_blank" rel="noopener">CRDTs are the future</a><br><a href="https://josephg.com/blog/crdts-go-brrr/" target="_blank" rel="noopener">5000x faster CRDTs: An Adventure in Optimization</a><br><a href="https://zhuanlan.zhihu.com/p/426184831" target="_blank" rel="noopener">协同富文本实现与 OT / ShareDB 原理</a></p>
-
+<h2 id="Operational-transformation"><a href="#Operational-transformation" class="headerlink" title="Operational transformation"></a>Operational transformation</h2><p>OT 是一种支持高级协作软件系统中一系列协作功能的技术。OT 最初是为了在纯文本文件的协作编辑中进行一致性维护和并发控制而发明的。它的能力已经得到了扩展，其应用也扩大到包括组撤销、锁定、冲突解决、操作通知和压缩，组感知、HTML/XML 话题树结构文档编辑、协作办公生产力工具、应用程序共享和协作计算机辅助媒体工具。2009 年 OT 被采纳为 Apache Wave 和 Google Docs 协作功能背后的核心技术。<br>
+        
+          <a class="article-more-a" href="/quill/OT/#more">more >></a>
+        
       
 
       
@@ -1144,11 +1111,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1164,6 +1131,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">eth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">html</a>
               </li>
              
@@ -1176,15 +1147,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">npm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+                <a href="javascript:void(0)" class="js-tag color4">npm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1192,7 +1159,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color1">quill</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1204,11 +1175,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">quill</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">eth</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
