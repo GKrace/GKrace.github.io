@@ -147,6 +147,520 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="quill-quill/OT" class="article article-type-quill  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/quill/OT/">OT算法</a>
+    </h1>
+  
+
+        
+        <a href="/quill/OT/" class="archive-article-date">
+  	<time datetime="2023-05-26T14:19:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>OT 算法能够在实时保证多个客户端数据的一致性，被广泛用于协同编辑场景。</p>
+<h2 id="Operational-transformation"><a href="#Operational-transformation" class="headerlink" title="Operational transformation"></a>Operational transformation</h2><p>OT 是一种支持高级协作软件系统中一系列协作功能的技术。OT 最初是为了在纯文本文件的协作编辑中进行一致性维护和并发控制而发明的。它的能力已经得到了扩展，其应用也扩大到包括组撤销、锁定、冲突解决、操作通知和压缩，组感知、HTML/XML 话题树结构文档编辑、协作办公生产力工具、应用程序共享和协作计算机辅助媒体工具。2009 年 OT 被采纳为 Apache Wave 和 Google Docs 协作功能背后的核心技术。</p>
+<p>利用 OT 的协作系统通常使用复制进行文档存储，每个客户端都有自己的文档副本；客户端以无锁、无阻塞的方式对他们的本地副本进行操作，然后将变化广播给其他的客户端；这保证了客户端在其他高延迟的环境中的高响应性，例如 web。当一个客户端收到从另一个客户端广播的变化时，它通常在执行这些变化之前对其进行转换；转换确保所有站点都能保持与应用相关的一致性标准（不变性）。在这种操作模式下，系统特别适合于实现协作功能，如在网络等高延迟环境下的同步文档编辑。</p>
+<h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p>指导思想： 系统不需要是正确的，它只需要保持一致，并且需要努力保持你的意图。<br>协同编辑的冲突处理不一定是完全正确的，因为冲突本来就意味着操作是互斥的，互斥双方的操作意图不可能完全保留。冲突处理最重要的是保证协同双方最终数据的一致性，然后在这个基础上努力保持各自的操作意图。  </p>
+<p> <img src="/images/quil/quil00.png" width="50%" height="50%"><br>OT的基本思想可以通过使用一个简单的文本编辑场景来说明，如下所示。给定一个文本文件，有一个字符串 “abc”，在两个合作站点复制；还有两个并发的操作：  </p>
+<ul>
+<li>O1 = Insert[0, “x”] （在 “0 “位置插入字符 “x”）</li>
+<li>O2 = Delete[2, “c”] (删除位置为 “2 “的字符 “c”)</li>
+</ul>
+<p>分别由合作站点1和2的两个用户生成。假设这两个操作是按照O1和O2的顺序执行的（在站点1)<br>在执行O1之后，文件变成了 <code>&quot;xabc&quot;</code>。为了在O1之后执行O2，O2必须针对O1进行转换，成为： <code>O2&#39;=Delete[3, &quot;c&quot;]</code>，由于O1插入了一个字符 <code>&quot;x&quot;</code>，所以其位置参数增加了1。在 <code>&quot;xabc&quot;</code>上执行O2’会删除正确的字符 <code>&quot;c&quot;</code>，文件变成 <code>&quot;xab&quot;</code>。然而，如果O2在没有转换的情况下被执行，它将错误地删除字符 <code>&quot;b&quot;</code>而不是 <code>&quot;c&quot;</code>。OT的基本思想是根据以前执行的并发操作的效果来转换（或调整）编辑操作的参数，以便转换后的操作可以达到正确的效果，并保持文档的一致性。</p>
+<h2 id="常见冲突处理方式"><a href="#常见冲突处理方式" class="headerlink" title="常见冲突处理方式"></a>常见冲突处理方式</h2><p>假设 AB 同时编辑同一个内容， 常见处理冲突的方式有：</p>
+<ol>
+<li><strong>加锁</strong>: 用户 A 在编辑时，就锁住文档，只能 A 进行更新。用户 B 就不能编辑，或编辑后提交修改被服务器丢弃；</li>
+<li><strong>覆盖</strong>: 谁最后修改，就全量使用他的修改，更早一些的其他人的修改会被丢弃。</li>
+<li><strong>用户自行处理冲突</strong>: 就像 git merge 导致的冲突一样，会提示哪个地方被同时修改了，让合并者手动选择使用哪一个修改；</li>
+<li><strong>使用一致性算法</strong>: 比如 OT 算法，可以让用户编辑进行算法处理进行调整，在多个客户端生成一致的修改结果。</li>
+</ol>
+<p>加锁体验极差，几乎不会选择这种模式<br>直接覆盖会导致用户的修改被他人覆盖，体验也不好。<br>手动处理冲突会增加用户使用和操作的成本，实时性差，不适合高频同时修改的场景。<br>一致性算法基本是用户体验最好的选择，但实现相对复杂。</p>
+<h2 id="不一致的场景"><a href="#不一致的场景" class="headerlink" title="不一致的场景"></a>不一致的场景</h2><p>假设没有OT解决一致性冲突的问题，有两个用户AB同时编辑一个文档，字符串内容为”123”</p>
+<ol>
+<li>用户A在末尾添加一个字符”A”,修改应用在本地，内容变成了”12A”,之后客户端发送一个数据<code>insert(3, &quot;A&quot;)</code>给服务端，代表在位置3插入A，服务器将修改的消息推送到其他客户端，需要一定的时间。</li>
+<li>用户 B 在收到推送消息前，也在 “123 的尾部添加了内容 “B”，在本地变成了 “123B”，并将 insert(3, “B”) 的修改描述提交服务器；</li>
+<li>用户 B 收到了 insert(3, “A”) 消息，应用后，将 “123B” 变成了 “123AB”;</li>
+<li>用户 A 则收到  insert(3, “B”) 消息，应用后，将 “123B” 变成了 “123BA”;<br>用户 A 看到的内容是 “123BA”，用户 B 看到的内容是 “123AB”，内容不一致，不符合预期。</li>
+</ol>
+<h2 id="使用OT"><a href="#使用OT" class="headerlink" title="使用OT"></a>使用OT</h2><ol>
+<li>用户 A 在末尾添加 “A”，本地变成 “123A”，并发送 insert(3, A)，这个操作计作 OA；</li>
+<li>用户 B 在末尾添加 “B”，本地变成 “123B”，并发送 insert(3, B)，这个操作计作 OB；</li>
+<li>用户 A 收到 OB，执行 transform(OA, OB)，得到修正后的操作 insert(4, B)，记为 OB’，相比 OB，它将插入位置从 3 修正为 4，于是 “123A” 变成了 “123AB”；</li>
+<li>用户 B 则收到 OA，同样执行 transform(OA, OB)，得到修正操作 insert(3, A)，记为 O1’，让内容从 “123A” 变成 “123AB”。transform 方法会同时产生 OA’ 和 OB’。<br>用户 A  和用户 B 看到的是 一致 的 “123AB”。  </li>
+</ol>
+<p>这里的核心在于这个 transfrom 方法，它能够对操作进行修正。transform 没有固定实现，要根据实际需求自行实现。</p>
+<p>这里有一个经典的菱形示意图。<br> <img src="/images/quil/quil1.png" width="50%" height="50%"><br>从起始版本 S 开始，它接受了两个 并发操作 A 和 B。我们使用 trasform 方法生成 A’ 和 B’。我们有：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">从起始版本 S 开始，它接受了两个 并发操作 <span class="keyword">A</span> 和 B。</span><br><span class="line">我们使用 trasform 方法生成 <span class="keyword">A</span>' 和 B'。</span><br><span class="line">我们有：这样，从 S 得到相同的 T，保证了一致性。</span><br></pre></td></tr></table></figure>
+<h2 id="其他协同编辑框架"><a href="#其他协同编辑框架" class="headerlink" title="其他协同编辑框架"></a>其他协同编辑框架</h2><p>基于CRDT的数据协同框架<a href="https://github.com/yjs/yjs" target="_blank" rel="noopener">https://github.com/yjs/yjs</a><br>文档：<a href="https://docs.yjs.dev/" target="_blank" rel="noopener">https://docs.yjs.dev/</a></p>
+<h2 id="相关库"><a href="#相关库" class="headerlink" title="相关库"></a>相关库</h2><p>基于OT的数据协同框架 <a href="https://github.com/Operational-Transformation/ot.js/" target="_blank" rel="noopener">otjs</a><br>这里有在线OT可视化demo:<a href="http://operational-transformation.github.io/" target="_blank" rel="noopener">http://operational-transformation.github.io/</a></p>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p><a href="https://www3.ntu.edu.sg/scse/staff/czsun/projects/otfaq/" target="_blank" rel="noopener">OT FAQ</a><br><a href="https://zhuanlan.zhihu.com/p/425265438" target="_blank" rel="noopener">多人协同编辑技术的演进</a><br><a href="https://www.cnblogs.com/WindrunnerMax/p/17035547.html" target="_blank" rel="noopener">初探富文本之OT协同算法</a><br><a href="http://www.alloyteam.com/2020/01/14221/" target="_blank" rel="noopener">浅谈协同文档中的数据一致性</a><br><a href="http://www.alloyteam.com/2019/07/13659/" target="_blank" rel="noopener">揭开在线协作的神秘面纱 – OT 算法</a><br><a href="https://segmentfault.com/a/1190000040203619" target="_blank" rel="noopener">OT算法在协同编辑中的应用</a><br><a href="https://josephg.com/blog/crdts-are-the-future/" target="_blank" rel="noopener">CRDTs are the future</a><br><a href="https://josephg.com/blog/crdts-go-brrr/" target="_blank" rel="noopener">5000x faster CRDTs: An Adventure in Optimization</a><br><a href="https://zhuanlan.zhihu.com/p/426184831" target="_blank" rel="noopener">协同富文本实现与 OT / ShareDB 原理</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">quill</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/quill/OT/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="webpack-webpack/webpack1" class="article article-type-webpack  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/webpack/webpack1/">Webpack（1）</a>
+    </h1>
+  
+
+        
+        <a href="/webpack/webpack1/" class="archive-article-date">
+  	<time datetime="2023-03-10T15:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="为什么需要webpack"><a href="#为什么需要webpack" class="headerlink" title="为什么需要webpack"></a>为什么需要webpack</h3><ol>
+<li>原生方式开发（JavaScript(ES5)、CSS、HTML），开发效率相对较低，生产和研发同一套代码，耗费精力。</li>
+<li>Node 与 RequireJS 出现，开发与生产环境有了隔离管理的实现方案，Babel、TypeScript、es6、less、sass等工具出现，方便开发</li>
+<li>工程化工具能不同程度弥补浏览器、语言、规范本身、版本等的设计缺陷。<br>我们需要一套足够开放，能融合诸多工程化工具，彻底抹平开发与生产环境差异的一体化工程方案，这也正是 Webpack 需要解决的问题</li>
+</ol>
+<h3 id="webpack是什么"><a href="#webpack是什么" class="headerlink" title="webpack是什么"></a>webpack是什么</h3><p>Webpack 是一种用于构建 JavaScript 应用程序的静态模块打包器，它能够以一种相对一致且开放的处理方式，加载应用中的所有资源文件（图片、CSS、视频、字体文件等），并将其合并打包成浏览器兼容的 Web 资源文件。</p>
+<p>Webpack 忽略具体资源类型之间的差异，将所有代码/非代码文件都统一看作 Module —— 模块对象，以相同的加载、解析、依赖管理、优化、合并流程实现打包，并借助 Loader、Plugin 两种开放接口将资源差异处理逻辑转交由社区实现，实现统一资源构建模型，这种设计有很多优点：</p>
+<ul>
+<li>所有资源都是 Module，所以可以用同一套代码实现诸多特性，包括：代码压缩、Hot Module Replacement、缓存等；</li>
+<li>打包时，资源与资源之间非常容易实现信息互换，例如可以轻易在 HTML 插入 Base64 格式的图片；</li>
+<li>借助 Loader，Webpack 几乎可以用任意方式处理任意类型的资源，例如可以用 Less、Stylus、Sass 等预编译 CSS 代码。</li>
+<li>甚至在 Webpack 之后出现的许多新打包工具，例如 Rollup、Parcel、Snowpack 等，都或多或少受这种设计影响。</li>
+<li>极强的开放性，也让它得以成为前端工程化环境的基座，我们可以围绕 Webpack 轻易接入一系列工程化工具，例如 TypeScript、CoffeScript、Babel 一类的 JavaScript 编译工具；或者 Less、Sass、Stylus、PostCSS 等 CSS 预处理器；或者 Jest、Karma 等测试框架等</li>
+</ul>
+<h3 id="结构化理解-Webpack-配置项"><a href="#结构化理解-Webpack-配置项" class="headerlink" title="结构化理解 Webpack 配置项"></a>结构化理解 Webpack 配置项</h3><p>webpack 编译流程：</p>
+<p><code>输入--&gt;模块处理--&gt;后处理--&gt;输出</code></p>
+<ul>
+<li>输入：从文件系统读入代码文件；</li>
+<li>模块递归处理：调用 Loader 转译 Module 内容，并将结果转换为 AST，从中分析出模块依赖关系，进一步递归调用模块处理过程，直到所有依赖文件都处理完毕；</li>
+<li>后处理：所有模块递归处理完毕后开始执行后处理，包括模块合并、注入运行时、产物优化等，最终输出 Chunk 集合；</li>
+<li>输出：将 Chunk 写出到外部文件系统；</li>
+</ul>
+<p>打包流程角度，Webpack 配置项大体上可分为两类：</p>
+<ul>
+<li>流程类：作用于打包流程某个或若干个环节，直接影响编译打包效果的配置项</li>
+<li>工具类：打包主流程之外，提供更多工程化工具的配置项</li>
+</ul>
+<h4 id="流程配置类"><a href="#流程配置类" class="headerlink" title="流程配置类"></a>流程配置类</h4><p>与打包流程强相关的配置项有：  </p>
+<ul>
+<li>输入输出：<ul>
+<li><strong>entry</strong>：用于定义项目入口文件，Webpack 会从这些入口文件开始按图索骥找出所有项目文件；</li>
+<li><strong>context</strong>：项目执行上下文路径；</li>
+<li><strong>output</strong>：配置产物输出路径、名称等；</li>
+</ul>
+</li>
+<li>模块处理：<ul>
+<li><strong>resolve</strong>：用于配置模块路径解析规则，可用于帮助 Webpack 更精确、高效地找到指定模块</li>
+<li><strong>module</strong>：用于配置模块加载规则，例如针对什么类型的资源需要使用哪些 Loader 进行处理</li>
+<li><strong>externals</strong>：用于声明外部资源，Webpack 会直接忽略这部分资源，跳过这些资源的解析、打包操作</li>
+</ul>
+</li>
+<li>后处理：<ul>
+<li><strong>optimization</strong>：用于控制如何优化产物包体积，内置 Dead Code Elimination、Scope Hoisting、代码混淆、代码压缩等功能</li>
+<li><strong>target</strong>：用于配置编译产物的目标运行环境，支持 web、node、electron 等值，不同值最终产物会有所差异</li>
+<li><strong>mode</strong>：编译模式短语，支持 development、production 等值，可以理解为一种声明环境的短语</li>
+</ul>
+</li>
+</ul>
+<p>Webpack 首先需要根据输入配置(entry/context) 找到项目入口文件；之后根据按模块处理(module/resolve/externals 等) 所配置的规则逐一处理模块文件，处理过程包括转译、依赖分析等；模块处理完毕后，最后再根据后处理相关配置项(optimization/target 等)合并模块资源、注入运行时依赖、优化产物结构等。</p>
+<h4 id="工具类配置项"><a href="#工具类配置项" class="headerlink" title="工具类配置项"></a>工具类配置项</h4><p>Webpack 还提供了一系列用于提升研发效率的工具，大体上可划分为：</p>
+<ul>
+<li>开发效率类：<ul>
+<li><strong>watch</strong>：用于配置持续监听文件变化，持续构建</li>
+<li><strong>devtool</strong>：用于配置产物 Sourcemap 生成规则</li>
+<li><strong>devServer</strong>：用于配置与 HMR 强相关的开发服务器功能</li>
+</ul>
+</li>
+<li>性能优化类：<ul>
+<li><strong>cache</strong>：Webpack 5 之后，该项用于控制如何缓存编译过程信息与编译结果</li>
+<li><strong>performance</strong>：用于配置当产物大小超过阈值时，如何通知开发者</li>
+</ul>
+</li>
+<li>日志类：<ul>
+<li><strong>stats</strong>：用于精确地控制编译过程的日志内容，在做比较细致的性能调试时非常有用</li>
+<li><strong>infrastructureLogging</strong>：用于控制日志输出方式，例如可以通过该配置将日志输出到磁盘文件</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/webpack/webpack1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="react-react/next" class="article article-type-react  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/react/next/">next</a>
+    </h1>
+  
+
+        
+        <a href="/react/next/" class="archive-article-date">
+  	<time datetime="2022-09-05T11:59:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="同构"><a href="#同构" class="headerlink" title="同构"></a>同构</h3><p>同构的项目同时支持服务端渲染和客户端渲染。</p>
+<p>客户端渲染的缺点： </p>
+<ul>
+<li>首屏加载速度慢</li>
+<li>不支持seo和搜索引擎优化</li>
+<li>首页需要通过请求初始化数据</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add --dev react react-dom next axios redux react-redux express body-parser cors express-session connect-mongo mongoose koa koa-router</span><br></pre></td></tr></table></figure>
+<p>服务端渲染：<br>对于ssr来说，访问的第一个页面是走ssr，但是后边的路由转换的就都走的是客户端渲染了</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/react/next/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="eth-eth/dapp" class="article article-type-eth  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/eth/dapp/">web3开发指南</a>
+    </h1>
+  
+
+        
+        <a href="/eth/dapp/" class="archive-article-date">
+  	<time datetime="2022-08-12T18:05:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.youtube.com/watch?v=_160oMzblY8&amp;ab_channel=AndersBrownworth" target="_blank" rel="noopener">Blockchain入门视频</a></p>
+<h3 id="一些基本概念速查："><a href="#一些基本概念速查：" class="headerlink" title="一些基本概念速查："></a>一些基本概念速查：</h3><ul>
+<li><strong>交易：</strong>在区块链世界里面，我们把所有的交互行为（买东西、投票、转账）统称为一个交易（Transaction，简写为Tx）</li>
+<li><strong>区块：</strong>在一个特定的时间段内（如10分钟）会产生N笔交易，我们把这些交易打包到一起之后，称之为区块（Block）</li>
+<li><strong>区块链：</strong>在更长的一段时间内（如60分钟）会产生很多区块，我们这些区块（Block）以特定的规则链接🔗到一起之后，就称之为区块链（Blockchain）</li>
+<li><strong>以太坊：</strong> 一个俄罗斯的小伙子受到了比特币设计的启示，来了灵感，并于2013年首次提出了以太坊（Ethereum）的概念，并将其定位为：下一代加密货币与去中心化应用平台，并拉开了一个新时代的序幕。<ul>
+<li>以太坊是一个区块链的网络，由很多节点组成</li>
+<li>一个node节点其实就是一个运行以太坊客户端的计算机</li>
+<li>每一个以太坊节点都可以同步全部的账本/区块链信息（blockchain）</li>
+<li>以太坊可以转账，可以做数据存储（合约）</li>
+<li>以太坊可以执行程序，程序叫做智能合约，所有节点都运行这个程序</li>
+<li>以太坊网络有很多个，主网只有一个，还有很多测试网络，我们也可以自己搭建私链</li>
+<li>以太坊是公有链，每个人都可以自由的加入退出以太坊网络</li>
+</ul>
+</li>
+<li><strong>智能合约：</strong> 比特币的功能纯粹是金融转账，我们无法进行编程，而以太坊属于进阶版本，它的设计目的就是用来做应用开发的，而这个开发语言就是为以太坊专门设计的新语言：solidity，使用solidity开发的程序，在区块链上就叫做：智能合约（Smart Contract）<ul>
+<li>一旦部署就不会消失，因为区块链的账本数据永远存在（这类似于合约）</li>
+<li>一旦被触发就会按照既定逻辑执行，无人能够作恶（这类似于智能）</li>
+</ul>
+</li>
+</ul>
+<h3 id="App跟Dapp架构异同"><a href="#App跟Dapp架构异同" class="headerlink" title="App跟Dapp架构异同"></a>App跟Dapp架构异同</h3><h4 id="App架构"><a href="#App架构" class="headerlink" title="App架构"></a>App架构</h4><p>B/S或C/S的架构大体如此，从前端到后台，从机房到云原生，技术在迭代，效率在提高，一切越来越丝滑。底层的系统大致分为：从Unix、Linux、Dos、MacOs、Windows、安卓、IOS等等。<br><img src="/images/web3_0.png" width="70%" height="50%"></p>
+<h4 id="Dapp架构"><a href="#Dapp架构" class="headerlink" title="Dapp架构"></a>Dapp架构</h4><p>而去中心化应用的架构却与App完全不同，因为没有专门的后台，它的区块链网络就是底层系统：如以太坊网络、BSC网络等。<br><strong>V1：</strong>我们可以看到，此时浏览器多了一个钱包模块，钱包是打开区块链的身份钥匙🔑，整个区块链上世界都是建立在密码学之上的（非对称加密)，而图中蓝色部分就是区块链网络，我们的程序就运行在其中，它既是后端服务，也是数据库。<br><img src="/images/web3_1.png" width="70%" height="50%"><br>前端直接与区块链网络进行交互，包括：</p>
+<ul>
+<li>读数据（读取区块链账本数据），免费的</li>
+<li>写数据（向区块链网络提交数据，永久保存，此时需要矿工打包执行），付费的（这点记住即可，后续语言学习中，陆续会讲解）</li>
+</ul>
+<p><strong>V2：</strong>随着区块链网络生态的发展，人们渐渐发现了优化空间，即我们可以将读操作预先存储到一个服务器中，然后前端直接从中获取数据，这既可以保证系统安全，又可以提高效率，因此subgraph这个基建并得到飞速发展，图中橘黄色部分。我们称之为：V2版本架构<br><img src="/images/web3_2.png" width="100%" height="100%"></p>
+<p><strong>V3：</strong>当然，如果业务过于复杂，与链上合约交互的部分，我们可以独立封装出来，让前端专注于展示，合约专注于逻辑，所以引入了SDK，这部分专门处理和链上合约打交道的所有逻辑，并做响应的业务处理，时刻准备喂给前端，此时我们称为：V3版本架构<br><img src="/images/web3_3.png" width="100%" height="100%"></p>
+<p><strong>V4：</strong>再后来，区块链存储项目也陆续诞生，其中最为人知的便是：ipfs，它是一个致力于大文件存储的项目，最近很火的nft项目中，所有的图片都是要上传到ipfs上，从而节约以太坊网络费用，所以此时的设计更改如下，我们称之为：V4版本架构<br><img src="/images/web3_4.png" width="100%" height="100%"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">eth</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/eth/dapp/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-acm/TreeNode" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/acm/TreeNode/">二叉树</a>
+    </h1>
+  
+
+        
+        <a href="/acm/TreeNode/" class="archive-article-date">
+  	<time datetime="2022-08-04T21:29:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226.翻转二叉树 "></a><a href="https://leetcode.cn/problems/invert-binary-tree/" target="_blank" rel="noopener">226.翻转二叉树 </a></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * function TreeNode(val, left, right) &#123;</span></span><br><span class="line"><span class="comment"> *     this.val = (val===undefined ? 0 : val)</span></span><br><span class="line"><span class="comment"> *     this.left = (left===undefined ? null : left)</span></span><br><span class="line"><span class="comment"> *     this.right = (right===undefined ? null : right)</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;TreeNode&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> invertTree = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span> root;</span><br><span class="line">    <span class="keyword">const</span> left = invertTree(root.left);</span><br><span class="line">    <span class="keyword">const</span> right = invertTree(root.right);</span><br><span class="line">    root.left = right;</span><br><span class="line">    root.right = left;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="判断是不是相同的树"><a href="#判断是不是相同的树" class="headerlink" title="判断是不是相同的树"></a><a href="https://leetcode.cn/problems/same-tree/" target="_blank" rel="noopener">判断是不是相同的树</a></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isSameTree</span>(<span class="params">TreeNode root1, TreeNode root2</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 都为空的话，显然相同</span></span><br><span class="line">    <span class="keyword">if</span> (root1 == <span class="literal">null</span> &amp;&amp; root2 == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">// 一个为空，一个非空，显然不同</span></span><br><span class="line">    <span class="keyword">if</span> (root1 == <span class="literal">null</span> || root2 == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// 两个都非空，但 val 不一样也不行</span></span><br><span class="line">    <span class="keyword">if</span> (root1.val != root2.val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="comment">// root1 和 root2 该比的都比完了</span></span><br><span class="line">    <span class="keyword">return</span> isSameTree(root1.left, root2.left)</span><br><span class="line">        &amp;&amp; isSameTree(root1.right, root2.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对称二叉树-二叉树的根节点-root-，检查它是否轴对称"><a href="#对称二叉树-二叉树的根节点-root-，检查它是否轴对称" class="headerlink" title="对称二叉树: 二叉树的根节点 root ，检查它是否轴对称"></a><a href="https://leetcode.cn/problems/symmetric-tree/" target="_blank" rel="noopener">对称二叉树: 二叉树的根节点 root ，检查它是否轴对称</a></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;boolean&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> isSymmetric = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span>  help(root.left, root.right);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">help</span>(<span class="params"> root1, root2</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root1 == <span class="literal">null</span> &amp;&amp; root2 == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(root1 == <span class="literal">null</span> || root2 == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (root1.val != root2.val) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> help(root1.left, root2.right) &amp;&amp; help(root1.right, root2.left)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二叉树的最大深度"><a href="#二叉树的最大深度" class="headerlink" title="二叉树的最大深度"></a><a href="https://leetcode.cn/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener">二叉树的最大深度</a></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> maxDepth = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">const</span> leftHeight = maxDepth(root.left);</span><br><span class="line">    <span class="keyword">const</span> rightHeight = maxDepth(root.right);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.max(leftHeight,rightHeight ) + <span class="number">1</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="二叉树的最小深度"><a href="#二叉树的最小深度" class="headerlink" title="二叉树的最小深度"></a><a href="https://leetcode.cn/problems/minimum-depth-of-binary-tree/" target="_blank" rel="noopener">二叉树的最小深度</a></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @param &#123;TreeNode&#125; root</span></span><br><span class="line"><span class="comment"> * @return &#123;number&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> minDepth = <span class="function"><span class="keyword">function</span>(<span class="params">root</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> leftHeight = minDepth(root.left);</span><br><span class="line">    <span class="keyword">const</span> rightHeight = minDepth(root.right);</span><br><span class="line">    <span class="keyword">if</span>(!root.left || !root.right) <span class="keyword">return</span> leftHeight + rightHeight + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.min(leftHeight,rightHeight) +<span class="number">1</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/acm/TreeNode/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="html-html/web发展史" class="article article-type-html  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -529,390 +1043,9 @@
 
 
   
-    <article id="post-tools/charles" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/tools/charles/">Charles抓包说明</a>
-    </h1>
-  
-
-        
-        <a href="/tools/charles/" class="archive-article-date">
-  	<time datetime="2021-06-17T11:03:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>以下操作适用于 mac</p>
-<h2 id="ios-包，安卓同理"><a href="#ios-包，安卓同理" class="headerlink" title="ios 包，安卓同理"></a>ios 包，安卓同理</h2><ul>
-<li>1.确保 iOS 设备和 Mac 处于同一局域网内，可开热点。</li>
-<li>2.Charles 中从菜单栏『Help -&gt; Local IP Address』获取 mac 局域网地址
-        
-          <a class="article-more-a" href="/tools/charles/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">tools</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/tools/charles/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/继承" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/继承/">继承的几种方式</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/继承/" class="archive-article-date">
-  	<time datetime="2021-04-07T14:28:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-原型链继承"><a href="#1-原型链继承" class="headerlink" title="1. 原型链继承"></a>1. 原型链继承</h2><p>子类型的原型为父类型的一个实力对象.</p>
-        
-          <a class="article-more-a" href="/JavaScript/继承/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/继承/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="http-http/浏览器缓存" class="article article-type-http  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/http/浏览器缓存/">强缓存与协商缓存</a>
-    </h1>
-  
-
-        
-        <a href="/http/浏览器缓存/" class="archive-article-date">
-  	<time datetime="2021-03-31T20:10:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/cache_0.png" width="100%" height="100%"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">http</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/http/浏览器缓存/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="interview-interview/遇到的题目" class="article article-type-interview  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/interview/遇到的题目/">一些题目总结</a>
-    </h1>
-  
-
-        
-        <a href="/interview/遇到的题目/" class="archive-article-date">
-  	<time datetime="2021-03-17T16:08:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-假设本地机器无法做加减乘除法，需要通过远程请求让服务端来实现-以加法为例，现有远程-API-的模拟实现。"><a href="#1-假设本地机器无法做加减乘除法，需要通过远程请求让服务端来实现-以加法为例，现有远程-API-的模拟实现。" class="headerlink" title="1. 假设本地机器无法做加减乘除法，需要通过远程请求让服务端来实现,以加法为例，现有远程 API 的模拟实现。"></a>1. 假设本地机器无法做加减乘除法，需要通过远程请求让服务端来实现,以加法为例，现有远程 API 的模拟实现。</h3><p>思路：分割成二位数组,分别计算</p>
-        
-          <a class="article-more-a" href="/interview/遇到的题目/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">interview</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/interview/遇到的题目/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="JavaScript-JavaScript/reduce" class="article article-type-JavaScript  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/JavaScript/reduce/">reduce</a>
-    </h1>
-  
-
-        
-        <a href="/JavaScript/reduce/" class="archive-article-date">
-  	<time datetime="2021-03-16T15:14:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Array-prototype-reduce"><a href="#Array-prototype-reduce" class="headerlink" title="Array.prototype.reduce()"></a>Array.prototype.reduce()</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="noopener">Array.prototype.reduce()</a> 方法对数组中的每个元素执行一个由您提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。</p>
-        
-          <a class="article-more-a" href="/JavaScript/reduce/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/JavaScript/reduce/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -924,7 +1057,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Grace
+    		&copy; 2023 Grace
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1007,11 +1140,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1023,31 +1160,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">interview</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">tools</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1055,11 +1168,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color5">interview</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color2">JS运行机制</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1067,7 +1180,39 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">拓展知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">tools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">quill</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">eth</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">杂</a>
               </li>
             
             <div class="clearfix"></div>
